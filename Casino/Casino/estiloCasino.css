@@ -1,0 +1,21 @@
+BODY
+{
+	font-family:Century;
+	azimuth:center;
+	background-color:#33CC00;
+	text-align:center;
+	font-size:larger;
+
+}
+
+.button
+{
+	font-family:Century;
+	font-size:large;
+	background-color:Yellow;
+}
+
+TEXTBOX
+{
+	color:Fuchsia;
+}
