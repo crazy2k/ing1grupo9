@@ -31,11 +31,22 @@ namespace CasinoNEW
 			FileInfo[] files = di.GetFiles("*.xml");
 			
 			foreach (FileInfo fi in files) {
-				Leer(fi.Name);
+				string mensaje = GetMensaje(fi);
+				Interpretar(mensaje, fi);
 			}
 		}
 		
-		public abstract void Leer(string archivo);
+		public string GetMensaje(FileInfo archivo) {
+			string nombreArchivo = archivo.Name;
+			
+			string[] partes = nombreArchivo.Split(new char[] {'.'});
+            string completo = partes[0];
+            string mensaje = completo.Substring(0, completo.Length - 6);
+			
+			return mensaje;
+		}
+		
+		public abstract void Interpretar(string mensaje, FileInfo fi);
 		
 	}
 }

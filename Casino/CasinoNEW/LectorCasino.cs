@@ -4,13 +4,15 @@
 
 using System;
 using System.Xml;
+using System.IO;
 
 namespace CasinoNEW
 {
 	
-	
 	public class LectorCasino : Lector
 	{
+		
+		private ManejadorCasino manejador = new ManejadorCasino();
 
 		public LectorCasino()
 		{
@@ -18,30 +20,30 @@ namespace CasinoNEW
 			this.Dir = "dirCasino";
 		}
 		
-		public override void Leer(string nombreArchivo)
-        {
-            string[] partes = nombreArchivo.Split(new char[] {'.'});
-            string completo = partes[0];
-            string mensaje = completo.Substring(0, completo.Length - 6);
-
-			string archivo = this.Dir + nombreArchivo;
-            XmlDocument xmld = new XmlDocument();
-            xmld.Load(archivo);
-
-            switch(mensaje) {
-                case "entradaCasino":
-                    parsearEntradaCasino(xmld);
-                break;
-            }
+		public override void Interpretar(string mensaje, FileInfo fi)
+		{
+			XmlDocument xmld = new XmlDocument();
+			xmld.Load(fi.FullName);
 			
-        }
+			switch (mensaje) {
+				case "entradaCasino":
+					delegarEntradaCasino(xmld);
+				break;
+			}
+		}
 
-        private void parsearEntradaCasino(XmlDocument xmld) {
-            XmlElement root = xmld.DocumentElement;
-            string id = root.GetAttribute("vTerm");
-            string usuario = root.GetAttribute("usuario");
-            //XmlElement ma = root.;
+		private void delegarEntradaCasino(XmlDocument xmld) {
 
-        }
+			XmlElement root = xmld.DocumentElement;
+			string sid = root.GetAttribute("vTerm");
+			int id = Int32.Parse(sid);
+
+			string usuario = root.GetAttribute("usuario");
+			XmlNode ma = root.FirstChild;
+			string modo = ma.InnerText;
+			
+			manejador.entrarCasino(id, usuario, modo);
+
+		}
 	}
 }
