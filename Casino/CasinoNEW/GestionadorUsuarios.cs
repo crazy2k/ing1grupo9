@@ -12,8 +12,11 @@ namespace CasinoNEW
 	{
 		private static GestionadorUsuarios instance = null;
 		
+		private LectorConfigCasino lconfig = LectorConfigCasino.getInstance();
+		
 		private GestionadorUsuarios()
 		{
+			
 		}
 		
 		public static GestionadorUsuarios getInstance() {
