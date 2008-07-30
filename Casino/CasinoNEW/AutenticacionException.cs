@@ -11,7 +11,7 @@ namespace CasinoNEW
 	public class AutenticacionException : ApplicationException
 	{
 		
-		public AutenticacionException()
+		public AutenticacionException(string mensaje) : base(mensaje)
 		{
 		}
 	}
