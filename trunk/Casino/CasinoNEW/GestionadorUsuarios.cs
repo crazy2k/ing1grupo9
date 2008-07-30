@@ -3,6 +3,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 
 namespace CasinoNEW
 {
@@ -13,6 +14,14 @@ namespace CasinoNEW
 		private static GestionadorUsuarios instance = null;
 		
 		private LectorConfigCasino lconfig = LectorConfigCasino.GetInstance();
+		
+		IList<Jugador> jugadoresActivos = new List<Jugador>();
+		IList<Jugador> jugadoresInactivos = new List<Jugador>();
+		IList<Administrador> administradores = new List<Administrador>();
+		IList<Observador> observadores = new List<Observador>();
+		IList<Manipulador> manipuladores = new List<Manipulador>();
+		
+		IDictionary<int, string> ids = new Dictionary<int, string>();
 		
 		private GestionadorUsuarios()
 		{
@@ -26,7 +35,13 @@ namespace CasinoNEW
 		}
 		
 		public void Autenticar(int id, string usuario, string modo) {
-			
+			if (EstaAutenticado(usuario)) {
+				throw new AutenticacionException("Ya se encuentra autenticado.");
+			}
+		}
+		
+		private bool EstaAutenticado(string usuario) {
+			return ids.Values.Contains(usuario);
 		}
 		
 	}
