@@ -19,9 +19,8 @@ namespace CasinoNEW
 
 		public void poll() {
 			while (true) {
-				foreach(Lector l in lectores) {
+				foreach(Lector l in lectores)
 					l.Leer();
-				}
 			}
 		}
 		

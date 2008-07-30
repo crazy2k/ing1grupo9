@@ -1,4 +1,3 @@
-usario,modo
-pablo,admin
-marta,jugador
-matias,observador
+pablo,admin,9999999
+marta,jugador,20
+matias,observador,500

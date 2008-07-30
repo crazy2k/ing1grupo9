@@ -9,11 +9,18 @@ using System.Collections.Generic;
 namespace CasinoNEW
 {
 	
-	
 	public class LectorConfigCasino
 	{
+		
+		private struct InfoUsuario {
+			public string modo;
+			public Dinero saldo;
+		}
+		
 		private static LectorConfigCasino instance = null;
-		private IDictionary<string, string> d = new Dictionary<string, string>();
+		
+		private IDictionary<string, InfoUsuario> usuarios = 
+			new Dictionary<string, InfoUsuario>();
 		
 		private LectorConfigCasino()
 		{
@@ -39,15 +46,14 @@ namespace CasinoNEW
 					LimpiarPartes(partes);
 					
 					string nombre = partes[0];
-					string modo = partes[1];
 					
-					Agregar(nombre, modo);
+					InfoUsuario iu = new InfoUsuario();
+					iu.modo = partes[1];
+					iu.saldo = new Dinero(double.Parse(partes[2]));
+					
+					usuarios.Add(nombre, iu);
 				}
 			}
-		}
-		
-		private void Agregar(string nombre, string modo) {
-			d.Add(nombre, modo);
 		}
 		
 		private void LimpiarPartes(string[] partes) {
@@ -56,6 +62,10 @@ namespace CasinoNEW
 			for (int i = 0; i < len; i++) {
 				partes[i] = partes[i].Trim();
 			}
+		}
+		
+		public Dinero GetSaldo(string usuario) {
+			return usuarios[usuario].saldo;
 		}
 
 	}

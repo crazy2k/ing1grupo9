@@ -51,6 +51,11 @@
     <Compile Include="EscritorCasino.cs" />
     <Compile Include="AutenticacionException.cs" />
     <Compile Include="Casino.cs" />
+    <Compile Include="Jugador.cs" />
+    <Compile Include="Administrador.cs" />
+    <Compile Include="Manipulador.cs" />
+    <Compile Include="Observador.cs" />
+    <Compile Include="Dinero.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
