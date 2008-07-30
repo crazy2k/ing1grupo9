@@ -18,25 +18,21 @@ namespace CasinoNEW
 		
 		public void entrarCasino(int id, string usuario, string modo) {
 			Casino c = Casino.GetInstance();
-			if (!c.EstaAbierto()) {
+			if ((modo == "jugador") && (!c.EstaAbierto())) {
 				string motivo = "El casino se halla cerrado en este momento.";
 				escritor.DenegarEntrada(id, usuario, modo, motivo);
 			}
+			
 			else {
-				AutenticacionUsuario(id, usuario, modo);
+				GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
+				try { 
+					g.Autenticar(id, usuario, modo);
+				}
+				catch (AutenticacionException e) {
+					string motivo = e.Message;
+					escritor.DenegarEntrada(id, usuario, modo, motivo);
+				}
 			}
 		}
-		
-		private void AutenticacionUsuario(int id, string usuario, string modo) {
-			GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
-			try { 
-				g.Autenticar(id, usuario, modo);
-			}
-			catch (AutenticacionException e) {
-				string motivo = e.Message;
-				escritor.DenegarEntrada(id, usuario, modo, motivo);
-			}
-		}
-
 	}
 }
