@@ -47,6 +47,10 @@
     <Compile Include="ManejadorCasino.cs" />
     <Compile Include="GestionadorUsuarios.cs" />
     <Compile Include="Configuracion.cs" />
+    <Compile Include="LectorConfigCasino.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <ItemGroup>
+    <None Include="lista-usuarios.txt" />
+  </ItemGroup>
 </Project>

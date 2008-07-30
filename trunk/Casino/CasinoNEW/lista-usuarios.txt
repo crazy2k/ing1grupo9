@@ -1,0 +1,4 @@
+usario,modo
+pablo,admin
+marta,jugador
+matias,observador

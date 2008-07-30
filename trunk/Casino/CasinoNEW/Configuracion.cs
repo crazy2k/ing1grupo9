@@ -10,7 +10,7 @@ namespace CasinoNEW
 	
 	public class Configuracion
 	{
-		public static readonly string ARCHIVO_USUARIOS = "usuarios.txt";
+		public static readonly string ARCHIVO_USUARIOS = "./lista-usuarios.txt";
 	}
 		
 }
