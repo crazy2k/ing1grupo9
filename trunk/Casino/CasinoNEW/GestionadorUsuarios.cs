@@ -12,21 +12,21 @@ namespace CasinoNEW
 	{
 		private static GestionadorUsuarios instance = null;
 		
-		private LectorConfigCasino lconfig = LectorConfigCasino.getInstance();
+		private LectorConfigCasino lconfig = LectorConfigCasino.GetInstance();
 		
 		private GestionadorUsuarios()
 		{
 			
 		}
 		
-		public static GestionadorUsuarios getInstance() {
+		public static GestionadorUsuarios GetInstance() {
 			if (instance == null)
 				instance = new GestionadorUsuarios();
 			return instance;
 		}
 		
-		public void autenticar(int id, string usuario, string modo) {
-
+		public void Autenticar(int id, string usuario, string modo) {
+			
 		}
 		
 	}

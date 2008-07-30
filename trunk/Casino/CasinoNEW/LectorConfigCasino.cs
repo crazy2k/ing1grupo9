@@ -23,7 +23,7 @@ namespace CasinoNEW
 			
 		}
 		
-		public static LectorConfigCasino getInstance() {
+		public static LectorConfigCasino GetInstance() {
 			if (instance == null)
 				instance = new LectorConfigCasino();
 			return instance;
