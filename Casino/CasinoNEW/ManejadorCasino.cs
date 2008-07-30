@@ -16,7 +16,8 @@ namespace CasinoNEW
 		}
 		
 		public void entrarCasino(int id, string usuario, string modo) {
-			
+			GestionadorUsuarios g = GestionadorUsuarios.getInstance();
+			g.autenticar(id, usuario, modo);
 		}
 	}
 }
