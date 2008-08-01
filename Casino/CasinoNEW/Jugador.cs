@@ -3,6 +3,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 
 namespace CasinoNEW
 {
@@ -12,6 +13,7 @@ namespace CasinoNEW
 	{
 		private string nombre;
 		private Dinero credito;
+        private List<Apuesta> apuestas = new List<Apuesta>();
 		
 		public Jugador(string usuario, Dinero saldo)
 		{
@@ -23,5 +25,18 @@ namespace CasinoNEW
 			get { return nombre; }
 			set { nombre = value; }
 		}
+
+        public void pagar(Dinero costo)
+        {
+          //  credito -= costo; despues defino los operadores
+        }
+        public void cobrar(Dinero ganancia)
+        {
+          //  credito += ganancia; idem
+        }
+        public void recibirApuesta(Apuesta a)
+        {
+            apuestas.Add(a);
+        }
 	}
 }

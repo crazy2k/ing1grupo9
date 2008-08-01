@@ -36,11 +36,28 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnfitrionDados.cs" />
+    <Compile Include="Apuesta.cs" />
+    <Compile Include="ApuestaDados.cs" />
+    <Compile Include="ApuestaDeCampo.cs" />
+    <Compile Include="ApuestaGanarEnContra.cs" />
+    <Compile Include="ApuestaPassNoPass.cs" />
+    <Compile Include="ApuestaVenirNoVenir.cs" />
+    <Compile Include="CrupierDados.cs" />
+    <Compile Include="Enumerados.cs" />
+    <Compile Include="EventHandlerDados.cs" />
+    <Compile Include="GeneradorJugadasDados.cs" />
+    <Compile Include="Juego.cs" />
+    <Compile Include="JuegoDados.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Mesa.cs" />
+    <Compile Include="MesaDados.cs" />
+    <Compile Include="Pair.cs" />
     <Compile Include="Poller.cs" />
     <Compile Include="Lector.cs" />
     <Compile Include="LectorCasino.cs" />
@@ -56,6 +73,10 @@
     <Compile Include="Manipulador.cs" />
     <Compile Include="Observador.cs" />
     <Compile Include="Dinero.cs" />
+    <Compile Include="Premio.cs" />
+    <Compile Include="ReportadorDados.cs" />
+    <Compile Include="Resultado.cs" />
+    <Compile Include="ResultadoDados.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
