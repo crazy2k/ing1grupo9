@@ -16,24 +16,6 @@ namespace CasinoNEW
 		{
 		}
 		
-		public void SalirCasino(int id, string usuario) {
-			Casino c = Casino.GetInstance();
-			if (!c.EstaAbierto())
-				escritor.AceptarSalida(id, usuario);
-			else {
-				GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
-				try {
-					g.Desloguear(id, usuario);
-					escritor.AceptarSalida(id, usuario);
-				}
-				catch (DeslogueoException e) {
-					string motivo = e.Message;
-					escritor.DenegarSalida(id, usuario, motivo);
-				}
-				
-			}
-		}
-		
 		public void EntrarCasino(int id, string usuario, string modo) {
 			Casino c = Casino.GetInstance();
 			if ((modo == "jugador" || modo == "manipulador" || 
@@ -57,5 +39,23 @@ namespace CasinoNEW
 				}
 			}
 		}
+		
+		public void SalirCasino(int id, string usuario) {
+			Casino c = Casino.GetInstance();
+			if (!c.EstaAbierto())
+				escritor.AceptarSalida(id, usuario);
+			else {
+				GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
+				try {
+					g.Desloguear(id, usuario);
+					escritor.AceptarSalida(id, usuario);
+				}
+				catch (DeslogueoException e) {
+					string motivo = e.Message;
+					escritor.DenegarSalida(id, usuario, motivo);
+				}
+			}
+		}
+		
 	}
 }
