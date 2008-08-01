@@ -11,28 +11,30 @@ namespace CasinoNEW
 	
 	public abstract class Lector
 	{
-		private string dir;
+		private string[] dirs;
 		
 		public Lector()
 		{
 		}
 		
-		public string Dir {
+		public string[] Dirs {
 			get {
-				return dir;
+				return dirs;
 			}
 			set {
-				dir = value;
+				dirs = value;
 			}
 		}
 		
 		public void Leer() {
-			DirectoryInfo di = new DirectoryInfo(this.Dir);
-			FileInfo[] files = di.GetFiles("*.xml");
-			
-			foreach (FileInfo fi in files) {
-				string mensaje = GetMensaje(fi);
-				Interpretar(mensaje, fi);
+			foreach (string dir in this.Dirs) {
+				DirectoryInfo di = new DirectoryInfo(dir);
+				FileInfo[] files = di.GetFiles("*.xml");
+				
+				foreach (FileInfo fi in files) {
+					string mensaje = GetMensaje(fi);
+					Interpretar(mensaje, fi);
+				}
 			}
 		}
 		

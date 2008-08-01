@@ -20,8 +20,12 @@ namespace CasinoNEW
 
 		public LectorCasino()
 		{
-			// Ruta del directorio del que se leerán los mensajes
-			this.Dir = "dirCasino";
+			// Ruta de los directorios de los que se leerán los mensajes.
+			string a = Configuracion.DIRECTORIO_accesoYVistaCasino;
+			string b = Configuracion.DIRECTORIO_accesoCasinoAdminManip;
+
+			string[] dirs = new string[] {a, b};
+			this.Dirs = dirs;
 		}
 		
 		public override void Interpretar(string mensaje, FileInfo fi)

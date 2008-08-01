@@ -11,6 +11,10 @@ namespace CasinoNEW
 	public class Configuracion
 	{
 		public static readonly string ARCHIVO_USUARIOS = "./lista-usuarios.txt";
+		public static readonly string DIRECTORIO_accesoYVistaCasino = 
+			"./accesoYVistaCasino/";
+		public static readonly string DIRECTORIO_accesoCasinoAdminManip = 
+			"./accesoCasinoAdminManip/";
 	}
 		
 }
