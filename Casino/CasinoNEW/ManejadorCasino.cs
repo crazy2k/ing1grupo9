@@ -28,10 +28,10 @@ namespace CasinoNEW
 				GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
 				try { 
 					g.Autenticar(id, usuario, modo);
-					// El 0 es porque el mensaje de AceptarEntrada recibe el
+					// El null es porque el mensaje de AceptarEntrada recibe el
 					// saldo como parámetro, y en este caso (por ahora, el
 					// del "administrador", no nos interesa.
-					escritor.AceptarEntrada(id, usuario, modo, 0);
+					escritor.AceptarEntrada(id, usuario, modo, null);
 				}
 				catch (AutenticacionException e) {
 					string motivo = e.Message;

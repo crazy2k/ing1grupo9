@@ -19,5 +19,9 @@ namespace CasinoNEW
 		                           string motivo) {
 		
 		}
+		public void AceptarEntrada(int id, string usuario, string modo,
+		                           Dinero saldo) {
+		
+		}
 	}
 }
