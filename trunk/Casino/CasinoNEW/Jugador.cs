@@ -9,23 +9,17 @@ using Dinero = System.Decimal;
 
 namespace CasinoNEW
 {
-	public class Jugador
+	public class Jugador : Usuario
 	{
-		private string nombre;
 		private Dinero credito;
         private List<Apuesta> apuestas = new List<Apuesta>();
 		
 		public Jugador(string usuario, Dinero saldo)
 		{
-			nombre = usuario;
+			this.Nombre = usuario;
 			credito = saldo;
 		}
 		
-		public string Nombre {
-			get { return nombre; }
-			set { nombre = value; }
-		}
-
         public void pagar(Dinero costo)
 		{
 			credito -= costo;

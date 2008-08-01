@@ -79,6 +79,8 @@
     <Compile Include="Resultado.cs" />
     <Compile Include="ResultadoDados.cs" />
     <Compile Include="Escritor.cs" />
+    <Compile Include="DeslogueoException.cs" />
+    <Compile Include="Usuario.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
