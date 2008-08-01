@@ -19,6 +19,7 @@
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <DefineConstants>DEBUG</DefineConstants>
     <WarningLevel>4</WarningLevel>
+    <ApplicationIcon>.</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputType>Exe</OutputType>
@@ -33,6 +34,7 @@
     <DefineConstants>
     </DefineConstants>
     <WarningLevel>4</WarningLevel>
+    <ApplicationIcon>.</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
