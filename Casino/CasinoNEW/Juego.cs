@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace CasinoNEW
 {
-    public class Juego
+    public abstract class Juego
     {
         private List<Mesa> mesas = new List<Mesa>();
 
@@ -16,5 +16,17 @@ namespace CasinoNEW
         {
             return mesas;
         }
+		
+		public void CerrarMesa(int mesa)
+		{
+			mesas--;
+			foreach(Mesa m in mesas){
+				if (m.getid() == mesa)
+					mesas.remove(m);
+			}
+		}
+		
+		public abstract Mesa CrearMesa();
+		public abstract void Reset();
     }
 }
