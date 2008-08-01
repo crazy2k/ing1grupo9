@@ -146,6 +146,12 @@ namespace Casino
 			return estaAbierto;
 		}
 		
+		public Dinero TomarPozoFeliz(){
+			Dinero pozo = montoPozoFeliz;
+			montoPozoFeliz = 0;
+			return pozo;
+		}
+		
         public void configurar()
         {
         }
