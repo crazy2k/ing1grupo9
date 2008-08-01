@@ -11,10 +11,16 @@ namespace CasinoNEW
 	public class Configuracion
 	{
 		public static readonly string ARCHIVO_USUARIOS = "./lista-usuarios.txt";
+		
+		// Se leen los mensajes y se escriben en /Temp/. Estas opciones de
+		// configuración quedan por si en algún momento alguien desea hacer
+		// una modificación.
 		public static readonly string DIRECTORIO_accesoYVistaCasino = 
-			"./accesoYVistaCasino/";
+			"/Temp/";
 		public static readonly string DIRECTORIO_accesoCasinoAdminManip = 
-			"./accesoCasinoAdminManip/";
+			"/Temp/";
+		public static readonly string DIRECTORIO_RESPUESTAS_CLIENTE = 
+			"/Temp/";
 	}
 		
 }
