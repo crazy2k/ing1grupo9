@@ -24,7 +24,7 @@ namespace CasinoNEW
 		
 		public void CerrarMesa(int mesa)
 		{
-			cantMesas = cantMesas--;
+			cantMesas--;
 			foreach(Mesa m in mesas){
 				if ( m.Id == mesa)
 					mesas.Remove(m);
