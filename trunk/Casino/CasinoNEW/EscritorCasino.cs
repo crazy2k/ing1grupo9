@@ -4,6 +4,7 @@
 
 using System;
 using System.Xml;
+using Dinero = System.Decimal;
 
 namespace CasinoNEW
 {

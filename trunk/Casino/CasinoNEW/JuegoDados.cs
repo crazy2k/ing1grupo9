@@ -1,5 +1,6 @@
 using System;
 using System.Configuration;
+using Dinero = System.Decimal;
 
 namespace CasinoNEW
 {
@@ -11,7 +12,7 @@ namespace CasinoNEW
 		{
 			cantMesas++;
 			Mesa nuevaMesa = new MesaDados(cantMesas);
-			mesas.add(nuevaMesa);
+			mesas.Add(nuevaMesa);
 			return nuevaMesa;
 		}
 		
@@ -19,6 +20,15 @@ namespace CasinoNEW
 		{
 			mesas.Clear();
 			cantMesas = 0;
+		}
+		
+		public void CerrarMesa(int mesa)
+		{
+			cantMesas = cantMesas--;
+			foreach(Mesa m in mesas){
+				if ( m.Id == mesa)
+					mesas.Remove(m);
+			}
 		}
     }
 }

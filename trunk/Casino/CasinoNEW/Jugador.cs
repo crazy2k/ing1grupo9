@@ -5,10 +5,10 @@
 using System;
 using System.Collections.Generic;
 
+using Dinero = System.Decimal;
+
 namespace CasinoNEW
 {
-	
-	
 	public class Jugador
 	{
 		private string nombre;
@@ -27,15 +27,17 @@ namespace CasinoNEW
 		}
 
         public void pagar(Dinero costo)
-        {
-          //  credito -= costo; despues defino los operadores
+		{
+			credito -= costo;
         }
         public void cobrar(Dinero ganancia)
         {
-          //  credito += ganancia; idem
+			credito += ganancia;
         }
         public void recibirApuesta(Apuesta a)
         {
+			if (a.getValor() > credito)
+				throw new Exception("Credito insuficiente.");
             apuestas.Add(a);
         }
 	}

@@ -8,10 +8,10 @@ namespace CasinoNEW
         private bool aFavor;
         private int puntaje;
 
-        ApuestaGanarEnContra(bool aFavor, int puntaje)
+        ApuestaGanarEnContra(bool afavor, int p)
         {
-            aFavor = aFavor;
-            puntaje = puntaje;
+            aFavor = afavor;
+            puntaje = p;
         }
         public override Pair evaluar(ResultadoDados res)
         {
