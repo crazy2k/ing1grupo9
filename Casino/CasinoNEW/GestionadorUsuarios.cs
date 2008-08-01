@@ -21,8 +21,11 @@ namespace CasinoNEW
 		IList<Administrador> administradores = new List<Administrador>();
 		IList<Observador> observadores = new List<Observador>();
 		IList<Manipulador> manipuladores = new List<Manipulador>();
-		
+
+		// Diccionario <id, usuario>
 		IDictionary<int, string> ids = new Dictionary<int, string>();
+		// Diccionario <usuario, modo> (modo es "jugador", "administrador", ...) 
+		IDictionary<string, string> modos = new Dictionary<string, string>();
 		
 		public IList<Jugador> JugadoresActivos
 		{
@@ -42,7 +45,8 @@ namespace CasinoNEW
 		
 		public void Autenticar(int id, string usuario, string modo) {
 			if (EstaAutenticado(usuario)) {
-				throw new AutenticacionException("Ya se encuentra autenticado.");
+				throw new AutenticacionException("Ya se encuentra"
+				                                 + "autenticado.");
 			}
 			
 			switch (modo) {
@@ -55,8 +59,21 @@ namespace CasinoNEW
 			}
 		}
 		
-		private bool EstaAutenticado(string usuario) {
-			return ids.Values.Contains(usuario);
+		public void Desloguear(int id, string usuario) {
+			if (!EstaAutenticado(usuario)) {
+				throw new DeslogueoException("El usuario no se halla " +
+				                             "autenticado");
+			}
+			
+			string modo = modos[usuario];
+			switch (modo) {
+			case "jugador":
+				SacarJugador(id, usuario);
+				break;
+			case "administrador":
+				SacarAdministrador(id, usuario);
+				break;
+			}
 		}
 		
 		private void IngresarAdministrador(int id, string usuario) {
@@ -65,10 +82,12 @@ namespace CasinoNEW
 			// creo un Administrador nuevo.
 			Administrador a = new Administrador(usuario);
 			administradores.Add(a);
+			
+			Agregar(id, usuario, "admin");
 		}
 		
 		private void IngresarJugador(int id, string usuario) {
-			Jugador j = GetJugadorInactivo(usuario);
+			Jugador j = GetJugador(usuario, false);
 			// El jugador ya ingresó hoy.
 			if (j != null) {
 				jugadoresInactivos.Remove(j);
@@ -80,16 +99,66 @@ namespace CasinoNEW
 				Jugador nj = new Jugador(usuario, saldo);
 				jugadoresActivos.Add(nj);
 			}
+			Agregar(id, usuario, "jugador");
 		}
 		
-		private Jugador GetJugadorInactivo(string usuario) {
-			foreach (Jugador j in jugadoresInactivos)
-				if (j.Nombre == usuario)
-					return j;
+		private void SacarAdministrador(int id, string usuario) {
+			Administrador a = GetAdministrador(usuario);
+			if (a != null) {
+				administradores.Remove(a);
+				
+				Quitar(id, usuario);
+			}
+		}
+		
+		private void SacarJugador(int id, string usuario) {
+			Jugador j = GetJugador(usuario, true);
+			if (j != null) {
+				jugadoresActivos.Remove(j);
+				jugadoresInactivos.Add(j);
+				
+				Quitar(id, usuario);
+			}
+			else {
+				throw new DeslogueoException("El jugador no se encuentra " +
+				                             "en la lista de jugadores "
+				                             + "activos.");
+			}
+		}
+		
+		private void Agregar(int id, string usuario, string modo) {
+			ids.Add(id, usuario);
+			modos.Add(usuario, modo);
+		}
+		
+		private void Quitar(int id, string usuario) {
+			ids.Remove(id);
+			modos.Remove(usuario);
+		}
+		
+		private Administrador GetAdministrador(string usuario) {
+			foreach (Administrador a in administradores)
+				if (a.Nombre == usuario)
+					return a;
 			return null;
 		}
 		
-		private class JugadorNoIngresoHoyException : ApplicationException { }
+		private Jugador GetJugador(string usuario, bool activo) {
+			if (activo) {
+				foreach (Jugador j in jugadoresActivos)
+					if (j.Nombre == usuario)
+						return j;
+			}
+			else {
+				foreach (Jugador j in jugadoresInactivos)
+					if (j.Nombre == usuario)
+						return j;
+			}
+			return null;
+		}
 		
+		private bool EstaAutenticado(string usuario) {
+			return ids.Values.Contains(usuario);
+		}
 	}
 }

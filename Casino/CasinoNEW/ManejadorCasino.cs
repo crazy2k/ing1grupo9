@@ -16,7 +16,25 @@ namespace CasinoNEW
 		{
 		}
 		
-		public void entrarCasino(int id, string usuario, string modo) {
+		public void SalirCasino(int id, string usuario) {
+			Casino c = Casino.GetInstance();
+			if (!c.EstaAbierto())
+				escritor.AceptarSalida(id, usuario);
+			else {
+				GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
+				try {
+					g.Desloguear(id, usuario);
+					escritor.AceptarSalida(id, usuario);
+				}
+				catch (DeslogueoException e) {
+					string motivo = e.Message;
+					escritor.DenegarSalida(id, usuario, motivo);
+				}
+				
+			}
+		}
+		
+		public void EntrarCasino(int id, string usuario, string modo) {
 			Casino c = Casino.GetInstance();
 			if ((modo == "jugador" || modo == "manipulador" || 
 			     modo == "observador") && (!c.EstaAbierto())) {
@@ -28,10 +46,9 @@ namespace CasinoNEW
 				GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
 				try { 
 					g.Autenticar(id, usuario, modo);
-					// El cero es porque el mensaje de AceptarEntrada recibe el
+					// El null es porque el mensaje de AceptarEntrada recibe el
 					// saldo como parámetro, y en este caso (por ahora, el
 					// del "administrador", no nos interesa.
-					// Como ahora 
 					escritor.AceptarEntrada(id, usuario, modo, 0);
 				}
 				catch (AutenticacionException e) {

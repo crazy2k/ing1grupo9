@@ -44,5 +44,12 @@ namespace CasinoNEW
 
 			EscribirXML(nombreArchivo, xd);
 		}
+		
+		public void AceptarSalida(int id, string usuario) {
+		
+		}
+		public void DenegarSalida(int id, string usuario, string motivo) {
+		
+		}
 	}
 }

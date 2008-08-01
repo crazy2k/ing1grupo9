@@ -28,22 +28,24 @@ namespace CasinoNEW
 			this.Dirs = dirs;
 		}
 		
-		public override void Interpretar(string mensaje, FileInfo fi)
-		{
-			XmlDocument xmld = new XmlDocument();
-			xmld.Load(fi.FullName);
-			
-			switch (mensaje) {
-				case "entradaCasino":
-				case "entradaCasinoAdmin":
-					delegarEntradaCasino(xmld);
-				break;
-				//case "":
-				//	delegarEntradaCasino(xmld);
-				//break;
-			}
+		protected int GetIdTerminal(XmlElement e) {
+			string sid = e.GetAttribute("vTerm");
+			return Int32.Parse(sid);
 		}
 
+		protected string GetUsuario(XmlElement e) {
+			return e.GetAttribute("usuario");
+		}
+		
+		private void delegarSalidaCasino(XmlDocument xmld) {
+			XmlElement root = xmld.DocumentElement;
+			
+			int id = GetIdTerminal(root);
+			string usuario =  GetUsuario(root);
+			
+			manejador.SalirCasino(id, usuario);
+		}
+		
 		private void delegarEntradaCasino(XmlDocument xmld) {
 
 			XmlElement root = xmld.DocumentElement;
@@ -54,8 +56,23 @@ namespace CasinoNEW
 			XmlNode ma = root.FirstChild;
 			string modo = ma.InnerText;
 			
-			manejador.entrarCasino(id, usuario, modo);
-
+			manejador.EntrarCasino(id, usuario, modo);
+		}
+		
+		public override void Interpretar(string mensaje, FileInfo fi)
+		{
+			XmlDocument xmld = new XmlDocument();
+			xmld.Load(fi.FullName);
+			
+			switch (mensaje) {
+				case "entradaCasino":
+				case "entradaCasinoAdmin":
+					delegarEntradaCasino(xmld);
+				break;
+				case "SalidaCasino":
+					delegarSalidaCasino(xmld);
+				break;
+			}
 		}
 	}
 }
