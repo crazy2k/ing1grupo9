@@ -5,12 +5,13 @@
 using System;
 using System.Data;
 using System.Configuration;
-using System.Web;
+/*using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+*/
 using System.Collections.Generic;
 
 using Ficha = System.Int32; //Asi se hacen los renombres de tipo. 
@@ -96,21 +97,18 @@ namespace Casino
             }
             return tipoJug;
         }
-        public void pagar(Dinero costo, Jugador jug)
+        public void Pagar(Dinero costo, Jugador jug)
         {
             saldoActual -= costo;
             jug.cobrar(costo);
         }
-        public void cobrar(Dinero ganancia, Jugador jug)
+        public void Cobrar(Dinero ganancia, Jugador jug)
         {
             saldoActual += ganancia;
             jug.pagar(ganancia);
         }
-        public bool estaAbierto()
-        {
-            return abierto;
-        }
-        public void abrir()
+
+        public void Abrir()
         {
             if (!abierto)
             {
@@ -121,7 +119,7 @@ namespace Casino
                 throw new Exception("El casino ya estaba abierto.");
             }
         }
-        public void cerrar()
+        public void Cerrar()
         {
             if (abierto)
             {
@@ -152,7 +150,7 @@ namespace Casino
 			return pozo;
 		}
 		
-        public void configurar()
+        public void Configurar()
         {
         }
 
