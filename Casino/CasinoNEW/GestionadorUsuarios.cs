@@ -43,13 +43,22 @@ namespace CasinoNEW
 			case "jugador":
 				IngresarJugador(id, usuario);
 				break;
-			case "admin":
+			case "administrador":
+				IngresarAdministrador(id, usuario);
 				break;
 			}
 		}
 		
 		private bool EstaAutenticado(string usuario) {
 			return ids.Values.Contains(usuario);
+		}
+		
+		private void IngresarAdministrador(int id, string usuario) {
+			// Para los administradores no me piden informes ni nada, así que
+			// cuando entra uno que no estaba autenticado, simplemente
+			// creo un Administrador nuevo.
+			Administrador a = new Administrador(usuario);
+			administradores.Add(a);
 		}
 		
 		private void IngresarJugador(int id, string usuario) {

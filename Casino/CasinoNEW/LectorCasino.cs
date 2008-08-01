@@ -9,6 +9,10 @@ using System.IO;
 namespace CasinoNEW
 {
 	
+	/* Clase que representa al lector de los puertos:
+	 * - accesoYVistaCasino
+	 * - accesoCasinoAdminManip
+	 */
 	public class LectorCasino : Lector
 	{
 		
@@ -27,8 +31,12 @@ namespace CasinoNEW
 			
 			switch (mensaje) {
 				case "entradaCasino":
+				case "entradaCasinoAdmin":
 					delegarEntradaCasino(xmld);
 				break;
+				//case "":
+				//	delegarEntradaCasino(xmld);
+				//break;
 			}
 		}
 
