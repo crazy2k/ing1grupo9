@@ -21,7 +21,7 @@ namespace CasinoNEW
 		
 		public override string ToString ()
 		{
-			return;
+			return "";
 		}
 
 	}
