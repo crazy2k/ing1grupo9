@@ -37,16 +37,7 @@ namespace CasinoNEW
 			return e.GetAttribute("usuario");
 		}
 		
-		private void delegarSalidaCasino(XmlDocument xmld) {
-			XmlElement root = xmld.DocumentElement;
-			
-			int id = GetIdTerminal(root);
-			string usuario =  GetUsuario(root);
-			
-			manejador.SalirCasino(id, usuario);
-		}
-		
-		private void delegarEntradaCasino(XmlDocument xmld) {
+		private void DelegarEntradaCasino(XmlDocument xmld) {
 
 			XmlElement root = xmld.DocumentElement;
 			string sid = root.GetAttribute("vTerm");
@@ -59,6 +50,16 @@ namespace CasinoNEW
 			manejador.EntrarCasino(id, usuario, modo);
 		}
 		
+		private void DelegarSalidaCasino(XmlDocument xmld) {
+			XmlElement root = xmld.DocumentElement;
+			
+			int id = GetIdTerminal(root);
+			string usuario =  GetUsuario(root);
+			
+			manejador.SalirCasino(id, usuario);
+		}
+		
+		
 		public override void Interpretar(string mensaje, FileInfo fi)
 		{
 			XmlDocument xmld = new XmlDocument();
@@ -67,10 +68,10 @@ namespace CasinoNEW
 			switch (mensaje) {
 				case "entradaCasino":
 				case "entradaCasinoAdmin":
-					delegarEntradaCasino(xmld);
+					DelegarEntradaCasino(xmld);
 				break;
 				case "SalidaCasino":
-					delegarSalidaCasino(xmld);
+					DelegarSalidaCasino(xmld);
 				break;
 			}
 		}
