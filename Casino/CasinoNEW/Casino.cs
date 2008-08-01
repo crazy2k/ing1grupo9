@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using Ficha = System.Int32; //Asi se hacen los renombres de tipo. 
 using Dinero = System.Decimal;
 
-namespace Casino
+namespace CasinoNEW
 {
     //Microsoft garantiza que esta implementacion de singleton es thread-safe.
     //Para mas info ver http://msdn.microsoft.com/en-us/library/ms998558.aspx
@@ -66,7 +66,7 @@ namespace Casino
         #region funciones
 
         private Casino() {}
-        public static Casino getInstance()
+        public static Casino GetInstance()
         {
              if (instance == null) 
              {
@@ -78,7 +78,7 @@ namespace Casino
              }
              return instance;
         }
-        public TipoJugada obtenerTipoDeJugada()
+        public TipoJugada ObtenerTipoDeJugada()
         {
             Random r = new Random(DateTime.Now.Millisecond);
             double rFloat = r.NextDouble();
@@ -110,9 +110,9 @@ namespace Casino
 
         public void Abrir()
         {
-            if (!abierto)
+            if (!estaAbierto)
             {
-                abierto = true;
+                estaAbierto = true;
             }
             else
             {
@@ -121,13 +121,13 @@ namespace Casino
         }
         public void Cerrar()
         {
-            if (abierto)
+            if (estaAbierto)
             {
-                GestionadorUsuarios gest = GestionadorUsuarios.getInstance();
-                List<Jugador> jug = gest.getJugadoresActivos();
+                GestionadorUsuarios gest = GestionadorUsuarios.GetInstance();
+                IList<Jugador> jug = gest.JugadoresActivos;
                 if (jug.Count == 0)
                 {
-                    abierto = false;
+                    estaAbierto = false;
                 }
                 else
                 {

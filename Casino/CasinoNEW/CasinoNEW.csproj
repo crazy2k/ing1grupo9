@@ -74,7 +74,6 @@
     <Compile Include="Administrador.cs" />
     <Compile Include="Manipulador.cs" />
     <Compile Include="Observador.cs" />
-    <Compile Include="Dinero.cs" />
     <Compile Include="Premio.cs" />
     <Compile Include="ReportadorDados.cs" />
     <Compile Include="Resultado.cs" />

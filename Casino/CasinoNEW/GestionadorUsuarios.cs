@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using Dinero = System.Decimal;
 
 namespace CasinoNEW
 {
@@ -22,6 +23,11 @@ namespace CasinoNEW
 		IList<Manipulador> manipuladores = new List<Manipulador>();
 		
 		IDictionary<int, string> ids = new Dictionary<int, string>();
+		
+		public IList<Jugador> JugadoresActivos
+		{
+			get{ return jugadoresActivos; }
+		}
 		
 		private GestionadorUsuarios()
 		{

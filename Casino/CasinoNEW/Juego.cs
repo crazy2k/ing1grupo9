@@ -1,12 +1,13 @@
 using System;
 using System.Configuration;
 using System.Collections.Generic;
+using Dinero = System.Decimal;
 
 namespace CasinoNEW
 {
     public abstract class Juego
     {
-        private List<Mesa> mesas = new List<Mesa>();
+        protected List<Mesa> mesas = new List<Mesa>();
 
         public Mesa getMesa(int id)
         {
@@ -16,15 +17,6 @@ namespace CasinoNEW
         {
             return mesas;
         }
-		
-		public void CerrarMesa(int mesa)
-		{
-			mesas--;
-			foreach(Mesa m in mesas){
-				if (m.getid() == mesa)
-					mesas.remove(m);
-			}
-		}
 		
 		public abstract Mesa CrearMesa();
 		public abstract void Reset();
