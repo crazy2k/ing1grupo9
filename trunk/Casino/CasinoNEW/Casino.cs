@@ -20,7 +20,7 @@ using Ficha = System.Int32; //Asi se hacen los renombres de tipo.
 namespace CasinoNEW
 {
 	using Dinero = System.Decimal;
-	using TipoJugada = string;
+
     //Microsoft garantiza que esta implementacion de singleton es thread-safe.
     //Para mas info ver http://msdn.microsoft.com/en-us/library/ms998558.aspx
 
