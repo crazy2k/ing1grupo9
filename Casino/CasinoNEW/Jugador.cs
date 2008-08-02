@@ -28,7 +28,7 @@ namespace CasinoNEW
         {
 			credito += ganancia;
         }
-        public void recibirApuesta(Apuesta a)
+        public void agregarApuesta(Apuesta a)
         {
 			if (a.getValor() > credito)
 				throw new Exception("Credito insuficiente.");
