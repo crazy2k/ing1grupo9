@@ -65,12 +65,15 @@ namespace CasinoNEW
 			XmlDocument xmld = new XmlDocument();
 			xmld.Load(fi.FullName);
 			
+			mensaje = mensaje.ToLower();
+
 			switch (mensaje) {
-				case "entradaCasino":
-				case "entradaCasinoAdmin":
+				case "entradacasino":
+				case "entradacasinoadmin":
 					DelegarEntradaCasino(xmld);
 				break;
-				case "SalidaCasino":
+				case "salidacasino":
+				case "salidacasinoadmin":
 					DelegarSalidaCasino(xmld);
 				break;
 			}
