@@ -40,10 +40,10 @@ namespace CasinoNEW
 		private void DelegarEntradaCasino(XmlDocument xmld) {
 
 			XmlElement root = xmld.DocumentElement;
-			string sid = root.GetAttribute("vTerm");
-			int id = Int32.Parse(sid);
+			
+			int id = GetIdTerminal(root);
+			string usuario = GetUsuario(root);
 
-			string usuario = root.GetAttribute("usuario");
 			XmlNode ma = root.FirstChild;
 			string modo = ma.InnerText;
 			
@@ -54,7 +54,7 @@ namespace CasinoNEW
 			XmlElement root = xmld.DocumentElement;
 			
 			int id = GetIdTerminal(root);
-			string usuario =  GetUsuario(root);
+			string usuario = GetUsuario(root);
 			
 			manejador.SalirCasino(id, usuario);
 		}
