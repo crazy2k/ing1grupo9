@@ -9,7 +9,7 @@ namespace CasinoNEW
 {
 	interface Manipulador
 	{
-        void manipularResultado(Resultado res);
+        void manipularResultado(Resultado res, List<Mesa> mesas);
         void manipularJugadaTP(List<Mesa> mesas);
         void manipularJugadaFeliz(Mesa mesa);
 	}
