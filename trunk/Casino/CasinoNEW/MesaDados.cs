@@ -53,7 +53,7 @@ namespace CasinoNEW
         public override void jugar() 
         {
             Jugada jugada = GeneradorJugadas.obtenerJugada();
-            //falta
+            Crupier.pagarApuestas((ResultadoDados)jugada.getFirst(),(TipoJugada)jugada.getSecond());
         }
         public override void apostar(Jugador j, Apuesta a) 
         {
@@ -68,6 +68,10 @@ namespace CasinoNEW
         {
             Anfitrion.despedirParticipante(j);
         }
-        public void notificarEstado() { }
+        public void notificarEstado() 
+        {
+            ReporteDados reporte = Reportador.obtenerReporte();
+            EventHandler.notificar(reporte);
+        }
     }
 }
