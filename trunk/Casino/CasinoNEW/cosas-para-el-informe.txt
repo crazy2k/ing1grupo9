@@ -1,4 +1,4 @@
-Cambios en el protocolo:
+Cambios con el TP2:
 	- Ahora (entrada|salida)CasinoAdmin es (entrada|salida)Casino, como en el
 	protocolo de la cátedra. La única adición es que se usa "administrador"
 	o "manipulador" como modo de acceso. También se quitó el "Admin" de los
@@ -6,3 +6,6 @@ Cambios en el protocolo:
 	- En la respuesta de entrada al casino, se agregaron las modificaciones
 	necesarias para que al cliente le lleguen las fichas habilitadas para
 	jugar en el casino.
+	- En el escenario de ingreso de un jugador al casino, no se mostró nunca
+	el caso del envío de la aceptación de la entrada. Se agregó esto en la
+	implementación.

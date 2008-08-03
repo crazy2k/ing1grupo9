@@ -3,8 +3,10 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Xml;
 using Dinero = System.Decimal;
+using Ficha = System.Int32;
 
 namespace CasinoNEW
 {
@@ -18,7 +20,7 @@ namespace CasinoNEW
 		}
 		
 		public void AceptarEntrada(int id, string usuario, string modo,
-		                           Dinero saldo) {
+		                           Dinero saldo, IList<Ficha> fichas) {
 			// TODO: Fichas.
 			string nombreArchivo;
 			//if (modo == "admin")
@@ -38,6 +40,13 @@ namespace CasinoNEW
 			AgregarElementoSimple(xd, root, "aceptado", "si");
 			AgregarElementoSimple(xd, root, "modoAcceso", modo);
 			AgregarElementoSimple(xd, root, "saldo", saldo.ToString());
+
+			XmlElement fichasH = xd.CreateElement("fichasHabilitadas");
+			root.AppendChild(fichasH);
+			foreach (Ficha f in fichas)
+				AgregarElementoSimple(xd, fichasH, "valorFicha",
+				                      f.ToString());
+			
 			AgregarElementoSimple(xd, root, "descripcion", "");
 
 			EscribirXML(nombreArchivo, xd);

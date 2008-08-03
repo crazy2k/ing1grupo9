@@ -45,6 +45,10 @@ namespace CasinoNEW
         #endregion
 
         #region getters
+		
+		public List<Ficha> GetFichas() {
+			return fichas;
+		}
         
         public Dinero getMontoPozoFeliz()
         {
