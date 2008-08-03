@@ -17,18 +17,16 @@ namespace CasinoNEW
 		{
 		}
 		
-		public void DenegarEntrada(int id, string usuario, string modo,
-		                           string motivo) {
-		
-		}
-		
 		public void AceptarEntrada(int id, string usuario, string modo,
 		                           Dinero saldo) {
+			// TODO: Fichas.
 			string nombreArchivo;
-			if (modo == "admin")
-				nombreArchivo = "respuestaEntradaCasinoAdmin";
-			else
-				nombreArchivo = "respuestaEntradaCasino";
+			//if (modo == "admin")
+			//	nombreArchivo = "respuestaEntradaCasinoAdmin";
+			//else
+			//	nombreArchivo = "respuestaEntradaCasino";
+			
+			nombreArchivo = "respuestaEntradaCasino";
 			
 			XmlDocument xd = CrearDocumentoXML();
 			XmlElement root = xd.CreateElement("entradaCasino");
@@ -45,11 +43,56 @@ namespace CasinoNEW
 			EscribirXML(nombreArchivo, xd);
 		}
 		
-		public void AceptarSalida(int id, string usuario) {
-		
+		public void DenegarEntrada(int id, string usuario, string modo,
+		                           string motivo) {
+			string nombreArchivo = "respuestaEntradaCasino";
+			
+			XmlDocument xd = CrearDocumentoXML();
+			XmlElement root = xd.CreateElement("entradaCasino");
+			xd.AppendChild(root);
+			
+			AgregarAtributo(xd, root, "vTerm", id.ToString());
+			AgregarAtributo(xd, root, "usuario", usuario);
+			
+			AgregarElementoSimple(xd, root, "aceptado", "no");
+			AgregarElementoSimple(xd, root, "modoAcceso", modo);
+			AgregarElementoSimple(xd, root, "saldo", "");
+			AgregarElementoSimple(xd, root, "descripcion", motivo);
+			
+			EscribirXML(nombreArchivo, xd);
 		}
-		public void DenegarSalida(int id, string usuario, string motivo) {
+
 		
+		public void AceptarSalida(int id, string usuario) {
+			string nombreArchivo = "respuestaSalidaCasino";
+			
+			XmlDocument xd = CrearDocumentoXML();
+			XmlElement root = xd.CreateElement("salidaCasino");
+			xd.AppendChild(root);
+			
+			AgregarAtributo(xd, root, "vTerm", id.ToString());
+			AgregarAtributo(xd, root, "usuario", usuario);
+			
+			AgregarElementoSimple(xd, root, "aceptado", "si");
+			AgregarElementoSimple(xd, root, "descripcion", "");
+			
+			EscribirXML(nombreArchivo, xd);
+		}
+		
+		public void DenegarSalida(int id, string usuario, string motivo) {
+			string nombreArchivo = "respuestaSalidaCasino";
+			
+			XmlDocument xd = CrearDocumentoXML();
+			XmlElement root = xd.CreateElement("salidaCasino");
+			xd.AppendChild(root);
+			
+			AgregarAtributo(xd, root, "vTerm", id.ToString());
+			AgregarAtributo(xd, root, "usuario", usuario);
+			
+			AgregarElementoSimple(xd, root, "aceptado", "no");
+			AgregarElementoSimple(xd, root, "descripcion", motivo);
+			
+			EscribirXML(nombreArchivo, xd);
 		}
 	}
 }

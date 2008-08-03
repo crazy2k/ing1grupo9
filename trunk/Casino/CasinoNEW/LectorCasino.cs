@@ -69,11 +69,11 @@ namespace CasinoNEW
 
 			switch (mensaje) {
 				case "entradacasino":
-				case "entradacasinoadmin":
+				//case "entradacasinoadmin":
 					DelegarEntradaCasino(xmld);
 				break;
 				case "salidacasino":
-				case "salidacasinoadmin":
+				//case "salidacasinoadmin":
 					DelegarSalidaCasino(xmld);
 				break;
 			}
