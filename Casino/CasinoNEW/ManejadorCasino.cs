@@ -3,6 +3,7 @@
 //
 
 using System;
+using Dinero = System.Decimal;
 
 namespace CasinoNEW
 {
@@ -27,11 +28,10 @@ namespace CasinoNEW
 			else {
 				GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
 				try { 
-					g.Autenticar(id, usuario, modo);
-					// El null es porque el mensaje de AceptarEntrada recibe el
-					// saldo como parámetro, y en este caso (por ahora, el
-					// del "administrador", no nos interesa.
-					escritor.AceptarEntrada(id, usuario, modo, 0);
+					Dinero saldo = g.Autenticar(id, usuario, modo);
+
+					escritor.AceptarEntrada(id, usuario, modo, saldo,
+					                        Casino.GetInstance().GetFichas());
 				}
 				catch (AutenticacionException e) {
 					string motivo = e.Message;

@@ -20,6 +20,11 @@ namespace CasinoNEW
 			credito = saldo;
 		}
 		
+		public Dinero Credito {
+			get { return credito; }
+			set { credito = value; }
+		}
+		
         public void pagar(Dinero costo)
 		{
 			credito -= costo;

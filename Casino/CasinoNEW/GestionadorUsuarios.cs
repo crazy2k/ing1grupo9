@@ -43,7 +43,7 @@ namespace CasinoNEW
 			return instance;
 		}
 		
-		public void Autenticar(int id, string usuario, string modo) {
+		public Dinero Autenticar(int id, string usuario, string modo) {
 			if (EstaAutenticado(usuario)) {
 				throw new AutenticacionException("Ya se encuentra"
 				                                 + "autenticado.");
@@ -51,11 +51,13 @@ namespace CasinoNEW
 			
 			switch (modo) {
 			case "jugador":
-				IngresarJugador(id, usuario);
-				break;
+				Jugador j = IngresarJugador(id, usuario);
+				return j.Credito;
 			case "administrador":
 				IngresarAdministrador(id, usuario);
-				break;
+				return 0;
+			default:
+				return 0;
 			}
 		}
 		
@@ -86,7 +88,7 @@ namespace CasinoNEW
 			Agregar(id, usuario, "admin");
 		}
 		
-		private void IngresarJugador(int id, string usuario) {
+		private Jugador IngresarJugador(int id, string usuario) {
 			Jugador j = GetJugador(usuario, false);
 			// El jugador ya ingresó hoy.
 			if (j != null) {
@@ -98,8 +100,11 @@ namespace CasinoNEW
 				Dinero saldo = lconfig.GetSaldo(usuario);
 				Jugador nj = new Jugador(usuario, saldo);
 				jugadoresActivos.Add(nj);
+				j = nj;
 			}
+			
 			Agregar(id, usuario, "jugador");
+			return j;
 		}
 		
 		private void SacarAdministrador(int id, string usuario) {
