@@ -3,6 +3,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using Dinero = System.Decimal;
 
 namespace CasinoNEW
@@ -54,6 +55,22 @@ namespace CasinoNEW
 					string motivo = e.Message;
 					escritor.DenegarSalida(id, usuario, motivo);
 				}
+			}
+		}
+		public void PedirEstadoCasino(int id, string usuario) {
+			Casino c = Casino.GetInstance();
+			if (!c.EstaAbierto())
+				escritor.ResponderEstadoCasinoCerrado(id, usuario);
+			else {
+				GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
+				
+				IList<Jugador> jugadores = g.JugadoresActivos;
+				IList<Observador> observadores = g.Observadores;
+				IList<Juego> juegos = c.Juegos;
+				IDictionary<string, Dinero> pozos = c.Pozos;
+				
+				escritor.ResponderEstadoCasino(id, usuario, jugadores,
+				                               observadores, juegos, pozos);
 			}
 		}
 		

@@ -41,10 +41,28 @@ namespace CasinoNEW
 			get{ return porcJugadaTodosPonen; }
 			set{ porcJugadaTodosPonen = value; }
 		}
+		
+		private IList<Juego> juegos = new List<Juego>();
 
         #endregion
 
         #region getters
+
+		public IList<Juego> Juegos {
+			get { return juegos; }
+		}
+		
+		public IDictionary<string, Dinero> Pozos {
+			get {
+				IDictionary<string, Dinero> d =
+					new Dictionary<string, Dinero>();
+				// Por ahora está sólo el pozo feliz, pero en el futuro
+				// podrían haber varios.
+				d.Add("pozoFeliz", this.getMontoPozoFeliz());
+				
+				return d;
+			}
+		}
 		
 		public List<Ficha> GetFichas() {
 			return fichas;
@@ -75,7 +93,10 @@ namespace CasinoNEW
 
         #region funciones
 
-        private Casino() {}
+        private Casino() {
+			juegos.Add(JuegoDados.GetInstance());
+		}
+		
         public static Casino GetInstance()
         {
              if (instance == null) 

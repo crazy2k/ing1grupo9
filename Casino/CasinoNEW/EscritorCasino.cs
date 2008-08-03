@@ -103,5 +103,13 @@ namespace CasinoNEW
 			
 			EscribirXML(nombreArchivo, xd);
 		}
+		public void ResponderEstadoCasino(int id, string usuario,
+		                                  IList<Jugador> jugadores,
+		                                  IList<Observador> observadores,
+		                                  IList<Juego> juegos,
+		                                  IDictionary<string, Dinero> pozos) {
+		}
+		
+		public void ResponderEstadoCasinoCerrado(int id, string usuario) { }
 	}
 }

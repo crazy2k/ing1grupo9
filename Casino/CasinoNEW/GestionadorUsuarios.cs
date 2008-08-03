@@ -32,6 +32,11 @@ namespace CasinoNEW
 			get{ return jugadoresActivos; }
 		}
 		
+		public IList<Observador> Observadores
+		{
+			get{ return observadores; }
+		}
+		
 		private GestionadorUsuarios()
 		{
 			
