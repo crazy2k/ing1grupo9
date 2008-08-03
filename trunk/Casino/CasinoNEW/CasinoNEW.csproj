@@ -85,5 +85,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
     <None Include="lista-usuarios.txt" />
+    <None Include="cosas-para-el-informe.txt" />
   </ItemGroup>
 </Project>
