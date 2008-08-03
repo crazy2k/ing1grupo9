@@ -4,8 +4,8 @@ using System.Text;
 
 namespace CasinoNEW
 {
-	public class ReporteDados
-	{
+    public class ReporteDados
+    {
 
-	}
+    }
 }
