@@ -9,19 +9,28 @@ namespace CasinoNEW
 
         #region Manipulador Members
 
-        public void manipularResultado(Resultado res)
+        public void manipularResultado(Resultado res, List<Mesa> mesas)
         {
-            throw new Exception("The method or operation is not implemented.");
+            foreach (Mesa m in mesas)
+            {
+                MesaDados mDados = (MesaDados)m;
+                mDados.GeneradorJugadas.setResultado((ResultadoDados)res);
+            }
         }
 
         public void manipularJugadaTP(List<Mesa> mesas)
         {
-            throw new Exception("The method or operation is not implemented.");
+            foreach (Mesa m in mesas)
+            {
+                MesaDados mDados = (MesaDados)m;
+                mDados.GeneradorJugadas.setTipoJugada(TipoJugada.TodosPonen);
+            }
         }
 
         public void manipularJugadaFeliz(Mesa mesa)
         {
-            throw new Exception("The method or operation is not implemented.");
+            MesaDados mesaDados = (MesaDados)mesa;
+            mesaDados.GeneradorJugadas.setTipoJugada(TipoJugada.Feliz);
         }
 
         #endregion
