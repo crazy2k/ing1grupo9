@@ -59,6 +59,15 @@ namespace CasinoNEW
 			manejador.SalirCasino(id, usuario);
 		}
 		
+		private void DelegarEstadoCasino(XmlDocument xmld) {
+			XmlElement root = xmld.DocumentElement;
+			
+			int id = GetIdTerminal(root);
+			string usuario = GetUsuario(root);
+			
+			manejador.PedirEstadoCasino(id, usuario);
+		}
+		
 		
 		public override void Interpretar(string mensaje, FileInfo fi)
 		{
@@ -75,6 +84,9 @@ namespace CasinoNEW
 				case "salidacasino":
 				//case "salidacasinoadmin":
 					DelegarSalidaCasino(xmld);
+				break;
+				case "pedidoestadocasino":
+					DelegarEstadoCasino(xmld);
 				break;
 			}
 		}

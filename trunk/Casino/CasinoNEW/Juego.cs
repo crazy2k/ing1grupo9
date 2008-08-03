@@ -8,6 +8,7 @@ namespace CasinoNEW
     public abstract class Juego
     {
         protected List<Mesa> mesas = new List<Mesa>();
+		private string nombre;
 
         public Mesa getMesa(int id)
         {
@@ -20,5 +21,10 @@ namespace CasinoNEW
 		
 		public abstract Mesa CrearMesa();
 		public abstract void Reset();
+		
+		public string Nombre {
+			get { return nombre; }
+			set { nombre = value; }
+		}
     }
 }

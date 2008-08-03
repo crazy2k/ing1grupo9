@@ -8,6 +8,18 @@ namespace CasinoNEW
     {
 		private int cantMesas = 0;
 		
+		private static JuegoDados instance = null;
+		
+		private JuegoDados() {
+			Nombre = "dados";
+		}
+		
+		public static JuegoDados GetInstance() {
+			if (instance == null)
+				instance = new JuegoDados();
+			return instance;
+		}
+		
 		public override Mesa CrearMesa()
 		{
 			cantMesas++;
@@ -30,5 +42,6 @@ namespace CasinoNEW
 					mesas.Remove(m);
 			}
 		}
+
     }
 }
