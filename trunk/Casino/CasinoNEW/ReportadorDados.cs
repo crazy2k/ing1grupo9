@@ -5,9 +5,9 @@ namespace CasinoNEW
 {
     public class ReportadorDados
     {
-        public ReporteDados obtenerReporte() 
+ /*       public ReporteDados obtenerReporte() 
         {
             return new ReporteDados();
         }
-    }
+   */ }
 }
