@@ -1,4 +1,8 @@
 Cambios en el protocolo:
 	- Ahora (entrada|salida)CasinoAdmin es (entrada|salida)Casino, como en el
 	protocolo de la cátedra. La única adición es que se usa "administrador"
-	o "manipulador" como modo de acceso.
+	o "manipulador" como modo de acceso. También se quitó el "Admin" de los
+	nombres de los archivos de respuesta.
+	- En la respuesta de entrada al casino, se agregaron las modificaciones
+	necesarias para que al cliente le lleguen las fichas habilitadas para
+	jugar en el casino.
