@@ -6,13 +6,31 @@ namespace CasinoNEW
 {
     public class CrupierDados
     {
-        private Jugador Tirador;
-        private Dictionary<Jugador,List<ApuestaDados>> 
-            apuestasRealizadas = new Dictionary<Jugador,List<ApuestaDados>>();
+        private Jugador tirador;
 
-        public void agregarApuesta(Jugador j,ApuestaDados a)
+        public Jugador Tirador
+        {
+            get { return tirador; }
+            set { tirador = value; }
+        }
+
+        private Dictionary<Jugador,List<Apuesta>> 
+            apuestasRealizadas = new Dictionary<Jugador,List<Apuesta>>();
+        private Dictionary<Jugador, List<Apuesta>>
+            apuestasPagadas = new Dictionary<Jugador, List<Apuesta>>();
+        private bool esTiroSalida;
+        private int punto;
+        private ResultadoDados ultimoResultado;
+        public void elegirTirador() { }
+        public void agregarApuesta(Jugador j,Apuesta a)
         {
             apuestasRealizadas[j].Add(a);
         }
+        public void quitarApuesta(Jugador j, Apuesta a)
+        {
+            apuestasRealizadas[j].Remove(a);
+        }
+        public void pagarApuestas(ResultadoDados res, TipoJugada tipo) { }
+        public void borrarApuestasPagadas() { }
     }
 }
