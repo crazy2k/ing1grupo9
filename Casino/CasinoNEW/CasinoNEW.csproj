@@ -57,6 +57,7 @@
     <Compile Include="JuegoDados.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="ManipuladorDados.cs" />
     <Compile Include="Mesa.cs" />
     <Compile Include="MesaDados.cs" />
     <Compile Include="Pair.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Observador.cs" />
     <Compile Include="Premio.cs" />
     <Compile Include="ReportadorDados.cs" />
+    <Compile Include="ReporteDados.cs" />
     <Compile Include="Resultado.cs" />
     <Compile Include="ResultadoDados.cs" />
     <Compile Include="Escritor.cs" />
