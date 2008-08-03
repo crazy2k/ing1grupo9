@@ -42,10 +42,10 @@ namespace CasinoNEW
 				List<ApuestaDados> aps = apuestasRealizadas[j];
 				foreach (ApuestaDados a in aps){
 					Pair result = a.evaluar(res);
-					bool definida = result.getFirst();
-					Dinero valor = result.getSecond();
+					bool definida = (bool)result.getFirst();
+					Dinero valor = (Dinero)result.getSecond();
 					if (definida) {
-						if (tipo == TodosPonen )
+						if (tipo == TipoJugada.TodosPonen )
 							valor = 
 			a.DescontarTodosPonen(Casino.GetInstance().PorcJugadaTodosPonen);
 						
