@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace CasinoNEW
 {
-	public interface Manipulador
+	interface Manipulador
 	{
         void manipularResultado(Resultado res);
         void manipularJugadaTP(List<Mesa> mesas);
