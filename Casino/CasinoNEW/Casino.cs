@@ -37,6 +37,10 @@ namespace CasinoNEW
         private Dinero saldoActual;
         private List<Ficha> fichas;
         private float porcJugadaTodosPonen;
+		public float PorcJugadaTodosPonen{
+			get{ return porcJugadaTodosPonen; }
+			set{ porcJugadaTodosPonen = value; }
+		}
 
         #endregion
 
