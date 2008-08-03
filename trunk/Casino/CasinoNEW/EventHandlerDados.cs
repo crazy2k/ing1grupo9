@@ -5,6 +5,6 @@ namespace CasinoNEW
 {
     public class EventHandlerDados
     {
- //       public void notificar(ReporteDados rep) { }
+        public void notificar(ReporteDados rep) { }
     }
 }
