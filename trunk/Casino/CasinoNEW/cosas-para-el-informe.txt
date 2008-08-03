@@ -9,3 +9,6 @@ Cambios con el TP2:
 	- En el escenario de ingreso de un jugador al casino, no se mostró nunca
 	el caso del envío de la aceptación de la entrada. Se agregó esto en la
 	implementación.
+	-El escenario ManipularResultadoDados y la clase ManipuladorDados son inconsistentes
+	-Agregue la funcion setValorDado en generadorJugadasDados para no repetir codigo
+	-Agregue la funcion sumaDados a resultadoDados
