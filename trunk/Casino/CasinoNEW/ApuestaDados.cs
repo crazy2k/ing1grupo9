@@ -14,5 +14,6 @@ namespace CasinoNEW
         protected bool definida;
 
         public abstract Pair evaluar(ResultadoDados res);
+
     }
 }
