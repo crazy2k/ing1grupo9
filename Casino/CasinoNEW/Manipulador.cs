@@ -3,16 +3,14 @@
 //
 
 using System;
+using System.Collections.Generic;
 
 namespace CasinoNEW
 {
-	
-	
-	public class Manipulador
+	public interface Manipulador
 	{
-		
-		public Manipulador()
-		{
-		}
+        void manipularResultado(Resultado res);
+        void manipularJugadaTP(List<Mesa> mesas);
+        void manipularJugadaFeliz(Mesa mesa);
 	}
 }
