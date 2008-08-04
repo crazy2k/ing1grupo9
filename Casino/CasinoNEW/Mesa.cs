@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 
 namespace CasinoNEW
@@ -11,6 +12,8 @@ namespace CasinoNEW
 			get { return id; }
 			set { id = value; }
 		}
+		
+		public abstract IList<Jugador> GetParticipantes();
 
         public abstract void jugar();
         public abstract void agregarParticipante(Jugador j);

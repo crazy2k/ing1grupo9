@@ -8,7 +8,7 @@ namespace CasinoNEW
 {
 	
 	
-	public class Observador
+	public class Observador : Usuario
 	{
 		
 		public Observador()

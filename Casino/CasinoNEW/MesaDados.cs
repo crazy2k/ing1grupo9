@@ -1,5 +1,6 @@
 using System;
 using System.Configuration;
+using System.Collections.Generic;
 using Jugada = CasinoNEW.Pair;
 
 namespace CasinoNEW
@@ -68,6 +69,9 @@ namespace CasinoNEW
         {
             Anfitrion.despedirParticipante(j);
         }
+		public override IList<Jugador> GetParticipantes() {
+			return Anfitrion.Participantes;
+		}
         public void notificarEstado() 
         {
             ReporteDados reporte = Reportador.obtenerReporte();
