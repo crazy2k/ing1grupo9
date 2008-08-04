@@ -39,5 +39,9 @@ namespace CasinoNEW
 				throw new Exception("Credito insuficiente.");
             apuestas.Add(a);
         }
+        public void entrarAMesa(Mesa m)
+        {
+            m.agregarParticipante(this);
+        }
 	}
 }
