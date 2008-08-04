@@ -6,7 +6,7 @@ namespace CasinoNEW
 {
     public class AnfitrionDados
     {
-        private List<Jugador> participantes = new List<Jugador>();
+        private IList<Jugador> participantes = new List<Jugador>();
         
         public void recibirParticipante(Jugador j) 
         {
@@ -16,5 +16,9 @@ namespace CasinoNEW
         {
             participantes.Remove(j);
         }
+		
+		public IList<Jugador> Participantes {
+			get { return participantes; }
+		}
     }
 }

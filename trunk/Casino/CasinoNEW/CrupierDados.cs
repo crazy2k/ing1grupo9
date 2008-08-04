@@ -8,11 +8,18 @@ namespace CasinoNEW
     public class CrupierDados
     {
         private Jugador tirador;
+		private Jugador tiradorAnterior;
 
         public Jugador Tirador
         {
             get { return tirador; }
             set { tirador = value; }
+        }
+		
+		public Jugador TiradorAnterior
+        {
+            get { return tiradorAnterior; }
+            set { TiradorAnterior = value; }
         }
 
         private Dictionary<Jugador,List<ApuestaDados>> 
@@ -25,6 +32,18 @@ namespace CasinoNEW
         private int punto;
         private ResultadoDados ultimoResultado;
         public void elegirTirador() { }
+
+		public ResultadoDados UltimoResultado {
+			get { return ultimoResultado; }
+		}
+		
+		public int GetPunto() {
+			return punto;
+		}
+		
+		public bool EsTiroSalida() {
+			return esTiroSalida;
+		}
         
 		public void agregarApuesta(Jugador j,Apuesta a)
         {
