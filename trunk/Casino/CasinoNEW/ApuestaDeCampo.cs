@@ -21,6 +21,7 @@ namespace CasinoNEW
             { 
                 premio = 0; 
             }
+            this.premio.MontoPremioJugada = premio;
             return new Pair(true, premio);
         }
     }
