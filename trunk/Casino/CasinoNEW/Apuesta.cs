@@ -27,8 +27,14 @@ namespace CasinoNEW
 			double g = (double)premio.MontoPremioJugada;
 			decimal diff = (decimal)(g*porcentaje);
 			premio.MontoRetencionJTP = diff;
-			premio.MontoPremioJugada -= diff;
+			//premio.MontoPremioJugada -= diff; esto no va =P
 			return (premio.MontoPremioJugada-diff);
 		}
+
+        public Dinero AgregarAdicionalFeliz(Dinero montoTotal, Dinero pozoFeliz)
+        {
+            premio.MontoPremioJF = (premio.MontoPremioJugada / montoTotal) * pozoFeliz;
+            return (premio.MontoPremioJugada + premio.MontoPremioJF);
+        }
     }
 }
