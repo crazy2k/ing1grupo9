@@ -9,7 +9,7 @@ namespace CasinoNEW
         #region variables
 
         protected Dinero valor;
-        protected Premio premio;
+        protected Premio premio = new Premio();
 
         #endregion
 
