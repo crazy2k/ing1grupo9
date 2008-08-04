@@ -8,7 +8,11 @@ namespace CasinoNEW
         private decimal montoPremioJugada;
         private decimal montoPremioJF;
         private decimal montoRetencionJTP;
-		
+
+        public Premio()
+        {
+        }
+
 		public decimal MontoPremioJugada{
 			get{ return montoPremioJugada; }
 			set{ montoPremioJugada = value; }
@@ -22,7 +26,7 @@ namespace CasinoNEW
 			set{ montoRetencionJTP = value; }
 		}
 		
-        Premio(decimal montoPremioJugada, decimal montoPremioJF,
+        public Premio(decimal montoPremioJugada, decimal montoPremioJF,
             decimal montoRetencionJTP) {}
     }
 }
