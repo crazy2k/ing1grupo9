@@ -21,6 +21,7 @@ namespace CasinoNEW
                 if (aFavor) 
                 { 
                     premio = 0;
+                    this.premio.MontoPremioJugada = premio;
                     return new Pair(true,premio); 
                 } 
                 else 
@@ -40,6 +41,7 @@ namespace CasinoNEW
                         case 10: premio = valor*5/11;
                                 break;
                     }
+                    this.premio.MontoPremioJugada = premio;
                     return new Pair(true,premio); 
                 } 
             } 
@@ -48,6 +50,7 @@ namespace CasinoNEW
                 if (!aFavor) 
                 { 
                     premio = 0;
+                    this.premio.MontoPremioJugada = premio;
                     return new Pair(true,premio);
                 } 
                 else 
@@ -67,11 +70,13 @@ namespace CasinoNEW
                         case 10: premio = valor * 9 / 5;
                                 break;
                     }
+                    this.premio.MontoPremioJugada = premio;
                     return new Pair(true,premio);
                 }
             } 
             else
-            { 
+            {
+                this.premio.MontoPremioJugada = -1;
                 return new Pair(false,-1); 
             }
         }
