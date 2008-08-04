@@ -165,12 +165,8 @@ namespace CasinoNEW
 					
 					// Se terminó la generalidad. Lo siguiente es sólo
 					// para craps:
-					
-					if (j.Nombre.ToLower() == "craps") {
+					if (j.Nombre.ToLower() == "craps")
 						GenerarEstadoMesaCraps(xd, tagMesa, m);
-						
-					}
-					
 				}
 			}
 			EscribirXML(nombreArchivo, xd);
@@ -200,10 +196,15 @@ namespace CasinoNEW
 			AgregarElementoSimple(xd, ultimoTiro, "resultado",
 						                      ultimoResultado);
 		}
-						
-					
-					
 		
-		public void ResponderEstadoCasinoCerrado(int id, string usuario) { }
+		public void ResponderEstadoCasinoCerrado(int id, string usuario) { 
+			string nombreArchivo = "respuestaEstadoCasino";
+			
+			XmlDocument xd = CrearDocumentoXML();
+			XmlElement root = xd.CreateElement("estadoCasino");
+			xd.AppendChild(root);
+			
+			EscribirXML(nombreArchivo, xd);
+		}
 	}
 }
