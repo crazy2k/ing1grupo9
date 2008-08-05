@@ -181,7 +181,7 @@ namespace CasinoNEW
 			Jugador t = md.Crupier.Tirador;
 			AgregarElementoSimple(xd, proximoTiro, "tirador",
 			                      t.Nombre);
-			string ets = md.Crupier.EsTiroSalida() ? "si" : "no";
+			string ets = md.Crupier.EsTiroSalida ? "si" : "no";
 			AgregarElementoSimple(xd, proximoTiro, "tiroSalida", 
 			                      ets);
 			string punto = md.Crupier.GetPunto().ToString();

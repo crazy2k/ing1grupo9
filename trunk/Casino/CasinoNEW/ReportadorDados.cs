@@ -5,12 +5,27 @@ namespace CasinoNEW
 {
     public class ReportadorDados
     {
-        public void registrarEntradaAMesa(Jugador j) { }
-        public void caducarApuesta(Apuesta a) { }
-        public void registrarSalidaDeMesa(Jugador j) { }
-        public ReporteDados obtenerReporte() 
+		public ReportadorDados(MesaDados mesaOriginal){
+			mesaOriginal = mesa;
+		}
+		private MesaDados mesa;
+        public void registrarEntradaAMesa(Jugador j) { }//Esto no hace falta al final
+        public void caducarApuesta(Apuesta a) { } // Igual que esto
+        public void registrarSalidaDeMesa(Jugador j) { } // Y esto
+        
+		public ReporteDados obtenerReporte() 
         {
-            return new ReporteDados(); //hacer =)
+			ReporteDados reporte = new ReporteDados();
+            reporte.Jugadores = mesa.Anfitrion.Participantes;
+			reporte.ProxTirador = mesa.Crupier.Tirador;
+			reporte.ProxTiroSalida = mesa.Crupier.EsTiroSalida;
+			reporte.ResultadoUltimo = mesa.Crupier.UltimoResultado;
+			reporte.UltimoTirador = mesa.Crupier.TiradorAnterior;
+			reporte.Premios = mesa.Crupier.premiosPagados();
+			reporte.Apuestas = mesa.Crupier.ApuestasRealizadas;
+			reporte.Punto = mesa.Crupier.GetPunto();
+			reporte.IdMesa = mesa.Id;
+			return reporte; //hecho =) (Creo)
         }
     }
 }

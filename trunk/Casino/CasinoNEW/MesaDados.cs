@@ -31,7 +31,7 @@ namespace CasinoNEW
             set { eventHandler = value; }
         }
 
-        private ReportadorDados reportador = new ReportadorDados();
+        private ReportadorDados reportador;
 
         public ReportadorDados Reportador
         {
@@ -50,6 +50,7 @@ namespace CasinoNEW
 		public MesaDados(int identificador)
 		{
 			id = identificador;
+			reportador  = new ReportadorDados(this);
 		}
         public override void jugar() 
         {

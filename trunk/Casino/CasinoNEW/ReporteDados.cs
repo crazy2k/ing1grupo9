@@ -6,17 +6,17 @@ namespace CasinoNEW
 {
     public class ReporteDados
     {
-		private List<Jugador> jugadores;
+		private IList<Jugador> jugadores;
 		private Jugador proxTirador;
 		private bool proxTiroSalida;
 		private Resultado resultadoUltimo;
 		private Jugador ultimoTirador;
-		private List<Premio> premios;
-		private List<Apuesta> apuestas;
+		private IList<Premio> premios;
+		private Dictionary<Jugador,List<ApuestaDados>> apuestas;
 		private	int punto;
 		private	int idMesa;
 				
-		public List<Jugador> Jugadores{
+		public IList<Jugador> Jugadores{
 			get{ return jugadores;}
 			set{ jugadores = value;}
 		}
@@ -36,11 +36,11 @@ namespace CasinoNEW
 			get{ return ultimoTirador;}
 			set{ ultimoTirador = value;}
 		}
-		public List<Premio> Premios{
+		public IList<Premio> Premios{
 			get{ return premios;}
 			set{ premios = value;}
 		}
-		public List<Apuesta> Apuestas{
+		public Dictionary<Jugador,List<ApuestaDados>> Apuestas{
 			get{ return apuestas;}
 			set{ apuestas = value;}
 		}
