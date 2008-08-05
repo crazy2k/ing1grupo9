@@ -34,7 +34,7 @@ namespace CasinoNEW
         public Dinero AgregarAdicionalFeliz(Dinero montoTotal, Dinero pozoFeliz)
         {
             premio.MontoPremioJF = (premio.MontoPremioJugada / montoTotal) * pozoFeliz;
-            return (premio.MontoPremioJugada + premio.MontoPremioJF);
+            return premio.MontoPremioJF;
         }
     }
 }

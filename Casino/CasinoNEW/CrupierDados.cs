@@ -58,16 +58,22 @@ namespace CasinoNEW
             apuestasRealizadas[j].Remove(a);
         }
 		
-		private void pagarAdicionalFeliz(Dinero total, Dictionary<Jugador, 
-		                                 List<ApuestaDados>> apuestas){
-			
+		private void pagarAdicionalFeliz(Dinero total){
+			Decimal pozo = Casino.GetInstance().TomarPozoFeliz();
+						
+			foreach (Jugador j in apuestasPagadas.Keys){
+				List<ApuestaDados> aps = apuestasPagadas[j];
+				foreach (ApuestaDados a in aps){
+					Decimal pago = a.AgregarAdicionalFeliz(total, pozo);
+					Casino.GetInstance().Pagar(pago, j);
+				}
+			}
 		}
 		
         public void pagarApuestas(ResultadoDados res, TipoJugada tipo) {
-			List<ApuestaDados> apuestasFelices = new List<ApuestaDados>();
 			Dinero totalPagado = 0;
-			Dictionary<Jugador, List<ApuestaDados>>
-				apuestasP = new Dictionary<Jugador, List<ApuestaDados>>();
+						
+			borrarApuestasPagadas();
 						
 			foreach (Jugador j in apuestasRealizadas.Keys){
 				List<ApuestaDados> aps = apuestasRealizadas[j];
@@ -97,26 +103,23 @@ namespace CasinoNEW
 							apuestasPagadas.Add(j,aps);
 						}
 						// Ahora la puse en las pagadas
-						if (tipo == TipoJugada.Feliz){
-							apuestasFelices.Add(a);
-							totalPagado += valor;
-						}
-
-						// Esto es solo para cuando la jugada es feliz 
+						totalPagado += valor;
+						// Esto lo uso sólo cuando la jugada es feliz, 
+						// sino no se usa para nada. Lo había puesto adentro
+						// de un if, pero al ser tan poco prefiero hacer todas
+						// las veces esto a un if. =P
 					}
-				// Si no está definida hago nada...			
+					// Si no está definida hago nada...				
 				}
-				//Una vez que revisé todas las apuestas del muchacho 
-				if (tipo == TipoJugada.Feliz)
-					apuestasP.Add(j,apuestasFelices);
-			}
+				// Sigo con el próximo jugador...
+			} 
 			//Cuando termino con todos los jugadores...
-			if (tipo == TipoJugada.Feliz)
-				pagarAdicionalFeliz(totalPagado, apuestasP);
+			if ( tipo == TipoJugada.Feliz )
+				pagarAdicionalFeliz(totalPagado);			
 		}
 		
-		
-		// Para qué está esto?
-        public void borrarApuestasPagadas() { }
+        public void borrarApuestasPagadas() {
+			apuestasPagadas.Clear();
+		}
     }
 }
