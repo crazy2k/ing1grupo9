@@ -10,6 +10,10 @@ namespace CasinoNEW
 
         protected Dinero valor;
         protected Premio premio = new Premio();
+		public Premio Premio{
+			get{return premio;}
+			
+		}
 
         #endregion
 

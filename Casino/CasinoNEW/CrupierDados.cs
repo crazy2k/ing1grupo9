@@ -24,10 +24,25 @@ namespace CasinoNEW
 
         private Dictionary<Jugador,List<ApuestaDados>> 
             apuestasRealizadas = new Dictionary<Jugador,List<ApuestaDados>>();
+		public Dictionary<Jugador,List<ApuestaDados>> ApuestasRealizadas{
+			get{return apuestasRealizadas;}
+		}
 
 		private Dictionary<Jugador, List<ApuestaDados>>
             apuestasPagadas = new Dictionary<Jugador, List<ApuestaDados>>();
-        
+		
+		public List<Premio> premiosPagados(){
+			List<Premio> premios = new List<Premio>();
+			foreach (Jugador j in apuestasPagadas.Keys){
+				List<ApuestaDados> aps = apuestasPagadas[j];
+				foreach (ApuestaDados a in aps){
+					premios.Add(a.Premio);
+				}
+			}
+			return premios;
+		}
+		
+		
 		private bool esTiroSalida;
         private int punto;
         private ResultadoDados ultimoResultado;
@@ -42,8 +57,8 @@ namespace CasinoNEW
 			return punto;
 		}
 		
-		public bool EsTiroSalida() {
-			return esTiroSalida;
+		public bool EsTiroSalida {
+			get{return esTiroSalida;}
 		}
         
 		public void agregarApuesta(Jugador j,Apuesta a)
