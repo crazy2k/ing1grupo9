@@ -31,7 +31,8 @@ namespace CasinoNEW
 		private bool esTiroSalida;
         private int punto;
         private ResultadoDados ultimoResultado;
-        public void elegirTirador() { }
+        //public void elegirTirador() { } 
+		// Este dijo Marta que dijeron que no lo hagamos
 
 		public ResultadoDados UltimoResultado {
 			get { return ultimoResultado; }
