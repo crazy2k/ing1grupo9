@@ -47,8 +47,10 @@ namespace CasinoNEW
         
 		public void agregarApuesta(Jugador j,Apuesta a)
         {
-			//Hay que ver si es de Dados
-//            apuestasRealizadas[j].Add(a);
+			//Veo si la apuesta es de dados es de Dados
+			if (a is ApuestaDados) throw new Exception("La apuesta no es de Dados.");
+			ApuestaDados apuesta = (ApuestaDados)a;
+            apuestasRealizadas[j].Add(apuesta);
         }
 
 		public void quitarApuesta(Jugador j, ApuestaDados a)
@@ -56,7 +58,17 @@ namespace CasinoNEW
             apuestasRealizadas[j].Remove(a);
         }
 		
-        public void pagarApuestas(ResultadoDados res, TipoJugada tipo) { 
+		private void pagarAdicionalFeliz(Dinero total, Dictionary<Jugador, 
+		                                 List<ApuestaDados>> apuestas){
+			
+		}
+		
+        public void pagarApuestas(ResultadoDados res, TipoJugada tipo) {
+			List<ApuestaDados> apuestasFelices = new List<ApuestaDados>();
+			Dinero totalPagado = 0;
+			Dictionary<Jugador, List<ApuestaDados>>
+				apuestasP = new Dictionary<Jugador, List<ApuestaDados>>();
+						
 			foreach (Jugador j in apuestasRealizadas.Keys){
 				List<ApuestaDados> aps = apuestasRealizadas[j];
 				foreach (ApuestaDados a in aps){
@@ -71,15 +83,40 @@ namespace CasinoNEW
 						Casino.GetInstance().Pagar(valor, j);
 						//Hay que sacarla de las apuestas a pagar y ponerla en
 						//las pagadas y fijarse que pasa cuando es feliz
+						aps.Remove(a);
+						if (aps.Count == 0)
+							apuestasRealizadas.Remove(j);
+						// Hasta acá lo saco de las realizadas
+						if (apuestasPagadas.ContainsKey(j)){
+							aps = apuestasPagadas[j];
+							aps.Add(a);
+						}
+						else{
+							aps = new List<ApuestaDados>();
+							aps.Add(a);
+							apuestasPagadas.Add(j,aps);
+						}
+						// Ahora la puse en las pagadas
+						if (tipo == TipoJugada.Feliz){
+							apuestasFelices.Add(a);
+							totalPagado += valor;
+						}
+
+						// Esto es solo para cuando la jugada es feliz 
 					}
-					
-					
-				
+				// Si no está definida hago nada...			
 				}
-			
+				//Una vez que revisé todas las apuestas del muchacho 
+				if (tipo == TipoJugada.Feliz)
+					apuestasP.Add(j,apuestasFelices);
 			}
-		
+			//Cuando termino con todos los jugadores...
+			if (tipo == TipoJugada.Feliz)
+				pagarAdicionalFeliz(totalPagado, apuestasP);
 		}
+		
+		
+		// Para qué está esto?
         public void borrarApuestasPagadas() { }
     }
 }
