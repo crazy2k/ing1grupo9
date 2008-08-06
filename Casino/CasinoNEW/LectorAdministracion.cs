@@ -35,6 +35,17 @@ namespace CasinoNEW
 			manejador.CerrarCasino(id, usuario);
 		}
 
+		private void DelegarAbrirCasino(XmlDocument xmld)
+		{
+
+			XmlElement root = xmld.DocumentElement;
+
+			int id = GetIdTerminal(root);
+			string usuario = GetUsuario(root);
+
+			manejador.AbrirCasino(id, usuario);
+		}
+
 		public override void Interpretar(string mensajeSinCaps,
 			XmlDocument xmld)
 		{
@@ -42,6 +53,9 @@ namespace CasinoNEW
 			{
 				case "cerrarcasino":
 					DelegarCerrarCasino(xmld);
+					break;
+				case "abrircasino":
+					DelegarAbrirCasino(xmld);
 					break;
 			}
 		}
