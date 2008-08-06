@@ -9,6 +9,7 @@ namespace CasinoNEW
 		private IList<Terminal> terminales = new List<Terminal>();
 		public void agregarObservador(Jugador j) {
 			Terminal t = new Terminal(j);
+			terminales.Add(t);
 		}
 
         public void quitarObservador(Jugador j) {
@@ -17,6 +18,10 @@ namespace CasinoNEW
 			}
 		}
 		
-        public void notificar(ReporteDados rep) { }
+        public void notificar(ReporteDados rep) {
+			foreach (Terminal t in terminales){
+				t.Notificar(rep);
+			}
+		}
     }
 }
