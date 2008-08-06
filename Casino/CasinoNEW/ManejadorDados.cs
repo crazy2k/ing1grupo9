@@ -10,8 +10,6 @@ using Dinero = System.Decimal;
 
 namespace CasinoNEW
 {
-	
-	
 	public class ManejadorDados
 	{
 		public static void Notificar(int id, string usuario, int idMesa, 
