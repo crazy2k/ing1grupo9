@@ -33,7 +33,7 @@ namespace Casino
             XmlElement root = doc.DocumentElement;
             string id = root["vTerm"];
             string usuario = root["usuario"];
-            XmlElement ma = root.ChildNodes
+            XmlElement ma = root.ChildNodes;
 
         }
     }
