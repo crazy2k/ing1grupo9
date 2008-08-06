@@ -51,15 +51,22 @@
     <Compile Include="ApuestaVenirNoVenir.cs" />
     <Compile Include="CrupierDados.cs" />
     <Compile Include="Enumerados.cs" />
+    <Compile Include="Escritor.cs" />
+    <Compile Include="EscritorAdministracion.cs" />
     <Compile Include="EventHandlerDados.cs" />
     <Compile Include="GeneradorJugadasDados.cs" />
     <Compile Include="Juego.cs" />
     <Compile Include="JuegoDados.cs" />
+    <Compile Include="LectorAdministracion.cs" />
+    <Compile Include="LectorDados.cs" />
+    <Compile Include="LectorXML.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="ManejadorAdministracion.cs" />
     <Compile Include="ManipuladorDados.cs" />
     <Compile Include="Mesa.cs" />
     <Compile Include="MesaDados.cs" />
+    <Compile Include="NoAdministradorException.cs" />
     <Compile Include="Pair.cs" />
     <Compile Include="Poller.cs" />
     <Compile Include="Lector.cs" />
@@ -80,7 +87,7 @@
     <Compile Include="ReporteDados.cs" />
     <Compile Include="Resultado.cs" />
     <Compile Include="ResultadoDados.cs" />
-    <Compile Include="Escritor.cs" />
+    <Compile Include="EscritorXML.cs" />
     <Compile Include="DeslogueoException.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>

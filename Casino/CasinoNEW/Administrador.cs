@@ -14,5 +14,10 @@ namespace CasinoNEW
 		public Administrador(string nombre)
 		{
 		}
+
+		public void CerrarCasino()
+		{
+			Casino.GetInstance().Cerrar();
+		}
 	}
 }
