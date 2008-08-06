@@ -42,12 +42,58 @@ namespace CasinoNEW
 				throw new Exception("El juego de dados tiene mesas de NoDados");
 			EntrarCrapsMesa(id, usuario , m.Id);
 		}
-		public void SalirCraps(int id, string usuario, int idMesa){}
+		
+		public void SalirCraps(int id, string usuario, int idMesa){
+			
+		}
+
 		public void Apostar(int id, string usuario, int idMesa, 
 		               TipoApuestaDados tap, int puntajeApostado, 
-		               Dinero valorFichas, int cantidadFichas){}
-		private void ApostarCraps(Jugador j, Mesa m, TipoApuestaDados tap, int cant,
-		                     Dinero ficha){}
+		               Dinero valorFichas, int cantidadFichas){
+			Jugador j = GestionadorUsuarios.GetInstance().GetJugador(usuario);
+			Mesa m = JuegoDados.GetInstance().getMesa(idMesa);
+			try{
+				ApostarCraps(j,m,tap,puntajeApostado,cantidadFichas,valorFichas);
+//				EscritorDados.GetInstance().ResponderApuestaAceptada(id,
+//				                                              usuario, idMesa);
+			}
+			catch (Exception e){
+//				EscritorDados.GetInstance().ResponderApuestaDenegada(id,
+//				                                              usuario, idMesa);
+			}
+		}
+		private void ApostarCraps(Jugador j, Mesa m, TipoApuestaDados tap, 
+		                          int p, int cant, Dinero ficha){
+			ApuestaDados a;
+			switch(tap){
+			case TipoApuestaDados.Pass:
+				a = new ApuestaPassNoPass(true, ficha, cant);
+				break;
+			case TipoApuestaDados.NoPass:
+				a = new ApuestaPassNoPass(false, ficha, cant);
+				break;
+			case TipoApuestaDados.Venir:
+				a = new ApuestaVenirNoVenir(true, ficha, cant);
+				break;
+			case TipoApuestaDados.NoVenir:
+				a = new ApuestaVenirNoVenir(false, ficha, cant);
+				break;
+			case TipoApuestaDados.Campo:
+				a = new ApuestaDeCampo(ficha, cant);
+				break;
+			case TipoApuestaDados.AGanar:
+				a = new ApuestaGanarEnContra(true, p, ficha, cant);
+				break;
+			case TipoApuestaDados.EnContra:
+				a = new ApuestaGanarEnContra(false, p, ficha,cant);
+				break;
+			default:
+				a = new ApuestaPassNoPass(true, ficha, cant);
+				break;
+			}
+			m.apostar(j,a);
+		}
+
 		public void Tirar(int id, string usuario, int idMesa){}
 		
 		public ManejadorDados()
