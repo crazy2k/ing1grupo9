@@ -12,7 +12,7 @@ namespace CasinoNEW
 {
 	
 	
-	public class EscritorCasino : Escritor
+	public class EscritorCasino : EscritorXML
 	{
 		
 		public EscritorCasino()
@@ -48,7 +48,7 @@ namespace CasinoNEW
 			
 			AgregarElementoSimple(xd, root, "descripcion", "");
 
-			EscribirXML(nombreArchivo, xd);
+			Escribir(nombreArchivo, xd);
 		}
 		
 		public void DenegarEntrada(int id, string usuario, string modo,
@@ -67,7 +67,7 @@ namespace CasinoNEW
 			AgregarElementoSimple(xd, root, "saldo", "");
 			AgregarElementoSimple(xd, root, "descripcion", motivo);
 			
-			EscribirXML(nombreArchivo, xd);
+			Escribir(nombreArchivo, xd);
 		}
 
 		
@@ -84,7 +84,7 @@ namespace CasinoNEW
 			AgregarElementoSimple(xd, root, "aceptado", "si");
 			AgregarElementoSimple(xd, root, "descripcion", "");
 			
-			EscribirXML(nombreArchivo, xd);
+			Escribir(nombreArchivo, xd);
 		}
 		
 		public void DenegarSalida(int id, string usuario, string motivo) {
@@ -100,7 +100,7 @@ namespace CasinoNEW
 			AgregarElementoSimple(xd, root, "aceptado", "no");
 			AgregarElementoSimple(xd, root, "descripcion", motivo);
 			
-			EscribirXML(nombreArchivo, xd);
+			Escribir(nombreArchivo, xd);
 		}
 		public void ResponderEstadoCasino(int id, string usuario,
 		                                  IList<Jugador> jugadores,
@@ -169,7 +169,7 @@ namespace CasinoNEW
 						GenerarEstadoMesaCraps(xd, tagMesa, m);
 				}
 			}
-			EscribirXML(nombreArchivo, xd);
+			Escribir(nombreArchivo, xd);
 		}
 		
 		private void GenerarEstadoMesaCraps(XmlDocument xd, XmlElement tagMesa,
@@ -204,7 +204,7 @@ namespace CasinoNEW
 			XmlElement root = xd.CreateElement("estadoCasino");
 			xd.AppendChild(root);
 			
-			EscribirXML(nombreArchivo, xd);
+			Escribir(nombreArchivo, xd);
 		}
 	}
 }

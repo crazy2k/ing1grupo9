@@ -161,6 +161,15 @@ namespace CasinoNEW
 					return a;
 			return null;
 		}
+
+		public Administrador GetAdmin(string usuario)
+		{
+			Administrador a = GetAdministrador(usuario);
+			if (a != null)
+				return a;
+
+			throw new NoAdministradorException();
+		}
 		
 		private Jugador GetJugador(string usuario, bool activo) {
 			if (activo) {

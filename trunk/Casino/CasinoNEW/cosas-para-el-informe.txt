@@ -14,3 +14,6 @@ Cambios con el TP2:
 	-El escenario ManipularResultadoDados y la clase ManipuladorDados son inconsistentes
 	-Agregue la funcion setValorDado en generadorJugadasDados para no repetir codigo
 	-Agregue la funcion sumaDados a resultadoDados.
+	- Ahora existe una clase ManejadorAdministracion encargada de manejar los
+	mensajes relacionados con la administración. (En el informe 2, la apertura
+	del casino era manejada por el ManejadorCasino.)

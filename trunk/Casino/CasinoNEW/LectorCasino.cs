@@ -13,7 +13,7 @@ namespace CasinoNEW
 	 * - accesoYVistaCasino
 	 * - accesoCasinoAdminManip
 	 */
-	public class LectorCasino : Lector
+	public class LectorCasino : LectorXML
 	{
 		
 		private ManejadorCasino manejador = new ManejadorCasino();
@@ -26,15 +26,6 @@ namespace CasinoNEW
 
 			string[] dirs = new string[] {a, b};
 			this.Dirs = dirs;
-		}
-		
-		protected int GetIdTerminal(XmlElement e) {
-			string sid = e.GetAttribute("vTerm");
-			return Int32.Parse(sid);
-		}
-
-		protected string GetUsuario(XmlElement e) {
-			return e.GetAttribute("usuario");
 		}
 		
 		private void DelegarEntradaCasino(XmlDocument xmld) {
@@ -69,14 +60,10 @@ namespace CasinoNEW
 		}
 		
 		
-		public override void Interpretar(string mensaje, FileInfo fi)
+		public override void Interpretar(string mensajeSinCaps,
+			XmlDocument xmld)
 		{
-			XmlDocument xmld = new XmlDocument();
-			xmld.Load(fi.FullName);
-			
-			mensaje = mensaje.ToLower();
-
-			switch (mensaje) {
+			switch (mensajeSinCaps) {
 				case "entradacasino":
 				//case "entradacasinoadmin":
 					DelegarEntradaCasino(xmld);
