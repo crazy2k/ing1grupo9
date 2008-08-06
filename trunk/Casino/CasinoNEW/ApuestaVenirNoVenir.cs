@@ -13,7 +13,7 @@ namespace CasinoNEW
         private int puntajeVenir;
         private bool tiroDeApuesta = true;
 		
-		ApuestaVenirNoVenir(bool favor, Ficha ficha, Cantidad cant){
+		public ApuestaVenirNoVenir(bool favor, Ficha ficha, Cantidad cant){
 			fichas = new System.Collections.Generic.Dictionary<decimal,int>();
 			fichas.Add(ficha, cant);
 			valor = ficha*cant;

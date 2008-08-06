@@ -9,7 +9,7 @@ namespace CasinoNEW
 {
     public class ApuestaDeCampo : ApuestaDados
     {
-		ApuestaDeCampo(Ficha ficha, Cantidad cant){
+		public ApuestaDeCampo(Ficha ficha, Cantidad cant){
 			fichas = new System.Collections.Generic.Dictionary<decimal,int>();
 			fichas.Add(ficha, cant);
 			valor = ficha*cant;

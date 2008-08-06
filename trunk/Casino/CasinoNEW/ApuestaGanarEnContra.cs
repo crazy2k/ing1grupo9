@@ -12,7 +12,7 @@ namespace CasinoNEW
         private bool aFavor;
         private int puntaje;
 
-        ApuestaGanarEnContra(bool afavor, int p, Ficha ficha, Cantidad cant)
+        public ApuestaGanarEnContra(bool afavor, int p, Ficha ficha, Cantidad cant)
         {
 			fichas = new System.Collections.Generic.Dictionary<decimal,int>();
 			fichas.Add(ficha, cant);
