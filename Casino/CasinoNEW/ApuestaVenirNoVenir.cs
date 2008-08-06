@@ -1,5 +1,9 @@
 using System;
 using System.Configuration;
+using Ficha = System.Decimal;
+using Cantidad = System.Int32;
+using Definida = System.Boolean;
+using Dinero = System.Decimal;
 
 namespace CasinoNEW
 {
@@ -8,6 +12,13 @@ namespace CasinoNEW
         private bool aFavor;
         private int puntajeVenir;
         private bool tiroDeApuesta = true;
+		
+		ApuestaVenirNoVenir(bool favor, Ficha ficha, Cantidad cant){
+			fichas = new System.Collections.Generic.Dictionary<decimal,int>();
+			fichas.Add(ficha, cant);
+			valor = ficha*cant;
+			aFavor = favor;
+		}
 
         public override Pair evaluar(ResultadoDados res)
         {
