@@ -1,12 +1,23 @@
 using System;
 using System.Configuration;
+using System.Collections.Generic;
 
 namespace CasinoNEW
 {
     public class EventHandlerDados
     {
-        public void agregarObservador(Jugador j) { }
-        public void quitarObservador(Jugador j) { }
+		private IList<Terminal> terminales = new List<Terminal>();
+		public void agregarObservador(Jugador j) {
+			int id = GestionadorUsuarios.GetInstance().GetId(j.Nombre);
+			Terminal t = new Terminal(id, j);
+		}
+
+        public void quitarObservador(Jugador j) {
+			foreach (Terminal t in terminales){
+				if (t.Observador == j) terminales.Remove(t);
+			}
+		}
+		
         public void notificar(ReporteDados rep) { }
     }
 }
