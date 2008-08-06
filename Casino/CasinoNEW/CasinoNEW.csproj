@@ -90,6 +90,8 @@
     <Compile Include="EscritorXML.cs" />
     <Compile Include="DeslogueoException.cs" />
     <Compile Include="Usuario.cs" />
+    <Compile Include="Terminal.cs" />
+    <Compile Include="ManejadorDados.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
