@@ -19,5 +19,10 @@ namespace CasinoNEW
 		{
 			Casino.GetInstance().Cerrar();
 		}
+
+		public void AbrirCasino()
+		{
+			Casino.GetInstance().Abrir();
+		}
 	}
 }

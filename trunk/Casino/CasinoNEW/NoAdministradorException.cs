@@ -6,7 +6,7 @@ namespace CasinoNEW
 {
 	class NoAdministradorException : ApplicationException
 	{
-		public NoAdministradorException(string mensaje) : base(mensaje)
+		public NoAdministradorException() : base()
 		{
 		}
 	}
