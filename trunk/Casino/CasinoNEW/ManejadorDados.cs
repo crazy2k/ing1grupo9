@@ -94,7 +94,24 @@ namespace CasinoNEW
 			m.apostar(j,a);
 		}
 
-		public void Tirar(int id, string usuario, int idMesa){}
+		public void Tirar(int id, string usuario, int idMesa){
+			Jugador j = GestionadorUsuarios.GetInstance().GetJugador(usuario);
+			Mesa table = JuegoDados.GetInstance().getMesa(idMesa);
+			if (!(table is MesaDados)) throw new Exception("Se intenta tirar en una Mesa de NoDados");
+			MesaDados m = (MesaDados)table;
+// NO ME FIJO SI EL QUE QUIERE TIRAR ES EL TIRADOR NI NADA PARECIDO.
+//			EscritorDados escr = EscritorDados.GetInstance(); 
+			try{
+				m.NotificarEstado();
+				m.jugar();
+				m.NotificarEstado();
+//				escr.ResponderTiroAceptado(id, usuario, idMesa);
+			}
+			catch(Exception e)
+			{
+//				escr.ResponderTiroDenegado(id, usuario, idMesa);
+			}
+		}
 		
 		public ManejadorDados()
 		{
