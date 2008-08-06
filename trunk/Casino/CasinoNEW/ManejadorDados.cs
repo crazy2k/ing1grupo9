@@ -44,6 +44,16 @@ namespace CasinoNEW
 		}
 		
 		public void SalirCraps(int id, string usuario, int idMesa){
+			Jugador j = GestionadorUsuarios.GetInstance().GetJugador(usuario);
+			Mesa m = JuegoDados.GetInstance().getMesa(idMesa);
+//			EscritorDados escr = EscritorDados.GetInstance();			
+			try{
+				m.quitarParticipante(j);
+//				escr.AceptarSalida(id, usuario, idMesa, "");
+			}
+			catch (Exception e){
+//				escr.DenegarSalida(id, usuario, idMesa, e.Message);
+			}
 			
 		}
 
@@ -99,16 +109,21 @@ namespace CasinoNEW
 			Mesa table = JuegoDados.GetInstance().getMesa(idMesa);
 			if (!(table is MesaDados)) throw new Exception("Se intenta tirar en una Mesa de NoDados");
 			MesaDados m = (MesaDados)table;
-// NO ME FIJO SI EL QUE QUIERE TIRAR ES EL TIRADOR NI NADA PARECIDO.
-//			EscritorDados escr = EscritorDados.GetInstance(); 
-			try{
-				m.NotificarEstado();
-				m.jugar();
-				m.NotificarEstado();
-//				escr.ResponderTiroAceptado(id, usuario, idMesa);
+// NO ME FIJO SI EL QUE QUIERE TIRAR ES EL TIRADOR, SOLO QUE ESTÉ EN LA MESA.
+			if (m.GetParticipantes().Contains(j)){
+//				EscritorDados escr = EscritorDados.GetInstance(); 
+				try{
+					m.NotificarEstado();
+					m.jugar();
+					m.NotificarEstado();
+//					escr.ResponderTiroAceptado(id, usuario, idMesa);
+				}
+				catch(Exception e)
+				{
+//					escr.ResponderTiroDenegado(id, usuario, idMesa);
+				}
 			}
-			catch(Exception e)
-			{
+			else{
 //				escr.ResponderTiroDenegado(id, usuario, idMesa);
 			}
 		}
