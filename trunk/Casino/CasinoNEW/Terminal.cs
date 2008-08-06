@@ -22,9 +22,9 @@ namespace CasinoNEW
 			get { return observador;}
 	//		set {observador = value;}
 		}
-		public Terminal(int idTerminal, Jugador obs)
+		public Terminal(Jugador obs)
 		{
-			id = idTerminal;
+			id = GestionadorUsuarios.GetInstance().GetId(obs.Nombre);
 			observador = obs;
 		}
 	}

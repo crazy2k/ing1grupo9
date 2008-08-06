@@ -8,8 +8,7 @@ namespace CasinoNEW
     {
 		private IList<Terminal> terminales = new List<Terminal>();
 		public void agregarObservador(Jugador j) {
-			int id = GestionadorUsuarios.GetInstance().GetId(j.Nombre);
-			Terminal t = new Terminal(id, j);
+			Terminal t = new Terminal(j);
 		}
 
         public void quitarObservador(Jugador j) {
