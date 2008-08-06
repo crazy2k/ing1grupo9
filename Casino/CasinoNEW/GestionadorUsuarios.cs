@@ -27,6 +27,15 @@ namespace CasinoNEW
 		// Diccionario <usuario, modo> (modo es "jugador", "administrador", ...) 
 		IDictionary<string, string> modos = new Dictionary<string, string>();
 		
+		public int GetId(string usuario){
+			if ( ! ids.Values.Contains(usuario)) 
+				throw new Exception("El usuario no se encuentra en el casino");
+			foreach (int id in ids.Keys){
+				if (ids[id] == usuario) return id;
+			}
+			return -1;
+		}
+		
 		public IList<Jugador> JugadoresActivos
 		{
 			get{ return jugadoresActivos; }
