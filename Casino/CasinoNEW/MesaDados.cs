@@ -73,7 +73,7 @@ namespace CasinoNEW
 		public override IList<Jugador> GetParticipantes() {
 			return Anfitrion.Participantes;
 		}
-        public void notificarEstado() 
+        public void NotificarEstado() 
         {
             ReporteDados reporte = Reportador.obtenerReporte();
             EventHandler.notificar(reporte);
