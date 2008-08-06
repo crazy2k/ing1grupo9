@@ -170,6 +170,11 @@ namespace CasinoNEW
 
 			throw new NoAdministradorException();
 		}
+		public Jugador GetJugador(string usuario){
+			Jugador j = GetJugador(usuario, true);
+			if (j == null) throw new Exception("Jugador invalido");
+			return j;
+		}
 		
 		private Jugador GetJugador(string usuario, bool activo) {
 			if (activo) {
