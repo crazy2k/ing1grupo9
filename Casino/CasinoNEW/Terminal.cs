@@ -27,6 +27,11 @@ namespace CasinoNEW
 			id = GestionadorUsuarios.GetInstance().GetId(obs.Nombre);
 			observador = obs;
 		}
-		public void Notificar(ReporteDados rep){}
+		public void Notificar(ReporteDados rep){
+			ManejadorDados.Notificar(id, observador.Nombre, rep.IdMesa, 
+			         rep.Jugadores, rep.ProxTirador, rep.ProxTiroSalida,
+			         rep.Punto, rep.UltimoTirador, rep.ResultadoUltimo,
+			                         rep.Premios, rep.Apuestas);
+		}
 	}
 }

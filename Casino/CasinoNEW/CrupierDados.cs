@@ -22,19 +22,19 @@ namespace CasinoNEW
             set { TiradorAnterior = value; }
         }
 
-        private Dictionary<Jugador,List<ApuestaDados>> 
-            apuestasRealizadas = new Dictionary<Jugador,List<ApuestaDados>>();
-		public Dictionary<Jugador,List<ApuestaDados>> ApuestasRealizadas{
+        private Dictionary<Jugador,IList<ApuestaDados>> 
+            apuestasRealizadas = new Dictionary<Jugador,IList<ApuestaDados>>();
+		public Dictionary<Jugador,IList<ApuestaDados>> ApuestasRealizadas{
 			get{return apuestasRealizadas;}
 		}
 
-		private Dictionary<Jugador, List<ApuestaDados>>
-            apuestasPagadas = new Dictionary<Jugador, List<ApuestaDados>>();
+		private Dictionary<Jugador, IList<ApuestaDados>>
+            apuestasPagadas = new Dictionary<Jugador, IList<ApuestaDados>>();
 		
 		public List<Premio> premiosPagados(){
 			List<Premio> premios = new List<Premio>();
 			foreach (Jugador j in apuestasPagadas.Keys){
-				List<ApuestaDados> aps = apuestasPagadas[j];
+				IList<ApuestaDados> aps = apuestasPagadas[j];
 				foreach (ApuestaDados a in aps){
 					premios.Add(a.Premio);
 				}
@@ -78,7 +78,7 @@ namespace CasinoNEW
 			Decimal pozo = Casino.GetInstance().TomarPozoFeliz();
 						
 			foreach (Jugador j in apuestasPagadas.Keys){
-				List<ApuestaDados> aps = apuestasPagadas[j];
+				IList<ApuestaDados> aps = apuestasPagadas[j];
 				foreach (ApuestaDados a in aps){
 					Decimal pago = a.AgregarAdicionalFeliz(total, pozo);
 					Casino.GetInstance().Pagar(pago, j);
@@ -92,7 +92,7 @@ namespace CasinoNEW
 			borrarApuestasPagadas();
 						
 			foreach (Jugador j in apuestasRealizadas.Keys){
-				List<ApuestaDados> aps = apuestasRealizadas[j];
+				IList<ApuestaDados> aps = apuestasRealizadas[j];
 				foreach (ApuestaDados a in aps){
 					Pair result = a.evaluar(res);
 					bool definida = (bool)result.getFirst();

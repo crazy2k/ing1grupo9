@@ -12,7 +12,7 @@ namespace CasinoNEW
 		private Resultado resultadoUltimo;
 		private Jugador ultimoTirador;
 		private IList<Premio> premios;
-		private Dictionary<Jugador,List<ApuestaDados>> apuestas;
+		private Dictionary<Jugador,IList<ApuestaDados>> apuestas;
 		private	int punto;
 		private	int idMesa;
 				
@@ -40,7 +40,7 @@ namespace CasinoNEW
 			get{ return premios;}
 			set{ premios = value;}
 		}
-		public Dictionary<Jugador,List<ApuestaDados>> Apuestas{
+		public Dictionary<Jugador,IList<ApuestaDados>> Apuestas{
 			get{ return apuestas;}
 			set{ apuestas = value;}
 		}
