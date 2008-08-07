@@ -6,7 +6,7 @@ namespace CasinoNEW
     public class ReportadorDados
     {
 		public ReportadorDados(MesaDados mesaOriginal){
-			mesaOriginal = mesa;
+			mesa = mesaOriginal;
 		}
 		private MesaDados mesa;
         public void registrarEntradaAMesa(Jugador j) { }//Esto no hace falta al final
