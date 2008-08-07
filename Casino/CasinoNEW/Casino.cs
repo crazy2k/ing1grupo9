@@ -141,7 +141,8 @@ namespace CasinoNEW
 
 		// TODO: 
 		// - Lectura de la configuración del casino
-		// desde un archivo en el servidor.
+		// desde un archivo en el servidor. (Falta implementar
+		// el Configurar())
 		// - Resetear al gestionador y a los juegos. (HECHO)
         public void Abrir()
         {
@@ -151,6 +152,8 @@ namespace CasinoNEW
 					j.Reset();
 
 				GestionadorUsuarios.GetInstance().Reset();
+
+				Configurar();
 
                 estaAbierto = true;
             }
