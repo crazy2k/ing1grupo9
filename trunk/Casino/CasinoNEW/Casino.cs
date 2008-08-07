@@ -3,6 +3,7 @@
 //
 
 using System;
+using System.IO;
 using System.Data;
 using System.Configuration;
 /*using System.Web;
@@ -14,12 +15,11 @@ using System.Web.UI.HtmlControls;
 */
 using System.Collections.Generic;
 
-using Ficha = System.Int32; //Asi se hacen los renombres de tipo. 
-//using Dinero = System.Decimal;
+using Ficha = System.Decimal; //Asi se hacen los renombres de tipo. 
+using Dinero = System.Decimal;
 
 namespace CasinoNEW
 {
-	using Dinero = System.Decimal;
 
     //Microsoft garantiza que esta implementacion de singleton es thread-safe.
     //Para mas info ver http://msdn.microsoft.com/en-us/library/ms998558.aspx
@@ -33,10 +33,12 @@ namespace CasinoNEW
         private Dinero montoPozoFeliz;
         private bool estaAbierto; //La inicializacion por default lo deja en false (cerrado)
         private float probJugadaTodosPonen;
-        private float probJugadaFeliz;
-        private Dinero saldoActual;
+		private float probJugadaFeliz;
+		private Dinero saldoActual;
         private List<Ficha> fichas;
         private float porcJugadaTodosPonen;
+		
+		
 		public float PorcJugadaTodosPonen{
 			get{ return porcJugadaTodosPonen; }
 			set{ porcJugadaTodosPonen = value; }
@@ -195,7 +197,41 @@ namespace CasinoNEW
 		
         public void Configurar()
         {
+	//		using (StreamReader sr = new StreamReader( Configuracion.ARCHIVO_CONFIG )) {
+			StreamReader sr = new StreamReader( Configuracion.ARCHIVO_CONFIG );
+			// Lista de Clientes
+			string linea = ProximaLinea(sr);
+			Configuracion.ARCHIVO_USUARIOS = linea;
+			//Fichas
+			linea = ProximaLinea(sr);
+			int cantidadFichas = Convert.ToInt32(linea);
+			fichas = new List<Ficha>();
+			for (int i = 0 ; i < cantidadFichas; i++){
+				linea = ProximaLinea(sr);
+				Ficha f = Convert.ToDecimal(linea);
+				fichas.Add(f);
+			}
+			//Probabilidades de aparición de Jugada Feliz
+			linea = ProximaLinea(sr);
+			double probInt = Convert.ToDouble(linea);
+			probJugadaFeliz = ( (float)probInt )/100;
+			//Probabilidades de aparición de Jugada TodosPonen
+			linea = ProximaLinea(sr);
+			probInt = Convert.ToDouble(linea);
+			probJugadaTodosPonen = ( (float)probInt )/100;
+			//Porcentaje a descontar de los premios por jugada TodosPonen
+			linea = ProximaLinea(sr);
+			double procInt = Convert.ToDouble(linea);
+			porcJugadaTodosPonen = ( (float)procInt )/100;
         }
+		
+		private string ProximaLinea(StreamReader sr){
+			string linea = sr.ReadLine();
+			while (!(linea.StartsWith("#")) ) {
+				linea = sr.ReadLine();
+			}
+			return linea;
+		}
 
         #endregion
     }

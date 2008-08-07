@@ -72,6 +72,8 @@ namespace CasinoNEW
 		}
 		private void ApostarCraps(Jugador j, Mesa m, TipoApuestaDados tap, 
 		                          int p, int cant, Dinero ficha){
+			if ( ! (Casino.GetInstance().GetFichas().Contains(ficha)) ) 
+				throw new Exception();
 			ApuestaDados a;
 			switch(tap){
 			case TipoApuestaDados.Pass:
@@ -96,6 +98,7 @@ namespace CasinoNEW
 				a = new ApuestaGanarEnContra(false, p, ficha,cant);
 				break;
 			default:
+				throw new Exception();
 				a = new ApuestaPassNoPass(true, ficha, cant);
 				break;
 			}

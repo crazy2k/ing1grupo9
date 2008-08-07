@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 using Dinero = System.Decimal;
-using Ficha = System.Int32;
+using Ficha = System.Decimal;
 
 namespace CasinoNEW
 {
