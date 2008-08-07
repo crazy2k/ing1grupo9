@@ -132,5 +132,8 @@ namespace CasinoNEW
 		public ManejadorDados()
 		{
 		}
+
 	}
+//TODO: Descomentar los llamados al lector de dados
+//TODO: Hacer el constructor del manejadorDados o poner todas las funciones static
 }

@@ -43,8 +43,8 @@ namespace CasinoNEW
 		}
 		
 		
-		private bool esTiroSalida;
-        private int punto;
+		private bool esTiroSalida = true;
+        private int punto = 0;
         private ResultadoDados ultimoResultado;
         //public void elegirTirador() { } 
 		// Este dijo Marta que dijeron que no lo hagamos
@@ -87,6 +87,22 @@ namespace CasinoNEW
 		}
 		
         public void pagarApuestas(ResultadoDados res, TipoJugada tipo) {
+			if (esTiroSalida){
+				if(res.sumaDados() != 2 && res.sumaDados() != 3 
+				  && res.sumaDados() != 7 && res.sumaDados() != 11 
+				  && res.sumaDados() != 12 ){
+					esTiroSalida = false;
+					punto = res.sumaDados();
+				}
+			}
+			else{
+				if (punto == res.sumaDados() || res.sumaDados() == 7){
+					esTiroSalida = true;
+					punto = 0;
+				}
+			}
+
+			ultimoResultado=res;
 			Dinero totalPagado = 0;
 						
 			borrarApuestasPagadas();
