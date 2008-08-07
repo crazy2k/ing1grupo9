@@ -78,5 +78,31 @@ namespace CasinoNEW
 			}
 		}
 
+		public void PedirEstadoActual(int id, string usuario)
+		{
+			GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
+			try
+			{
+				// En realidad, no uso al administrador. Sólo lo
+				// pido para saber si el usuario está autenticado
+				// como administrador.
+				// TODO: ¿Rever?
+				Administrador a = g.GetAdmin(usuario);
+
+				// TODO: GENERAR EL INFORME
+				//ginformes. ...
+
+				//escritor.InformarEstadoActual(id, usuario);
+			}
+			// No distingo las excepciones porque el protocolo
+			// ni siquiera tiene la opción de enviar un motivo
+			// para denegar la operación.
+			catch (Exception e)
+			{
+				//escritor.DenegarEstadoActual(id, usuario);
+			}
+		}
+
+
 	}
 }

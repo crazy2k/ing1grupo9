@@ -118,5 +118,14 @@ namespace CasinoNEW
 
 			Escribir(nombreArchivo, xd);
 		}
+
+		//public void InformarEstadoActual(int id, string usuario) {
+			// TODO: IMPLEMENTAR
+		//}
+
+		//public void DenegarEstadoActual(int id, string usuario)
+		//{
+			// TODO: IMPLEMENTAR
+		//}
 	}
 }
