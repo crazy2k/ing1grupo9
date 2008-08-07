@@ -46,6 +46,24 @@ namespace CasinoNEW
 			manejador.AbrirCasino(id, usuario);
 		}
 
+	
+		private void DelegarRankingCasino(XmlDocument xmld)
+		{
+
+			XmlElement root = xmld.DocumentElement;
+
+			int id = GetIdTerminal(root);
+			string usuario = GetUsuario(root);
+
+			XmlNode tr = GetChildNode(root, "tipoRanking");
+			string tipoRanking = tr.InnerText;
+
+			XmlNode l = GetChildNode(root, "longitud");
+			int longitud = Int32.Parse(l.InnerText);
+
+			manejador.PedirRankingCasino(id, usuario, tipoRanking, longitud);
+		}
+
 		public override void Interpretar(string mensajeSinCaps,
 			XmlDocument xmld)
 		{
@@ -56,6 +74,9 @@ namespace CasinoNEW
 					break;
 				case "abrircasino":
 					DelegarAbrirCasino(xmld);
+					break;
+				case "rankingcasino":
+					DelegarRankingCasino(xmld);
 					break;
 			}
 		}
