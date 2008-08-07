@@ -64,6 +64,17 @@ namespace CasinoNEW
 			manejador.PedirRankingCasino(id, usuario, tipoRanking, longitud);
 		}
 
+		private void DelegarEstadoActualCasino(XmlDocument xmld)
+		{
+
+			XmlElement root = xmld.DocumentElement;
+
+			int id = GetIdTerminal(root);
+			string usuario = GetUsuario(root);
+
+			manejador.PedirEstadoActual(id, usuario);
+		}
+
 		public override void Interpretar(string mensajeSinCaps,
 			XmlDocument xmld)
 		{
@@ -77,6 +88,9 @@ namespace CasinoNEW
 					break;
 				case "rankingcasino":
 					DelegarRankingCasino(xmld);
+					break;
+				case "informeestadoactual":
+					DelegarEstadoActualCasino(xmld);
 					break;
 			}
 		}
