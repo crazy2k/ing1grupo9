@@ -29,7 +29,7 @@ namespace CasinoNEW
 		
 		public void Reset(){
 			ids.Clear();
-			modos.Clear;
+			modos.Clear();
 			jugadoresActivos.Clear();
 			jugadoresInactivos.Clear();
 			administradores.Clear();
@@ -49,6 +49,11 @@ namespace CasinoNEW
 		public IList<Jugador> JugadoresActivos
 		{
 			get{ return jugadoresActivos; }
+		}
+
+		public IList<Jugador> JugadoresInactivos
+		{
+			get { return jugadoresInactivos; }
 		}
 		
 		public IList<Observador> Observadores

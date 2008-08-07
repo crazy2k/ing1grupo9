@@ -139,10 +139,19 @@ namespace CasinoNEW
             jug.pagar(ganancia);
         }
 
+		// TODO: 
+		// - Lectura de la configuración del casino
+		// desde un archivo en el servidor.
+		// - Resetear al gestionador y a los juegos. (HECHO)
         public void Abrir()
         {
             if (!estaAbierto)
             {
+				foreach (Juego j in juegos)
+					j.Reset();
+
+				GestionadorUsuarios.GetInstance().Reset();
+
                 estaAbierto = true;
             }
             else

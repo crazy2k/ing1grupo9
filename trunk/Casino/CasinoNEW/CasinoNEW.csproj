@@ -54,6 +54,7 @@
     <Compile Include="Escritor.cs" />
     <Compile Include="EscritorAdministracion.cs" />
     <Compile Include="EventHandlerDados.cs" />
+    <Compile Include="GeneradorInformes.cs" />
     <Compile Include="GeneradorJugadasDados.cs" />
     <Compile Include="Juego.cs" />
     <Compile Include="JuegoDados.cs" />

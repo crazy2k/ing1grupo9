@@ -17,6 +17,16 @@ namespace CasinoNEW
 			return e.GetAttribute("usuario");
 		}
 
+		public XmlElement GetChildNode(XmlElement root, string nombreTag)
+		{
+			foreach (XmlElement e in root.ChildNodes)
+			{
+				if (e.Name == nombreTag)
+					return e;
+			}
+			return null;
+		}
+	
 		public override void Interpretar(string mensaje, FileInfo fi)
 		{
 
