@@ -10,6 +10,9 @@ namespace CasinoNEW
 		public static void Main(string[] args)
 		{
 			Console.WriteLine("Hello World!");
+			Poller p = new Poller();
+			p.poll();
+			Console.WriteLine("Se rompe todo");
 		}
 	}
 }
