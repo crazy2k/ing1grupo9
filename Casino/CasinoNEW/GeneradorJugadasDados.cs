@@ -9,7 +9,8 @@ namespace CasinoNEW
 
         public Pair obtenerJugada()
         {
-            setTipoJugada(Casino.GetInstance().ObtenerTipoDeJugada());
+			Pair jugada = proxJugada;
+			setTipoJugada(Casino.GetInstance().ObtenerTipoDeJugada());
             Random r1 = new Random(DateTime.Now.Millisecond);
             Random r2 = new Random(DateTime.Now.Millisecond);
             double rFloat1 = r1.NextDouble();
@@ -18,7 +19,7 @@ namespace CasinoNEW
             setValorDado(dado1, rFloat1);
             setValorDado(dado2, rFloat2);
             setResultado(new ResultadoDados(dado1, dado2));
-            return proxJugada;
+			return jugada;
         }
 
         private void setValorDado(int dado, double rFloat)
