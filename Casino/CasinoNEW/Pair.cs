@@ -8,6 +8,8 @@ namespace CasinoNEW
 	{
         private Object first;
         private Object second;
+		
+		public Pair(){}
 
         public Pair(Object fst, Object snd)
 		{

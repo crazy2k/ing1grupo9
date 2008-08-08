@@ -5,7 +5,7 @@ namespace CasinoNEW
 {
     public class GeneradorJugadasDados
     {
-        private Pair proxJugada;
+        private Pair proxJugada = new Pair();
 
         public Pair obtenerJugada()
         {
