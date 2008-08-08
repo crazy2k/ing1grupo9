@@ -15,12 +15,18 @@ namespace CasinoNEW
 		public Poller()
 		{
 			lectores.Add(new LectorCasino());
+			lectores.Add(new LectorDados());
+//			lectores.Add(new LectorConfigCasino());
+			lectores.Add(new LectorAdministracion());
+//			lectores.Add(new LectorManipulador());
+//TODO: Agregar al poller Lector de manipulacion y lector de Configuracion			
 		}
 
 		public void poll() {
 			while (true) {
 				foreach(Lector l in lectores)
 					l.Leer();
+//TODO: Ver si se le pone que espere entre lectura y lectura al poller
 			}
 		}
 		
