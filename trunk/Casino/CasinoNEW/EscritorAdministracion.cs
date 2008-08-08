@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 
+using Dinero = System.Decimal;
+
 namespace CasinoNEW
 {
 	class EscritorAdministracion : EscritorXML
@@ -119,13 +121,57 @@ namespace CasinoNEW
 			Escribir(nombreArchivo, xd);
 		}
 
-		//public void InformarEstadoActual(int id, string usuario) {
-			// TODO: IMPLEMENTAR
-		//}
+		public void InformarEstadoActual(int id, string usuario,
+			Dinero saldoCasino, IList<UsuarioConSaldo> lucs) {
+				string nombreArchivo = "respuestaEstadoActual";
 
-		//public void DenegarEstadoActual(int id, string usuario)
-		//{
-			// TODO: IMPLEMENTAR
-		//}
+				XmlDocument xd = CrearDocumentoXML();
+				XmlElement root = xd.CreateElement("estadoActual");
+				xd.AppendChild(root);
+
+				AgregarAtributo(xd, root, "vTerm", id.ToString());
+				AgregarAtributo(xd, root, "usuario", usuario);
+
+				AgregarElementoSimple(xd, root, "aceptado", "si");
+				AgregarElementoSimple(xd, root, "saldoCasino", 
+					saldoCasino.ToString());
+
+				XmlElement jugadores = xd.CreateElement("jugadores");
+				root.AppendChild(jugadores);
+				foreach (UsuarioConSaldo ucs in lucs)
+				{
+					XmlElement jugador = xd.CreateElement("jugador");
+					jugadores.AppendChild(jugador);
+
+					AgregarElementoSimple(xd, jugador, "nombre",
+										  ucs.nombre);
+					AgregarElementoSimple(xd, jugador, "saldo",
+										  ucs.saldo.ToString());
+				}
+
+				Escribir(nombreArchivo, xd);
+		}
+
+		public void DenegarEstadoActual(int id, string usuario)
+		{
+			string nombreArchivo = "respuestaEstadoActual";
+
+			XmlDocument xd = CrearDocumentoXML();
+			XmlElement root = xd.CreateElement("estadoActual");
+			xd.AppendChild(root);
+
+			AgregarAtributo(xd, root, "vTerm", id.ToString());
+			AgregarAtributo(xd, root, "usuario", usuario);
+
+			AgregarElementoSimple(xd, root, "aceptado", "no");
+
+			XmlElement saldoCasino = xd.CreateElement("saldoCasino");
+			root.AppendChild(saldoCasino);
+
+			XmlElement jugadores = xd.CreateElement("jugadores");
+			root.AppendChild(jugadores);
+
+			Escribir(nombreArchivo, xd);
+		}
 	}
 }

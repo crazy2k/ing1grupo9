@@ -15,6 +15,12 @@ namespace CasinoNEW
 		public Dinero saldo;
 	}
 
+	public struct EstadoCasino
+	{
+		public IList<UsuarioConSaldo> usuariosConSaldo;
+		public Dinero saldoCasino;
+	}
+
 	public class GeneradorInformes
 	{
 		public IList<UsuarioConSaldo> Ranking(string tipoRanking,
@@ -53,6 +59,22 @@ namespace CasinoNEW
 			}
 
 			return lucs;
+		}
+
+		public EstadoCasino EstadoActual()
+		{
+			Dinero saldo = Casino.GetInstance().getSaldoActual();
+			GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
+
+			IList<Jugador> js = g.JugadoresInactivos;
+
+			IList<UsuarioConSaldo> lucs = ToWritable(js);
+
+			EstadoCasino ec = new EstadoCasino();
+			ec.usuariosConSaldo = lucs;
+			ec.saldoCasino = saldo;
+
+			return ec;
 		}
 
 
