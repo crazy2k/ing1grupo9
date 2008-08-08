@@ -17,3 +17,4 @@ Cambios con el TP2:
 	- Ahora existe una clase ManejadorAdministracion encargada de manejar los
 	mensajes relacionados con la administración. (En el informe 2, la apertura
 	del casino era manejada por el ManejadorCasino.)
+	- Reuso de entradaCraps para cuando es una nueva mesa en entredaCrapsNuevaMesa
