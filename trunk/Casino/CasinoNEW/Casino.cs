@@ -108,8 +108,7 @@ namespace CasinoNEW
 					if (instance == null) {
 						instance = new Casino();
 						//Le pongo el juego de Dados, sinó nunca se crea.
-						JuegoDados juego = new JuegoDados();
-						instance.juegos.Add(juego);
+						instance.Juegos.Add(JuegoDados.GetInstance());
 						//De haber Tragamonedas habría que ponerlo acá tb.
 					}
                 }
