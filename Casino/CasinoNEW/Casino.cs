@@ -105,8 +105,13 @@ namespace CasinoNEW
              {
                 lock (syncRoot) 
                 {
-                   if (instance == null) 
-                      instance = new Casino();
+					if (instance == null) {
+						instance = new Casino();
+						//Le pongo el juego de Dados, sinó nunca se crea.
+						JuegoDados juego = new JuegoDados();
+						instance.juegos.Add(juego);
+						//De haber Tragamonedas habría que ponerlo acá tb.
+					}
                 }
              }
              return instance;
