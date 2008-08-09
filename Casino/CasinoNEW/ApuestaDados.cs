@@ -13,6 +13,11 @@ namespace CasinoNEW
         protected Dictionary<Ficha,Cantidad> fichas;
         protected bool definida = false;
 
+		public Dictionary<Ficha, Cantidad> Fichas
+		{
+			get { return fichas; }
+		}
+
         public abstract Pair evaluar(ResultadoDados res);
 
     }

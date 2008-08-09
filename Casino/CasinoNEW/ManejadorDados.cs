@@ -13,7 +13,7 @@ namespace CasinoNEW
 	public class ManejadorDados
 	{
 
-		private EscritorDados escritor = new EscritorDados();
+		private static EscritorDados escritor = new EscritorDados();
 
 		public static void Notificar(int id, string usuario, int idMesa, 
 		                      IList<Jugador> jugadores, Jugador proxTirador,
@@ -21,6 +21,10 @@ namespace CasinoNEW
 		                      Jugador ultimoTirador, Resultado ultimoResultado, 
 		                      IList<Premio> premios, 
 		                     Dictionary<Jugador,IList<ApuestaDados>> apuestas){
+			
+			escritor.NotificarEstado(id, usuario, idMesa, jugadores,
+									 proxTirador, proxTiroSalida, punto, ultimoTirador,
+									 ultimoResultado, premios, apuestas);
 
 		
 		}

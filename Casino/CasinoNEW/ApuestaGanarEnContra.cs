@@ -12,6 +12,16 @@ namespace CasinoNEW
         private bool aFavor;
         private int puntaje;
 
+		public bool AFavor
+		{
+			get { return aFavor; }
+		}
+
+		public int Puntaje
+		{
+			get { return puntaje; }
+		}
+
         public ApuestaGanarEnContra(bool afavor, int p, Ficha ficha, Cantidad cant)
         {
 			fichas = new System.Collections.Generic.Dictionary<decimal,int>();
