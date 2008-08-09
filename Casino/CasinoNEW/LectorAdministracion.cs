@@ -66,13 +66,25 @@ namespace CasinoNEW
 
 		private void DelegarEstadoActualCasino(XmlDocument xmld)
 		{
-
 			XmlElement root = xmld.DocumentElement;
 
 			int id = GetIdTerminal(root);
 			string usuario = GetUsuario(root);
 
 			manejador.PedirEstadoActual(id, usuario);
+		}
+
+		private void DelegarMovimientosPorJugador(XmlDocument xmld)
+		{
+			XmlElement root = xmld.DocumentElement;
+
+			int id = GetIdTerminal(root);
+			string usuario = GetUsuario(root);
+
+			XmlNode j = GetChildNode(root, "jugador");
+			string jugador = j.InnerText;
+
+			manejador.PedirMovimientosPorJugador(id, usuario, jugador);
 		}
 
 		public override void Interpretar(string mensajeSinCaps,
@@ -91,6 +103,9 @@ namespace CasinoNEW
 					break;
 				case "informeestadoactual":
 					DelegarEstadoActualCasino(xmld);
+					break;
+				case "movimientosjugador":
+					DelegarMovimientosPorJugador(xmld);
 					break;
 			}
 		}
