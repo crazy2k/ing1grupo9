@@ -59,9 +59,16 @@ namespace CasinoNEW
 			return elemento;
 		}
 		
-		protected override void Escribir(string nombreArchivo, Object o) {
+		protected override void Escribir(string nombreArchivo, Object o,
+			int id) {
 			XmlDocument d = (XmlDocument)o;
-			d.Save(this.DirectorioEscritura + nombreArchivo + ".xml");
+			// Acá asumo que ninguna terminal virtual tiene un id
+			// de más de 4 dígitos.
+			string idTerminal = id.ToString().PadLeft(4, '0');
+			string numeroDeGrupo =
+				Configuracion.NUMERO_GRUPO.ToString().PadLeft(2, '0');
+			d.Save(this.DirectorioEscritura + nombreArchivo + numeroDeGrupo + 
+				idTerminal + ".xml");
 		}
 
 	}

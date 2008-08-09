@@ -27,6 +27,8 @@ namespace CasinoNEW
 		public static readonly string DIRECTORIO_RESPUESTAS_CLIENTE = 
 			"/Temp/";
 
+		public static readonly int NUMERO_GRUPO = 9;
+
 	}
 		
 }

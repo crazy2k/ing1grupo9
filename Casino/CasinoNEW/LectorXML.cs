@@ -26,7 +26,11 @@ namespace CasinoNEW
 			}
 			return null;
 		}
-	
+
+		public string GetTextFromChildNode(XmlElement root, string nombreTag)
+		{
+			return GetChildNode(root, nombreTag).InnerText;
+		}
 		public override void Interpretar(string mensaje, FileInfo fi)
 		{
 

@@ -20,7 +20,10 @@ namespace CasinoNEW
 		                      bool proxTiroSalida, int punto, 
 		                      Jugador ultimoTirador, Resultado ultimoResultado, 
 		                      IList<Premio> premios, 
-		                     Dictionary<Jugador,IList<ApuestaDados>> apuestas){}
+		                     Dictionary<Jugador,IList<ApuestaDados>> apuestas){
+
+		
+		}
 		
 	
 		public void EntrarCrapsMesa(int id, string usuario, int idMesa){
@@ -31,10 +34,10 @@ namespace CasinoNEW
 			
 			try{
 				j.entrarAMesa(m);
-				escritor.AceptarEntrada(id,usuario,idMesa, "");
+				escritor.AceptarEntrada(id, usuario, idMesa, "");
 			}
 			catch (Exception e){
-//				escr.DenegarEntrada(id, usuario, idMesa, e.Message);
+				escritor.DenegarEntrada(id, usuario, idMesa, e.Message);
 			}
 		}
 		public void EntrarCrapsNuevaMesa(int id, string usuario){
@@ -47,13 +50,12 @@ namespace CasinoNEW
 		public void SalirCraps(int id, string usuario, int idMesa){
 			Jugador j = GestionadorUsuarios.GetInstance().GetJugador(usuario);
 			Mesa m = JuegoDados.GetInstance().getMesa(idMesa);
-//			EscritorDados escr = EscritorDados.GetInstance();			
 			try{
 				m.quitarParticipante(j);
-//				escr.AceptarSalida(id, usuario, idMesa, "");
+				escritor.AceptarSalida(id, usuario, idMesa, "");
 			}
 			catch (Exception e){
-//				escr.DenegarSalida(id, usuario, idMesa, e.Message);
+				escritor.DenegarSalida(id, usuario, idMesa, e.Message);
 			}
 			
 		}
@@ -64,13 +66,12 @@ namespace CasinoNEW
 			Jugador j = GestionadorUsuarios.GetInstance().GetJugador(usuario);
 			Mesa m = JuegoDados.GetInstance().getMesa(idMesa);
 			try{
-				ApostarCraps(j,m,tap,puntajeApostado,cantidadFichas,valorFichas);
-//				EscritorDados.GetInstance().ResponderApuestaAceptada(id,
-//				                                              usuario, idMesa);
+				ApostarCraps(j,m,tap,puntajeApostado,cantidadFichas,
+					valorFichas);
+				escritor.ResponderApuestaAceptada(id, usuario, idMesa);
 			}
 			catch (Exception e){
-//				EscritorDados.GetInstance().ResponderApuestaDenegada(id,
-//				                                              usuario, idMesa);
+				escritor.ResponderApuestaDenegada(id, usuario, idMesa);
 			}
 		}
 		private void ApostarCraps(Jugador j, Mesa m, TipoApuestaDados tap, 
@@ -115,20 +116,21 @@ namespace CasinoNEW
 			MesaDados m = (MesaDados)table;
 // NO ME FIJO SI EL QUE QUIERE TIRAR ES EL TIRADOR, SOLO QUE ESTÉ EN LA MESA.
 			if (m.GetParticipantes().Contains(j)){
-//				EscritorDados escr = EscritorDados.GetInstance(); 
 				try{
 					m.NotificarEstado();
 					m.jugar();
 					m.NotificarEstado();
-//					escr.ResponderTiroAceptado(id, usuario, idMesa);
+					// TODO: ¿Acá no tendría que pedir el resultado? Faltan
+					// datos para el escritor.
+					//escritor.ResponderTiroAceptado(id, usuario, idMesa);
 				}
 				catch(Exception e)
 				{
-//					escr.ResponderTiroDenegado(id, usuario, idMesa);
+					escritor.ResponderTiroDenegado(id, usuario, idMesa);
 				}
 			}
 			else{
-//				escr.ResponderTiroDenegado(id, usuario, idMesa);
+				escritor.ResponderTiroDenegado(id, usuario, idMesa);
 			}
 		}
 		
