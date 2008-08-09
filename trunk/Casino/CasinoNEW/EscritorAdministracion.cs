@@ -23,7 +23,7 @@ namespace CasinoNEW
 
 			AgregarElementoSimple(xd, root, "aceptado", "si");
 
-			Escribir(nombreArchivo, xd);
+			Escribir(nombreArchivo, xd, id);
 		}
 
 		public void DenegarCerrarCasino(int id, string usuario)
@@ -39,7 +39,7 @@ namespace CasinoNEW
 
 			AgregarElementoSimple(xd, root, "aceptado", "no");
 
-			Escribir(nombreArchivo, xd);
+			Escribir(nombreArchivo, xd, id);
 		}
 
 		public void AceptarAbrirCasino(int id, string usuario)
@@ -55,7 +55,7 @@ namespace CasinoNEW
 
 			AgregarElementoSimple(xd, root, "aceptado", "si");
 
-			Escribir(nombreArchivo, xd);
+			Escribir(nombreArchivo, xd, id);
 		}
 
 		public void DenegarAbrirCasino(int id, string usuario)
@@ -71,7 +71,7 @@ namespace CasinoNEW
 
 			AgregarElementoSimple(xd, root, "aceptado", "no");
 
-			Escribir(nombreArchivo, xd);
+			Escribir(nombreArchivo, xd, id);
 		}
 
 		public void InformarRanking(int id, string usuario,
@@ -100,7 +100,7 @@ namespace CasinoNEW
 									  ucs.saldo.ToString());
 			}
 
-			Escribir(nombreArchivo, xd);
+			Escribir(nombreArchivo, xd, id);
 		}
 
 		public void DenegarRankingCasino(int id, string usuario)
@@ -118,7 +118,7 @@ namespace CasinoNEW
 			XmlElement jugadores = xd.CreateElement("jugadores");
 			root.AppendChild(jugadores);
 
-			Escribir(nombreArchivo, xd);
+			Escribir(nombreArchivo, xd, id);
 		}
 
 		public void InformarEstadoActual(int id, string usuario,
@@ -149,7 +149,7 @@ namespace CasinoNEW
 										  ucs.saldo.ToString());
 				}
 
-				Escribir(nombreArchivo, xd);
+				Escribir(nombreArchivo, xd, id);
 		}
 
 		public void DenegarEstadoActual(int id, string usuario)
@@ -171,7 +171,7 @@ namespace CasinoNEW
 			XmlElement jugadores = xd.CreateElement("jugadores");
 			root.AppendChild(jugadores);
 
-			Escribir(nombreArchivo, xd);
+			Escribir(nombreArchivo, xd, id);
 		}
 
 		public void InformarMovimientosPorJugador(int id, string usuario,
@@ -204,7 +204,7 @@ namespace CasinoNEW
 				AgregarElementoSimple(xd, apuesta, "montoGanado",
 					vps.montos.premioJugada.ToString());
 			}
-			Escribir(nombreArchivo, xd);
+			Escribir(nombreArchivo, xd, id);
 		}
 
 		public void DenegarMovimientosPorJugador(int id, string usuario)
@@ -223,7 +223,7 @@ namespace CasinoNEW
 			XmlElement apuestas = xd.CreateElement("apuestas");
 			root.AppendChild(apuestas);
 
-			Escribir(nombreArchivo, xd);
+			Escribir(nombreArchivo, xd, id);
 		}
 
 	}

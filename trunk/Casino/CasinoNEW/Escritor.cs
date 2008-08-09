@@ -12,6 +12,7 @@ namespace CasinoNEW
 		protected string DirectorioEscritura {
 			get { return directorioEscritura; }
 		}
-		protected abstract void Escribir(string nombreArchivo, Object o);
+		protected abstract void Escribir(string nombreArchivo, Object o, 
+			int idTerminal);
 	}
 }

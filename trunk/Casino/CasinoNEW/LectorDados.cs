@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 
+using Dinero = System.Decimal;
+
+
 namespace CasinoNEW
 {
 	class LectorDados : LectorXML
@@ -27,13 +30,106 @@ namespace CasinoNEW
 			}
 		}
 
+		private void DelegarSalidaCraps(XmlDocument xmld)
+		{
+			XmlElement root = xmld.DocumentElement;
+
+			int id = GetIdTerminal(root);
+			string usuario = GetUsuario(root);
+
+			int mesa = Int32.Parse(root.GetAttribute("mesa"));
+			manejador.SalirCraps(id, usuario, mesa);
+		}
+
+		private void DelegarApuestaCraps(XmlDocument xmld)
+		{
+			XmlElement root = xmld.DocumentElement;
+
+			int id = GetIdTerminal(root);
+			string usuario = GetUsuario(root);
+			int idMesa = Int32.Parse(root.GetAttribute("mesa"));
+
+			XmlElement opcionApuesta = GetChildNode(root, "opcionApuesta");
+
+			string ta = GetTextFromChildNode(opcionApuesta,
+				"tipoApuesta");
+			TipoApuestaDados tipoApuesta = GetTipoApuestaFromText(ta);
+
+			string pa = GetTextFromChildNode(opcionApuesta,
+				"puntajeApostado");
+			int puntajeApostado = Int32.Parse(pa);
+
+			XmlElement valorApuesta = GetChildNode(root, "valorApuesta");
+			// Se lee un único <fichaValor>
+			XmlElement fichaValor = GetChildNode(valorApuesta, "fichaValor");
+			int cantidadFichas =
+				Int32.Parse(GetTextFromChildNode(fichaValor, "cantidad"));
+			Dinero valorFichas =
+				Dinero.Parse(GetTextFromChildNode(fichaValor, "valor"));
+
+			manejador.Apostar(id, usuario, idMesa, tipoApuesta,
+				puntajeApostado, valorFichas, cantidadFichas);
+
+		}
+
+		private TipoApuestaDados GetTipoApuestaFromText(string tipoApuesta)
+		{
+			switch (tipoApuesta)
+			{
+				case "pase":
+					return TipoApuestaDados.Pass;
+					break;
+				case "no pase":
+					return TipoApuestaDados.NoPass;
+					break;
+				case "venir":
+					return TipoApuestaDados.Venir;
+					break;
+				case "no venir":
+					return TipoApuestaDados.NoVenir;
+					break;
+				case "campo":
+					return TipoApuestaDados.Campo;
+					break;
+				case "a ganar":
+					return TipoApuestaDados.AGanar;
+					break;
+				case "en contra":
+					return TipoApuestaDados.EnContra;
+					break;
+				default:
+					return TipoApuestaDados.Pass;
+			}
+		}
+
+		private void DelegarTiroCraps(XmlDocument xmld)
+		{
+			XmlElement root = xmld.DocumentElement;
+
+			int id = GetIdTerminal(root);
+			string usuario = GetUsuario(root);
+			int idMesa = Int32.Parse(root.GetAttribute("mesa"));
+
+			manejador.Tirar(id, usuario, idMesa);
+		}
+
+
 		public override void Interpretar(string mensajeSinCaps,
 			XmlDocument xmld)
 		{
 			switch (mensajeSinCaps)
 			{
-				case "entradaCraps":
+				case "entradacraps":
 					DelegarEntradaCraps(xmld);
+					break;
+				case "salidacraps":
+					DelegarSalidaCraps(xmld);
+					break;
+				case "apuestacraps":
+					DelegarApuestaCraps(xmld);
+					break;
+				case "tirocraps":
+					DelegarTiroCraps(xmld);
 					break;
 			}
 		}
