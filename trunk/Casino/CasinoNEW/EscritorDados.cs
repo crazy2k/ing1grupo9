@@ -2,6 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml;
+using Ficha = System.Decimal;
+using Cantidad = System.Int32;
+
+
 
 namespace CasinoNEW
 {
@@ -84,9 +88,132 @@ namespace CasinoNEW
 			Escribir(nombreArchivo, xd, id);
 		}
 
-		public void NotificarEstado()
+		public void NotificarEstado(int id, string usuario, int idMesa,
+			IList<Jugador> jugadores, Jugador proxTirador, bool proxTiroSalida,
+			int punto, Jugador ultimoTirador, Resultado ultimoResultado,
+			IList<Premio> premios,
+			IDictionary<Jugador, IList<ApuestaDados>> apuestas)
 		{
+			string nombreArchivo = "EstadoCraps";
 
+			XmlDocument xd = CrearDocumentoXML();
+			XmlElement root = xd.CreateElement("estadoMesaCraps");
+			xd.AppendChild(root);
+
+			AgregarAtributo(xd, root, "vTerm", id.ToString());
+			AgregarAtributo(xd, root, "usuario", usuario);
+			AgregarAtributo(xd, root, "mesa", idMesa.ToString());
+
+			XmlElement tagJugadores = xd.CreateElement("jugadores");
+			root.AppendChild(tagJugadores);
+			foreach (Jugador j in jugadores)
+			{
+				XmlElement tagJugador = xd.CreateElement("jugador");
+				AgregarAtributo(xd, tagJugador, "nombre", j.Nombre);
+			}
+
+			XmlElement tagProximoTiro = xd.CreateElement("proximoTiro");
+			root.AppendChild(tagProximoTiro);
+			AgregarElementoSimple(xd, tagProximoTiro, "tirador",
+				proxTirador.Nombre);
+
+			string esTiroSalida = (proxTiroSalida) ? "si" : "no";
+			AgregarElementoSimple(xd, tagProximoTiro, "tiroSalida",
+				esTiroSalida);
+
+			string spunto = (punto != 0) ? punto.ToString() : "";
+			AgregarElementoSimple(xd, tagProximoTiro, "punto",
+				spunto);
+
+			XmlElement tagUltimoTiro = xd.CreateElement("ultimoTiro");
+			root.AppendChild(tagUltimoTiro);
+
+			AgregarElementoSimple(xd, tagUltimoTiro, "tirador",
+				ultimoTirador.Nombre);
+			AgregarElementoSimple(xd, tagUltimoTiro, "resultado",
+				ultimoResultado.ToString());
+
+			XmlElement tagPremios = xd.CreateElement("premios");
+			tagUltimoTiro.AppendChild(tagPremios);
+			foreach (Premio p in premios) {
+
+				XmlElement tagPremio = xd.CreateElement("premio");
+				tagPremios.AppendChild(tagPremio);
+
+				// TODO: El premio no conoce al ganador. ¿Arreglar?
+				AgregarElementoSimple(xd, tagPremio, "apostador", "");
+
+				AgregarElementoSimple(xd, tagPremio, "montoPremioJugada",
+					p.MontoPremioJugada.ToString());
+				AgregarElementoSimple(xd, tagPremio, "montoPremioJugadaFeliz",
+					p.MontoPremioJF.ToString());
+				AgregarElementoSimple(xd, tagPremio,
+					"montoRetenidoJugadaTodosponen",
+					p.MontoRetencionJTP.ToString());
+			}
+
+			XmlElement tagApuestasVigentes =
+				xd.CreateElement("apuestasVigentes");
+			root.AppendChild(tagApuestasVigentes);
+
+			foreach (KeyValuePair<Jugador, IList<ApuestaDados>> kv in apuestas) {
+				foreach (ApuestaDados a in kv.Value) {
+					XmlElement tagApuesta = xd.CreateElement("apuesta");
+					tagApuestasVigentes.AppendChild(tagApuesta);
+
+					string apostador = kv.Key.Nombre;
+					AgregarElementoSimple(xd, tagApuesta, "apostador", apostador);
+
+					XmlElement tagOpcionApuesta =
+						xd.CreateElement("opcionApuesta");
+					tagApuesta.AppendChild(tagOpcionApuesta);
+					string tipo = "";
+					string puntaje = "";
+					if (a is ApuestaPassNoPass) {
+						ApuestaPassNoPass ac = (ApuestaPassNoPass)a;
+						tipo = (ac.AFavor) ? "pase" : "no pase";
+					}
+					else if (a is ApuestaVenirNoVenir) {
+						ApuestaVenirNoVenir ac = (ApuestaVenirNoVenir)a;
+						tipo = (ac.AFavor) ? "venir" : "no venir";
+						puntaje = ac.Puntaje.ToString();
+					}
+					else if (a is ApuestaDeCampo)
+					{
+						tipo = "campo";
+					}
+					else if (a is ApuestaGanarEnContra)
+					{
+						ApuestaGanarEnContra ac = (ApuestaGanarEnContra)a;
+						tipo = (ac.AFavor) ? "a ganar" : "en contra";
+						puntaje = ac.Puntaje.ToString();
+					}
+					AgregarElementoSimple(xd, tagOpcionApuesta,
+							"tipoApuesta", tipo);
+
+					AgregarElementoSimple(xd, tagOpcionApuesta,
+							"puntajeApostado", puntaje);
+
+					XmlElement tagValorApuesta =
+						xd.CreateElement("valorApuesta");
+					tagApuesta.AppendChild(tagValorApuesta);
+
+					foreach (KeyValuePair<Ficha, Cantidad> f in a.Fichas)
+					{
+						XmlElement tagFichaValor =
+							xd.CreateElement("fichaValor");
+						tagValorApuesta.AppendChild(tagFichaValor);
+
+						AgregarElementoSimple(xd, tagFichaValor, "cantidad",
+							f.Value.ToString());
+						AgregarElementoSimple(xd, tagFichaValor, "valor",
+							f.Key.ToString());
+					}
+				}
+			}
+
+
+			Escribir(nombreArchivo, xd, id);
 		}
 
 		public void ResponderApuestaAceptada(int id, string usuario,

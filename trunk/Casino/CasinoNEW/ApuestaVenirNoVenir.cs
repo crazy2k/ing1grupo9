@@ -12,7 +12,17 @@ namespace CasinoNEW
         private bool aFavor;
         private int puntajeVenir;
         private bool tiroDeApuesta = true;
-		
+
+		public bool AFavor
+		{
+			get { return aFavor; }
+		}
+
+		public int Puntaje
+		{
+			get { return puntajeVenir; }
+		}
+
 		public ApuestaVenirNoVenir(bool favor, Ficha ficha, Cantidad cant){
 			fichas = new System.Collections.Generic.Dictionary<decimal,int>();
 			fichas.Add(ficha, cant);
