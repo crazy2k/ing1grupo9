@@ -12,6 +12,9 @@ namespace CasinoNEW
 {
 	public class ManejadorDados
 	{
+
+		private EscritorDados escritor = new EscritorDados();
+
 		public static void Notificar(int id, string usuario, int idMesa, 
 		                      IList<Jugador> jugadores, Jugador proxTirador,
 		                      bool proxTiroSalida, int punto, 
@@ -25,10 +28,10 @@ namespace CasinoNEW
 			Mesa m = JuegoDados.GetInstance().getMesa(idMesa);
 			if ( !(m is MesaDados))
 				throw new Exception("El juego de dados tiene mesas de NoDados");
-//			EscritorDados escr = EscritorDados.GetInstance();
+			
 			try{
 				j.entrarAMesa(m);
-//				escr.AceptarEntrada(id,usuario,idMesa, "");
+				escritor.AceptarEntrada(id,usuario,idMesa, "");
 			}
 			catch (Exception e){
 //				escr.DenegarEntrada(id, usuario, idMesa, e.Message);
