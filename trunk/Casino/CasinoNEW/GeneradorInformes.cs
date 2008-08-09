@@ -21,6 +21,20 @@ namespace CasinoNEW
 		public Dinero saldoCasino;
 	}
 
+	public struct ValorPremios
+	{
+		public Dinero valorApuesta;
+		public MontosPremio montos;
+	}
+
+	public struct MontosPremio
+	{
+		public Dinero premioJugada;
+		public Dinero montoFeliz;
+		public Dinero montoTodosPonen;
+	}
+
+
 	public class GeneradorInformes
 	{
 		public IList<UsuarioConSaldo> Ranking(string tipoRanking,
@@ -77,6 +91,45 @@ namespace CasinoNEW
 			return ec;
 		}
 
+		public IList<ValorPremios> MovimientosPorJugador(string jugador)
+		{
+			GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
+			Jugador j = g.GetJugador(jugador);
+
+			IList<ValorPremios> l = ToWritable(j.Apuestas);
+
+			return l;
+		}
+
+		private IList<ValorPremios> ToWritable(IList<Apuesta> la)
+		{
+			IList<ValorPremios> lvps = new List<ValorPremios>();
+
+			foreach (Apuesta a in la)
+			{
+				Premio premio = a.Premio;
+
+				MontosPremio montos = ToWritable(premio);
+
+				ValorPremios vps = new ValorPremios();
+				vps.valorApuesta = a.getValor();
+				vps.montos = montos;
+
+				lvps.Add(vps);
+			}
+			return lvps;
+		}
+
+		private MontosPremio ToWritable(Premio p)
+		{
+			MontosPremio mp = new MontosPremio();
+
+			mp.montoFeliz = p.MontoPremioJF;
+			mp.montoTodosPonen = p.MontoRetencionJTP;
+			mp.premioJugada = p.MontoPremioJugada;
+
+			return mp;
+		}
 
 
 	}

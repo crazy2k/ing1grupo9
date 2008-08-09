@@ -13,6 +13,11 @@ namespace CasinoNEW
 	{
 		private Dinero credito;
         private List<Apuesta> apuestas = new List<Apuesta>();
+
+		public IList<Apuesta> Apuestas
+		{
+			get { return apuestas; }
+		}
 		
 		public Jugador(string usuario, Dinero saldo)
 		{

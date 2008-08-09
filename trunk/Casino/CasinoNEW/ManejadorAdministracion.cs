@@ -105,6 +105,32 @@ namespace CasinoNEW
 			}
 		}
 
+		public void PedirMovimientosPorJugador(int id, string usuario,
+			string jugador)
+		{
+			GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
+			try
+			{
+				// En realidad, no uso al administrador. Sólo lo
+				// pido para saber si el usuario está autenticado
+				// como administrador.
+				// TODO: ¿Rever?
+				Administrador a = g.GetAdmin(usuario);
+
+				IList<ValorPremios> lvps =
+					ginformes.MovimientosPorJugador(jugador);
+
+				escritor.InformarMovimientosPorJugador(id, usuario, lvps);
+			}
+			// No distingo las excepciones porque el protocolo
+			// ni siquiera tiene la opción de enviar un motivo
+			// para denegar la operación.
+			catch (Exception e)
+			{
+				escritor.DenegarMovimientosPorJugador(id, usuario);
+			}
+		}
+
 
 	}
 }

@@ -173,5 +173,58 @@ namespace CasinoNEW
 
 			Escribir(nombreArchivo, xd);
 		}
+
+		public void InformarMovimientosPorJugador(int id, string usuario,
+			IList<ValorPremios> lvps)
+		{
+			string nombreArchivo = "respuestaMovimientosJugador";
+
+			XmlDocument xd = CrearDocumentoXML();
+			XmlElement root = xd.CreateElement("movimientoJugador");
+			xd.AppendChild(root);
+
+			AgregarAtributo(xd, root, "vTerm", id.ToString());
+			AgregarAtributo(xd, root, "usuario", usuario);
+
+			AgregarElementoSimple(xd, root, "aceptado", "si");
+
+			XmlElement apuestas = xd.CreateElement("apuestas");
+			root.AppendChild(apuestas);
+			foreach (ValorPremios vps in lvps)
+			{
+				XmlElement apuesta = xd.CreateElement("apuesta");
+				apuestas.AppendChild(apuesta);
+
+				AgregarElementoSimple(xd, apuesta, "montoApostado",
+					vps.valorApuesta.ToString());
+				AgregarElementoSimple(xd, apuesta, "premioFeliz",
+					vps.montos.montoFeliz.ToString());
+				AgregarElementoSimple(xd, apuesta, "descuentoTP",
+					vps.montos.montoTodosPonen.ToString());
+				AgregarElementoSimple(xd, apuesta, "montoGanado",
+					vps.montos.premioJugada.ToString());
+			}
+			Escribir(nombreArchivo, xd);
+		}
+
+		public void DenegarMovimientosPorJugador(int id, string usuario)
+		{
+			string nombreArchivo = "respuestaMovimientosJugador";
+
+			XmlDocument xd = CrearDocumentoXML();
+			XmlElement root = xd.CreateElement("movimientoJugador");
+			xd.AppendChild(root);
+
+			AgregarAtributo(xd, root, "vTerm", id.ToString());
+			AgregarAtributo(xd, root, "usuario", usuario);
+
+			AgregarElementoSimple(xd, root, "aceptado", "no");
+
+			XmlElement apuestas = xd.CreateElement("apuestas");
+			root.AppendChild(apuestas);
+
+			Escribir(nombreArchivo, xd);
+		}
+
 	}
 }
