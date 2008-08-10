@@ -7,10 +7,10 @@ using System.Collections.Generic;
 
 namespace CasinoNEW
 {
-	interface Manipulador
+	public abstract class Manipulador : Usuario
 	{
-        void manipularResultado(Resultado res, List<Mesa> mesas);
-        void manipularJugadaTP(List<Mesa> mesas);
-        void manipularJugadaFeliz(Mesa mesa);
+        public abstract void manipularResultado(Resultado res, List<Mesa> mesas);
+        public abstract void manipularJugadaTP(List<Mesa> mesas);
+		public abstract void manipularJugadaFeliz(Mesa mesa);
 	}
 }

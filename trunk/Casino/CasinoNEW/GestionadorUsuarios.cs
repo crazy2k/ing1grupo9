@@ -177,6 +177,14 @@ namespace CasinoNEW
 			return null;
 		}
 
+		private Manipulador GetManipulador(string usuario)
+		{
+			foreach (Manipulador m in manipuladores)
+				if (m.Nombre == usuario)
+					return m;
+			return null;
+		}
+
 		public Administrador GetAdmin(string usuario)
 		{
 			Administrador a = GetAdministrador(usuario);
@@ -184,6 +192,15 @@ namespace CasinoNEW
 				return a;
 
 			throw new NoAdministradorException();
+		}
+
+		public Manipulador GetManip(string usuario)
+		{
+			Manipulador m = GetManipulador(usuario);
+			if (m != null)
+				return m;
+
+			throw new NoManipuladorException();
 		}
 		public Jugador GetJugador(string usuario){
 			Jugador j = GetJugador(usuario, true);
