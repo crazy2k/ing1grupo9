@@ -5,17 +5,25 @@ namespace CasinoNEW
 {
     public class ResultadoDados: Resultado
     {
-        private int Dado1;
-        private int Dado2;
+        private int dado1;
+        private int dado2;
+		public int Dado1
+		{
+			get { return dado1; }
+		}
+		public int Dado2
+		{
+			get { return dado2; }
+		}
 
     public ResultadoDados(int d1, int d2)
         {
-            Dado1 = d1;
-            Dado2 = d2;
+            dado1 = d1;
+            dado2 = d2;
         }
     public int sumaDados()
         {
-            return Dado1+Dado2;
+            return dado1+dado2;
         }
     }
 }

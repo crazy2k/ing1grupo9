@@ -30,27 +30,35 @@ namespace CasinoNEW
 
 		private Dictionary<Jugador, IList<ApuestaDados>>
             apuestasPagadas = new Dictionary<Jugador, IList<ApuestaDados>>();
-		
-		public List<Premio> premiosPagados(){
-			List<Premio> premios = new List<Premio>();
+
+		public Dictionary<Jugador, IList<Premio>> premiosPagados()
+		{
+			Dictionary<Jugador, IList<Premio>> premiosPagad = new Dictionary<Jugador,IList<Premio>>();
+			IList<Premio> premios = new List<Premio>();
 			foreach (Jugador j in apuestasPagadas.Keys){
 				IList<ApuestaDados> aps = apuestasPagadas[j];
 				foreach (ApuestaDados a in aps){
 					premios.Add(a.Premio);
 				}
+				premiosPagad.Add(j,premios);
 			}
-			return premios;
+			return premiosPagad;
 		}
 		
 		
 		private bool esTiroSalida = true;
         private int punto = 0;
         private ResultadoDados ultimoResultado;
+		private TipoJugada ultimaJugada;
         //public void elegirTirador() { } 
 		// Este dijo Marta que dijeron que no lo hagamos
 
 		public ResultadoDados UltimoResultado {
 			get { return ultimoResultado; }
+		}
+		public TipoJugada UltimaJugada
+		{
+			get { return ultimaJugada; }
 		}
 		
 		public int GetPunto() {
@@ -87,6 +95,7 @@ namespace CasinoNEW
 		}
 		
         public void pagarApuestas(ResultadoDados res, TipoJugada tipo) {
+			ultimaJugada = tipo;
 			if (esTiroSalida){
 				if(res.sumaDados() != 2 && res.sumaDados() != 3 
 				  && res.sumaDados() != 7 && res.sumaDados() != 11 

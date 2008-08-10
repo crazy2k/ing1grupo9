@@ -18,8 +18,8 @@ namespace CasinoNEW
 		public static void Notificar(int id, string usuario, int idMesa, 
 		                      IList<Jugador> jugadores, Jugador proxTirador,
 		                      bool proxTiroSalida, int punto, 
-		                      Jugador ultimoTirador, Resultado ultimoResultado, 
-		                      IList<Premio> premios, 
+		                      Jugador ultimoTirador, Resultado ultimoResultado,
+							  Dictionary<Jugador, IList<Premio>> premios, 
 		                     Dictionary<Jugador,IList<ApuestaDados>> apuestas){
 			
 			escritor.NotificarEstado(id, usuario, idMesa, jugadores,
@@ -126,7 +126,11 @@ namespace CasinoNEW
 					m.NotificarEstado();
 					// TODO: ¿Acá no tendría que pedir el resultado? Faltan
 					// datos para el escritor.
-					//escritor.ResponderTiroAceptado(id, usuario, idMesa);
+					
+					ResultadoDados res = m.Crupier.UltimoResultado;
+					TipoJugada tj = m.Crupier.UltimaJugada;
+					escritor.ResponderTiroAceptado(id, usuario, idMesa, res.Dado1, res.Dado2, tj);
+
 				}
 				catch(Exception e)
 				{
