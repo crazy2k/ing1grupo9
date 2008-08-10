@@ -91,7 +91,7 @@ namespace CasinoNEW
 		public void NotificarEstado(int id, string usuario, int idMesa,
 			IList<Jugador> jugadores, Jugador proxTirador, bool proxTiroSalida,
 			int punto, Jugador ultimoTirador, Resultado ultimoResultado,
-			IList<Premio> premios,
+			Dictionary<Jugador, IList<Premio>> premios,
 			IDictionary<Jugador, IList<ApuestaDados>> apuestas)
 		{
 			string nombreArchivo = "EstadoCraps";
@@ -135,21 +135,23 @@ namespace CasinoNEW
 
 			XmlElement tagPremios = xd.CreateElement("premios");
 			tagUltimoTiro.AppendChild(tagPremios);
-			foreach (Premio p in premios) {
+			foreach (KeyValuePair<Jugador, IList<Premio>> jlp in premios) {
+				foreach (Premio p in jlp.Value) {
+					XmlElement tagPremio = xd.CreateElement("premio");
+					tagPremios.AppendChild(tagPremio);
 
-				XmlElement tagPremio = xd.CreateElement("premio");
-				tagPremios.AppendChild(tagPremio);
+					// TODO: El premio no conoce al ganador. ¿Arreglar?
+					AgregarElementoSimple(xd, tagPremio,
+						"apostador", jlp.Key.Nombre);
 
-				// TODO: El premio no conoce al ganador. ¿Arreglar?
-				AgregarElementoSimple(xd, tagPremio, "apostador", "");
-
-				AgregarElementoSimple(xd, tagPremio, "montoPremioJugada",
-					p.MontoPremioJugada.ToString());
-				AgregarElementoSimple(xd, tagPremio, "montoPremioJugadaFeliz",
-					p.MontoPremioJF.ToString());
-				AgregarElementoSimple(xd, tagPremio,
-					"montoRetenidoJugadaTodosponen",
-					p.MontoRetencionJTP.ToString());
+					AgregarElementoSimple(xd, tagPremio, "montoPremioJugada",
+						p.MontoPremioJugada.ToString());
+					AgregarElementoSimple(xd, tagPremio, "montoPremioJugadaFeliz",
+						p.MontoPremioJF.ToString());
+					AgregarElementoSimple(xd, tagPremio,
+						"montoRetenidoJugadaTodosponen",
+						p.MontoRetencionJTP.ToString());
+				}
 			}
 
 			XmlElement tagApuestasVigentes =
@@ -252,9 +254,8 @@ namespace CasinoNEW
 			Escribir(nombreArchivo, xd, id);
 		}
 
-		/*
-		 * public void ResponderTiroAceptado(int id, string usuario,
-			int idMesa)
+			public void ResponderTiroAceptado(int id, string usuario,
+				int idMesa, int dado1, int dado2, TipoJugada tj)
 		{
 			string nombreArchivo = "respuestaTiroCraps";
 
@@ -267,10 +268,24 @@ namespace CasinoNEW
 			AgregarAtributo(xd, root, "mesa", idMesa.ToString());
 
 			AgregarElementoSimple(xd, root, "aceptado", "si");
+			string tipoJugada = "";
+			if (tj == TipoJugada.Feliz)
+				tipoJugada = "feliz";
+			else if (tj == TipoJugada.Normal)
+				tipoJugada = "normal";
+			else if (tj == TipoJugada.TodosPonen)
+				tipoJugada = "todosponen";
+
+			AgregarElementoSimple(xd, root, "tipoJugada", tipoJugada);
+
+			XmlElement resultado = xd.CreateElement("resultado");
+			root.AppendChild(resultado);
+
+			AgregarElementoSimple(xd, resultado, "dado1", dado1.ToString());
+			AgregarElementoSimple(xd, resultado, "dado2", dado2.ToString());
 
 			Escribir(nombreArchivo, xd, id);
 		}
-		 */
 
 		public void ResponderTiroDenegado(int id, string usuario,
 			int idMesa)
