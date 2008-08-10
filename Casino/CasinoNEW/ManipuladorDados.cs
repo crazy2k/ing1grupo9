@@ -9,7 +9,7 @@ namespace CasinoNEW
 
         #region Manipulador Members
 
-        public void manipularResultado(Resultado res, List<Mesa> mesas)
+        public override void manipularResultado(Resultado res, List<Mesa> mesas)
         {
             foreach (Mesa m in mesas)
             {
@@ -18,7 +18,7 @@ namespace CasinoNEW
             }
         }
 
-        public void manipularJugadaTP(List<Mesa> mesas)
+        public override void manipularJugadaTP(List<Mesa> mesas)
         {
             foreach (Mesa m in mesas)
             {
@@ -27,7 +27,7 @@ namespace CasinoNEW
             }
         }
 
-        public void manipularJugadaFeliz(Mesa mesa)
+        public override void manipularJugadaFeliz(Mesa mesa)
         {
             MesaDados mesaDados = (MesaDados)mesa;
             mesaDados.GeneradorJugadas.setTipoJugada(TipoJugada.Feliz);

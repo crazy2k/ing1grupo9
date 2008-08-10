@@ -52,6 +52,7 @@
     <Compile Include="Escritor.cs" />
     <Compile Include="EscritorAdministracion.cs" />
     <Compile Include="EscritorDados.cs" />
+    <Compile Include="EscritorManipulacion.cs" />
     <Compile Include="EventHandlerDados.cs" />
     <Compile Include="GeneradorInformes.cs" />
     <Compile Include="GeneradorJugadasDados.cs" />
@@ -59,14 +60,17 @@
     <Compile Include="JuegoDados.cs" />
     <Compile Include="LectorAdministracion.cs" />
     <Compile Include="LectorDados.cs" />
+    <Compile Include="LectorManipulacion.cs" />
     <Compile Include="LectorXML.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="ManejadorAdministracion.cs" />
+    <Compile Include="ManejadorManipulacion.cs" />
     <Compile Include="ManipuladorDados.cs" />
     <Compile Include="Mesa.cs" />
     <Compile Include="MesaDados.cs" />
     <Compile Include="NoAdministradorException.cs" />
+    <Compile Include="NoManipuladorException.cs" />
     <Compile Include="Pair.cs" />
     <Compile Include="Poller.cs" />
     <Compile Include="Lector.cs" />
