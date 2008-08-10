@@ -84,7 +84,6 @@
     <Compile Include="Observador.cs" />
     <Compile Include="Premio.cs" />
     <Compile Include="ReportadorDados.cs" />
-    <Compile Include="ReporteDados.cs" />
     <Compile Include="Resultado.cs" />
     <Compile Include="ResultadoDados.cs" />
     <Compile Include="EscritorXML.cs" />
