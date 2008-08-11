@@ -10,7 +10,8 @@ namespace Administracion
 {
 	public partial class Administracion : Form
 	{
-		private ComunicadorAdministracion escritor = new ComunicadorAdministracion();
+		private ComunicadorAdministracion comunicador = new ComunicadorAdministracion();
+		
 
 		public Administracion()
 		{
@@ -20,7 +21,7 @@ namespace Administracion
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-
+			comunicador.AbrirCasino(Terminal.Id, Terminal.Usuario);
 		}
 
 		private void label1_Click(object sender, EventArgs e)
@@ -34,14 +35,19 @@ namespace Administracion
 		}
 
 
-		private void button2_Click(object sender, EventArgs e)
+		private void button_ranking_Click(object sender, EventArgs e)
 		{
-			//escritor.pedirInformeRanking(tipoRanking.Text, cantidad.Text);
+			comunicador.PedirInformeRanking(Terminal.Id, Terminal.Usuario, tipoRanking.Text, cantidad.Text);
 		}
 
-		private void button3_Click(object sender, EventArgs e)
+		private void button_movPorJug_Click(object sender, EventArgs e)
 		{
-			escritor.PedirMovimientosPorJugador(nombreJugador.Text);
+			comunicador.PedirMovimientosPorJugador(Terminal.Id, Terminal.Usuario, nombreJugador.Text);
+		}
+
+		private void button_estadoActual_Click(object sender, EventArgs e)
+		{
+			comunicador.PedirInformeEstadoCasino(Terminal.Id, Terminal.Usuario);
 		}
 	}
 }

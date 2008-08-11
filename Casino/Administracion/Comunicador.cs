@@ -26,17 +26,6 @@ namespace Administracion
 			}
 		}
 		
-		public void Leer() {
-			foreach (string dir in this.Dirs) {
-				DirectoryInfo di = new DirectoryInfo(dir);
-				FileInfo[] files = di.GetFiles("*.xml");
-				
-				foreach (FileInfo fi in files) {
-					string mensaje = GetMensaje(fi);
-					Interpretar(mensaje, fi);
-				}
-			}
-		}
 		
 		public string GetMensaje(FileInfo archivo) {
 			string nombreArchivo = archivo.Name;
@@ -47,9 +36,27 @@ namespace Administracion
 			
 			return mensaje;
 		}
-		
-		public abstract void Interpretar(string mensaje, FileInfo fi);
+		public string GetGrupo(FileInfo archivo)
+		{
+			string nombreArchivo = archivo.Name;
 
+			string[] partes = nombreArchivo.Split(new char[] { '.' });
+			string completo = partes[0];
+			string mensaje = completo.Substring(completo.Length - 6, completo.Length - 5);
+
+			return mensaje;
+		}
+		public string GetTerminal(FileInfo archivo)
+		{
+			string nombreArchivo = archivo.Name;
+
+			string[] partes = nombreArchivo.Split(new char[] { '.' });
+			string completo = partes[0];
+			string mensaje = completo.Substring(completo.Length - 4, completo.Length - 1);
+
+			return mensaje;
+		}
+		
 		private string directorioEscritura =
 		"\\Temp\\";
 

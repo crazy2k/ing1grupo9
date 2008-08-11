@@ -190,7 +190,7 @@ namespace CasinoNEW
 			Administrador a = GetAdministrador(usuario);
 			if (a != null)
 				return a;
-
+			else
 			throw new NoAdministradorException();
 		}
 

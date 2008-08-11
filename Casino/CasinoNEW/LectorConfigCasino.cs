@@ -66,7 +66,11 @@ namespace CasinoNEW
 		}
 		
 		public Dinero GetSaldo(string usuario) {
-			return usuarios[usuario].saldo;
+			if (usuarios.ContainsKey(usuario) &&
+				usuarios[usuario].modo.ToLower() == "jugador")
+				return usuarios[usuario].saldo;
+			else
+				throw new Exception("Jugador no valido");
 		}
 
 	}

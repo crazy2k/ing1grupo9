@@ -28,45 +28,45 @@ namespace Administracion
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
-			this.comboBox2 = new System.Windows.Forms.ComboBox();
+			this.tipoJugada = new System.Windows.Forms.ComboBox();
+			this.dado1 = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.comboBox3 = new System.Windows.Forms.ComboBox();
-			this.button1 = new System.Windows.Forms.Button();
+			this.dado2 = new System.Windows.Forms.ComboBox();
+			this.button_manipular = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
-			// comboBox1
+			// tipoJugada
 			// 
-			this.comboBox1.CausesValidation = false;
-			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Items.AddRange(new object[] {
+			this.tipoJugada.CausesValidation = false;
+			this.tipoJugada.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.tipoJugada.FormattingEnabled = true;
+			this.tipoJugada.Items.AddRange(new object[] {
             "Normal",
             "Feliz",
             "Todos Ponen"});
-			this.comboBox1.Location = new System.Drawing.Point(78, 39);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(121, 24);
-			this.comboBox1.TabIndex = 0;
+			this.tipoJugada.Location = new System.Drawing.Point(78, 39);
+			this.tipoJugada.Name = "tipoJugada";
+			this.tipoJugada.Size = new System.Drawing.Size(121, 24);
+			this.tipoJugada.TabIndex = 0;
 			// 
-			// comboBox2
+			// dado1
 			// 
-			this.comboBox2.CausesValidation = false;
-			this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox2.FormattingEnabled = true;
-			this.comboBox2.Items.AddRange(new object[] {
+			this.dado1.CausesValidation = false;
+			this.dado1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.dado1.FormattingEnabled = true;
+			this.dado1.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
             "4",
             "5",
             "6"});
-			this.comboBox2.Location = new System.Drawing.Point(78, 118);
-			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(121, 24);
-			this.comboBox2.TabIndex = 1;
+			this.dado1.Location = new System.Drawing.Point(78, 118);
+			this.dado1.Name = "dado1";
+			this.dado1.Size = new System.Drawing.Size(121, 24);
+			this.dado1.TabIndex = 1;
 			// 
 			// label1
 			// 
@@ -96,45 +96,46 @@ namespace Administracion
 			this.label3.Text = "Dado 2";
 			this.label3.Click += new System.EventHandler(this.label3_Click);
 			// 
-			// comboBox3
+			// dado2
 			// 
-			this.comboBox3.CausesValidation = false;
-			this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Items.AddRange(new object[] {
+			this.dado2.CausesValidation = false;
+			this.dado2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.dado2.FormattingEnabled = true;
+			this.dado2.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
             "4",
             "5",
             "6"});
-			this.comboBox3.Location = new System.Drawing.Point(78, 165);
-			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(121, 24);
-			this.comboBox3.TabIndex = 5;
+			this.dado2.Location = new System.Drawing.Point(78, 165);
+			this.dado2.Name = "dado2";
+			this.dado2.Size = new System.Drawing.Size(121, 24);
+			this.dado2.TabIndex = 5;
 			// 
-			// button1
+			// button_manipular
 			// 
-			this.button1.Location = new System.Drawing.Point(99, 229);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(89, 29);
-			this.button1.TabIndex = 6;
-			this.button1.Text = "Manipular";
-			this.button1.UseVisualStyleBackColor = true;
+			this.button_manipular.Location = new System.Drawing.Point(99, 229);
+			this.button_manipular.Name = "button_manipular";
+			this.button_manipular.Size = new System.Drawing.Size(89, 29);
+			this.button_manipular.TabIndex = 6;
+			this.button_manipular.Text = "Manipular";
+			this.button_manipular.UseVisualStyleBackColor = true;
+			this.button_manipular.Click += new System.EventHandler(this.button_manipular_Click);
 			// 
-			// Form3
+			// Manipulacion
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(292, 270);
-			this.Controls.Add(this.button1);
-			this.Controls.Add(this.comboBox3);
+			this.Controls.Add(this.button_manipular);
+			this.Controls.Add(this.dado2);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
-			this.Controls.Add(this.comboBox2);
-			this.Controls.Add(this.comboBox1);
-			this.Name = "Form3";
+			this.Controls.Add(this.dado1);
+			this.Controls.Add(this.tipoJugada);
+			this.Name = "Manipulacion";
 			this.Text = "Manipulacion";
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -143,13 +144,13 @@ namespace Administracion
 
 		#endregion
 
-		private System.Windows.Forms.ComboBox comboBox2;
+		private System.Windows.Forms.ComboBox dado1;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.ComboBox comboBox3;
-		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.Button button_manipular;
+		private System.Windows.Forms.ComboBox dado2;
+		private System.Windows.Forms.ComboBox tipoJugada;
 
 	}
 }
