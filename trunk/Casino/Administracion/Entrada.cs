@@ -34,11 +34,13 @@ namespace Administracion
 
 			if (com.LeerRespuestaEntrada(xmlResEntrada))
 			{
-				Application.Run(new Manipulacion());
+				//Application.Exit();
+				Form manip = new Manipulacion();
+				manip.ShowDialog();
 			}
-
-
-
+			//Application.Exit();
+			Form manip2 = new Administracion();
+			manip2.ShowDialog();
 		}
 	}
 }

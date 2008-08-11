@@ -34,6 +34,7 @@ namespace CasinoNEW
 				foreach (FileInfo fi in files) {
 					string mensaje = GetMensaje(fi);
 					Interpretar(mensaje, fi);
+
 				}
 			}
 		}

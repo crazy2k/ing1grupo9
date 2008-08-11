@@ -122,24 +122,25 @@ namespace CasinoNEW
 		}
 
 
-		public override void Interpretar(string mensajeSinCaps,
+		public override bool Interpretar(string mensajeSinCaps,
 			XmlDocument xmld)
 		{
 			switch (mensajeSinCaps)
 			{
 				case "entradacraps":
 					DelegarEntradaCraps(xmld);
-					break;
+					return true;
 				case "salidacraps":
 					DelegarSalidaCraps(xmld);
-					break;
+					return true;
 				case "apuestacraps":
 					DelegarApuestaCraps(xmld);
-					break;
+					return true;
 				case "tirocraps":
 					DelegarTiroCraps(xmld);
-					break;
+					return true;
 			}
+			return false;
 		}
 
 	}
