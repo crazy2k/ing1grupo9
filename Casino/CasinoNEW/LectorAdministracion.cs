@@ -87,27 +87,28 @@ namespace CasinoNEW
 			manejador.PedirMovimientosPorJugador(id, usuario, jugador);
 		}
 
-		public override void Interpretar(string mensajeSinCaps,
+		public override bool Interpretar(string mensajeSinCaps,
 			XmlDocument xmld)
 		{
 			switch (mensajeSinCaps)
 			{
 				case "cerrarcasino":
 					DelegarCerrarCasino(xmld);
-					break;
+					return true;
 				case "abrircasino":
 					DelegarAbrirCasino(xmld);
-					break;
+					return true;
 				case "rankingcasino":
 					DelegarRankingCasino(xmld);
-					break;
+					return true;
 				case "informeestadoactual":
 					DelegarEstadoActualCasino(xmld);
-					break;
+					return true;
 				case "movimientosjugador":
 					DelegarMovimientosPorJugador(xmld);
-					break;
+					return true;
 			}
+			return false;
 		}
 		
 	}

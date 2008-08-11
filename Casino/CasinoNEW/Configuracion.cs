@@ -11,9 +11,9 @@ namespace CasinoNEW
 	public class Configuracion
 	{
 		public static string ARCHIVO_USUARIOS = 
-			"./lista-usuarios.txt";
-		public static readonly string ARCHIVO_CONFIG = 
-			"./configuracion-casino.txt";
+			"\\Temp\\lista-usuarios.txt";
+		public static readonly string ARCHIVO_CONFIG =
+			"\\Temp\\configuracion-casino.txt";
 		
 		// Se leen los mensajes y se escriben en \\Temp\\. Estas opciones de
 		// configuración quedan por si en algún momento alguien desea hacer

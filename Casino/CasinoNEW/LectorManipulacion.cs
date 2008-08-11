@@ -46,15 +46,16 @@ namespace CasinoNEW
 			manejador.ManipularMesaDados(id, usuario, dado1, dado2, tj);
 		}
 
-		public override void Interpretar(string mensajeSinCaps,
+		public override bool Interpretar(string mensajeSinCaps,
 			XmlDocument xmld)
 		{
 			switch (mensajeSinCaps)
 			{
 				case "manipulardados":
 					DelegarManipularDados(xmld);
-					break;
+					return true;
 			}
+			return false;
 		}
 	}
 }

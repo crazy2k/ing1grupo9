@@ -35,7 +35,7 @@ namespace CasinoNEW
         private float probJugadaTodosPonen;
 		private float probJugadaFeliz;
 		private Dinero saldoActual;
-        private List<Ficha> fichas;
+        private List<Ficha> fichas = new List<Ficha>();
         private float porcJugadaTodosPonen;
 		
 		

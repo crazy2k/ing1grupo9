@@ -33,16 +33,32 @@ namespace CasinoNEW
 		}
 		public override void Interpretar(string mensaje, FileInfo fi)
 		{
-
+			
 			XmlDocument xmld = new XmlDocument();
-			xmld.Load(fi.FullName);
-
+			try
+			{
+				xmld.Load(fi.FullName);
+			}
+			catch (Exception e)
+			{
+				Interpretar(mensaje, fi);
+			}
+			
 			string mensajeSinCaps = mensaje.ToLower();
 
-			Interpretar(mensajeSinCaps, xmld);
+			if (Interpretar(mensajeSinCaps, xmld))
+				fi.Delete();
+
 		}
 
-		public abstract void Interpretar(string mensajeSinCaps,
+		/*
+		public XmlDocument aXML(FileInfo fi) {
+			XmlDocument xmld = new XmlDocument();
+			xmld.Load(fi.FullName);
+			return xmld;
+		}
+		*/
+		public abstract bool Interpretar(string mensajeSinCaps,
 			XmlDocument xmld);
 	}
 }
