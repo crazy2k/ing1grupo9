@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace Administracion
+namespace Entrada
 {
 	static class Program
 	{
@@ -14,7 +14,7 @@ namespace Administracion
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Entrada());
+			Application.Run(new Form2());
 		}
 	}
 }
