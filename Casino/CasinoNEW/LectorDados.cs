@@ -13,6 +13,14 @@ namespace CasinoNEW
 		private ManejadorDados manejador =
 			new ManejadorDados();
 
+		public LectorDados()
+		{
+			string a = Configuracion.DIRECTORIO_Dados;
+			
+			string[] dirs = new string[] { a};
+			this.Dirs = dirs;
+		}
+
 		private void DelegarEntradaCraps(XmlDocument xmld)
 		{
 			XmlElement root = xmld.DocumentElement;
