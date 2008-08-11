@@ -36,6 +36,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cartelito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cartelito.Designer.cs">
+      <DependentUpon>Cartelito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComunicadorManipulacionDados.cs" />
     <Compile Include="Configuracion.cs" />
     <Compile Include="ComunicadorEntrada.cs" />
     <Compile Include="ComunicadorAdministracion.cs" />
@@ -65,6 +72,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>Administracion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Cartelito.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Cartelito.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Entrada.resx">
       <DependentUpon>Entrada.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -92,6 +103,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Terminal.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

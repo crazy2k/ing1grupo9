@@ -28,19 +28,35 @@ namespace Administracion
 		private void button1_Click(object sender, EventArgs e)
 		{
 			string modo = (admin.Checked) ? "administrador" : "manipulador";
-			com.Entrar(idTerminal.Text, nombreUsuario.Text , modo);
+			Terminal.Id = Int32.Parse(idTerminal.Text);
+			Terminal.Usuario = nombreUsuario.Text;
 
-			XmlDocument xmlResEntrada = com.EsperarRespuestaEntrada();
+			Respuesta res = com.Entrar(idTerminal.Text, nombreUsuario.Text , modo);
 
-			if (com.LeerRespuestaEntrada(xmlResEntrada))
+			if (res.aceptado)
 			{
-				//Application.Exit();
-				Form manip = new Manipulacion();
-				manip.ShowDialog();
+				Terminal.Id = Int32.Parse(idTerminal.Text);
+				Terminal.Usuario = nombreUsuario.Text;
+				if (admin.Checked)
+				{
+					Form administrac = new Administracion();
+					administrac.ShowDialog();
+				}
+				else
+				{
+					Form manip = new Manipulacion();
+					manip.ShowDialog();
+				}
 			}
-			//Application.Exit();
-			Form manip2 = new Administracion();
-			manip2.ShowDialog();
+			else
+			{
+				//MostrarCartelito con: res.descripcion
+				Form cartel = new Cartelito(res.descripcion, res.aceptado);
+				cartel.ShowDialog();
+
+				Application.Restart();
+			}
+
 		}
 	}
 }

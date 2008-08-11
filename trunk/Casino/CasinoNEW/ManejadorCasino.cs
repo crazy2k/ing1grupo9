@@ -34,7 +34,7 @@ namespace CasinoNEW
 					escritor.AceptarEntrada(id, usuario, modo, saldo,
 					                        Casino.GetInstance().GetFichas());
 				}
-				catch (AutenticacionException e) {
+				catch (Exception e) {
 					string motivo = e.Message;
 					escritor.DenegarEntrada(id, usuario, modo, motivo);
 				}
