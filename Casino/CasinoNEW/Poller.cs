@@ -17,7 +17,7 @@ namespace CasinoNEW
 			lectores.Add(new LectorCasino());
 			lectores.Add(new LectorDados());
 			lectores.Add(new LectorAdministracion());
-//			lectores.Add(new LectorManipulador());
+			lectores.Add(new LectorManipulacion());
 //TODO: Agregar al poller los lectores			
 		}
 
