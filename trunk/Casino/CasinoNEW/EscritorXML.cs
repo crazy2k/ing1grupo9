@@ -67,8 +67,17 @@ namespace CasinoNEW
 			string idTerminal = id.ToString().PadLeft(4, '0');
 			string numeroDeGrupo =
 				Configuracion.NUMERO_GRUPO.ToString().PadLeft(2, '0');
-			d.Save(this.DirectorioEscritura + nombreArchivo + numeroDeGrupo + 
-				idTerminal + ".xml");
+
+			Guardar:
+			try
+			{
+				d.Save(this.DirectorioEscritura + nombreArchivo + numeroDeGrupo +
+					idTerminal + ".xml");
+			}
+			catch (Exception e)
+			{
+				goto Guardar;
+			}
 		}
 
 	}

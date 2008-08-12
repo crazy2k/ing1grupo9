@@ -43,10 +43,12 @@ namespace CasinoNEW
 		
 		public void SalirCasino(int id, string usuario) {
 			Casino c = Casino.GetInstance();
-			if (!c.EstaAbierto())
-				escritor.AceptarSalida(id, usuario);
-			else {
-				GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
+			GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
+//			if (!c.EstaAbierto()){
+//				g.Desloguear(id, usuario);
+//				escritor.AceptarSalida(id, usuario);
+//			else {
+				
 				try {
 					g.Desloguear(id, usuario);
 					escritor.AceptarSalida(id, usuario);
@@ -55,7 +57,7 @@ namespace CasinoNEW
 					string motivo = e.Message;
 					escritor.DenegarSalida(id, usuario, motivo);
 				}
-			}
+//			}
 		}
 		public void PedirEstadoCasino(int id, string usuario) {
 			Casino c = Casino.GetInstance();

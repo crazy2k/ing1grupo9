@@ -19,7 +19,7 @@ namespace CasinoNEW
 		}
 		public bool EsAdmin(string usuario) 
 		{
-			return (usuarios.ContainsKey(usuario) && usuarios[usuario].modo == "admin");
+			return (usuarios.ContainsKey(usuario) && usuarios[usuario].modo == "administrador");
 		}
 
 		private static LectorConfigCasino instance = null;

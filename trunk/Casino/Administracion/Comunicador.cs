@@ -58,7 +58,7 @@ namespace Administracion
 		}
 		
 		private string directorioEscritura =
-		"\\Temp\\";
+		"\\Temp\\Servidor\\";
 
 		protected string DirectorioEscritura
 		{

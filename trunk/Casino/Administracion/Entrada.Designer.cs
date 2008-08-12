@@ -35,11 +35,13 @@ namespace Administracion
 			this.admin = new System.Windows.Forms.RadioButton();
 			this.manip = new System.Windows.Forms.RadioButton();
 			this.button1 = new System.Windows.Forms.Button();
+			this.button_Salir = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// idTerminal
 			// 
 			this.idTerminal.Location = new System.Drawing.Point(166, 35);
+			this.idTerminal.MaxLength = 4;
 			this.idTerminal.Name = "idTerminal";
 			this.idTerminal.Size = new System.Drawing.Size(100, 22);
 			this.idTerminal.TabIndex = 1;
@@ -93,7 +95,7 @@ namespace Administracion
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(112, 217);
+			this.button1.Location = new System.Drawing.Point(34, 217);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(75, 23);
 			this.button1.TabIndex = 8;
@@ -101,11 +103,23 @@ namespace Administracion
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
+			// button_Salir
+			// 
+			this.button_Salir.Enabled = false;
+			this.button_Salir.Location = new System.Drawing.Point(191, 217);
+			this.button_Salir.Name = "button_Salir";
+			this.button_Salir.Size = new System.Drawing.Size(75, 23);
+			this.button_Salir.TabIndex = 9;
+			this.button_Salir.Text = "Salir";
+			this.button_Salir.UseVisualStyleBackColor = true;
+			this.button_Salir.Click += new System.EventHandler(this.button_Salir_Click);
+			// 
 			// Entrada
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(292, 271);
+			this.Controls.Add(this.button_Salir);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.manip);
 			this.Controls.Add(this.admin);
@@ -129,6 +143,7 @@ namespace Administracion
 		private System.Windows.Forms.RadioButton admin;
 		private System.Windows.Forms.RadioButton manip;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button button_Salir;
 	}
 }
 

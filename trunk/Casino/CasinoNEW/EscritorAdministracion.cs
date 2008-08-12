@@ -101,6 +101,7 @@ namespace CasinoNEW
 			}
 
 			Escribir(nombreArchivo, xd, id);
+			Escribir("RankingDeJugadores", xd, id);
 		}
 
 		public void DenegarRankingCasino(int id, string usuario)
@@ -119,8 +120,6 @@ namespace CasinoNEW
 			root.AppendChild(jugadores);
 
 			Escribir(nombreArchivo, xd, id);
-			Escribir("informeRanking", xd, id);
-
 		}
 
 		public void InformarEstadoActual(int id, string usuario,
@@ -152,7 +151,7 @@ namespace CasinoNEW
 				}
 
 				Escribir(nombreArchivo, xd, id);
-				Escribir("informeEstadoActual", xd, id);
+				Escribir("EstadoActualCasino", xd, id);
 		}
 
 		public void DenegarEstadoActual(int id, string usuario)
@@ -208,7 +207,7 @@ namespace CasinoNEW
 					vps.montos.premioJugada.ToString());
 			}
 			Escribir(nombreArchivo, xd, id);
-			Escribir("informeMovimientos", xd, id);
+			Escribir("MovimientosPorJugador", xd, id);
 		}
 
 		public void DenegarMovimientosPorJugador(int id, string usuario)

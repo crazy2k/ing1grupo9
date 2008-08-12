@@ -97,6 +97,7 @@ namespace CasinoNEW
 
         private Casino() {
 			juegos.Add(JuegoDados.GetInstance());
+			//De haber Tragamonedas habría que ponerlo acá tb.
 		}
 		
         public static Casino GetInstance()
@@ -106,10 +107,7 @@ namespace CasinoNEW
                 lock (syncRoot) 
                 {
 					if (instance == null) {
-						instance = new Casino();
-						//Le pongo el juego de Dados, sinó nunca se crea.
-						instance.Juegos.Add(JuegoDados.GetInstance());
-						//De haber Tragamonedas habría que ponerlo acá tb.
+						instance = new Casino();						
 					}
                 }
              }
@@ -230,8 +228,8 @@ namespace CasinoNEW
         }
 		
 		private string ProximaLinea(StreamReader sr){
-			string linea = sr.ReadLine();
-			while (!(linea.StartsWith("#")) ) {
+			string linea = sr.ReadLine().Trim();
+			while ( (linea.StartsWith("#")) ) {
 				linea = sr.ReadLine();
 			}
 			return linea;

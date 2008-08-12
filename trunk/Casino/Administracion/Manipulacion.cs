@@ -34,7 +34,6 @@ namespace Administracion
 			Form cartel = new Cartelito(res.descripcion, res.aceptado);
 			cartel.ShowDialog();
 
-			Application.Restart();
 		}
 
 

@@ -19,9 +19,8 @@ namespace CasinoNEW
 			get { return apuestas; }
 		}
 		
-		public Jugador(string usuario, Dinero saldo)
+		public Jugador(string usuario, Dinero saldo) : base(usuario)
 		{
-			this.Nombre = usuario;
 			credito = saldo;
 		}
 		

@@ -15,7 +15,7 @@ namespace CasinoNEW
 
 		public LectorDados()
 		{
-			string a = Configuracion.DIRECTORIO_Dados;
+			string a = Configuracion.DIRECTORIO_Lectura;
 			
 			string[] dirs = new string[] { a};
 			this.Dirs = dirs;

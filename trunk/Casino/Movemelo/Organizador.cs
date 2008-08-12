@@ -22,10 +22,10 @@ namespace Organizador
 
 		public Organizador()
 		{
-			string a = Configuracion.DIRECTORIO_Escritura_Administracion;
-			string b = Configuracion.DIRECTORIO_Escritura_Jugadores;
+//			string a = Configuracion.DIRECTORIO_Escritura_Administracion;
+//			string b = Configuracion.DIRECTORIO_Escritura_Jugadores;
 			string c = Configuracion.DIRECTORIO_Escritura_Servidor;
-			string[] dirs = new string[]{a, b, c};
+			dirs = new string[] {c};
 		}
 				
 		public void Organizar() {
@@ -63,16 +63,27 @@ namespace Organizador
 		
 		public void OrganizarMensaje(string mensaje, FileInfo fi)
 		{
-			if (Configuracion.Mensajes_Lectura_Administracion.Contains(mensaje)
+/*			if (Configuracion.Mensajes_Lectura_Administracion.Contains(mensaje)
 //				&& GetTerminal(fi) <= 10
 				)
-				fi.MoveTo(Configuracion.DIRECTORIO_Lectura_Administracion);
-			
-			else if (Configuracion.Mensajes_Lectura_Servidor.Contains(mensaje))
-				fi.MoveTo(Configuracion.DIRECTORIO_Lectura_Servidor);
+				fi.MoveTo(Configuracion.DIRECTORIO_Lectura_Administracion + fi.Name);
+*/			
+			//else 
+			if (Configuracion.Mensajes_Lectura_Servidor.Contains(mensaje))
+			{
+			Mover:
+				try
+				{
+					fi.MoveTo(Configuracion.DIRECTORIO_Lectura_Servidor + fi.Name);
+				}
+				catch (Exception e)
+				{
+					goto Mover;
+				}
+			}
 			/*
 			else if (Configuracion.Mensajes_Lectura_Jugadores.Contains(mensaje))
-				fi.MoveTo(Configuracion.DIRECTORIO_Lectura_Jugadores);
+				fi.MoveTo(Configuracion.DIRECTORIO_Lectura_Jugadores + fi.Name);
 			*/
 		}
 		

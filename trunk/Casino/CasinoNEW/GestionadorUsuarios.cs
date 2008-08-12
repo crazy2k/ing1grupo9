@@ -28,13 +28,21 @@ namespace CasinoNEW
 		IDictionary<string, string> modos = new Dictionary<string, string>();
 		
 		public void Reset(){
-			ids.Clear();
-			modos.Clear();
+//			ids.Clear();
+//			modos.Clear();
+			foreach (int ident in ids.Keys)
+			{
+				if (modos[ids[ident]] == "jugador")
+				{
+					modos.Remove(ids[ident]);
+					ids.Remove(ident);
+				}
+			}
 			jugadoresActivos.Clear();
 			jugadoresInactivos.Clear();
-			administradores.Clear();
+//			administradores.Clear();
 			observadores.Clear();
-			manipuladores.Clear();
+//			manipuladores.Clear();
 		}
 		
 		public int GetId(string usuario){
@@ -116,7 +124,7 @@ namespace CasinoNEW
 			Administrador a = new Administrador(usuario);
 			administradores.Add(a);
 			
-			Agregar(id, usuario, "admin");
+			Agregar(id, usuario, "administrador");
 		}
 		
 		private Jugador IngresarJugador(int id, string usuario) {

@@ -34,12 +34,19 @@ namespace Administracion
 
 		private void button_ranking_Click(object sender, EventArgs e)
 		{
-			Respuesta res = comunicador.PedirInformeRanking(Terminal.Id, Terminal.Usuario, tipoRanking.Text, cantidad.Text);
-			//MostrarCartelito con: res.descripcion
-			Form cartel = new Cartelito(res.descripcion, res.aceptado);
-			cartel.ShowDialog();
-
-			Application.Restart();
+			try
+			{
+				Int32.Parse(cantidad.Text);
+				Respuesta res = comunicador.PedirInformeRanking(Terminal.Id, Terminal.Usuario, tipoRanking.Text, cantidad.Text);
+				//MostrarCartelito con: res.descripcion
+				Form cartel = new Cartelito(res.descripcion, res.aceptado);
+				cartel.ShowDialog();
+			}
+			catch (Exception ex) {
+				//MostrarCartelito con: ingrese una cantidad
+				Form cartel1 = new Cartelito("Ingrese una cantidad válida.", false);
+				cartel1.ShowDialog();
+			}
 		}
 
 		private void button_movPorJug_Click(object sender, EventArgs e)
@@ -49,7 +56,7 @@ namespace Administracion
 			Form cartel = new Cartelito(res.descripcion, res.aceptado);
 			cartel.ShowDialog();
 
-			Application.Restart();
+
 		}
 
 		private void button_estadoActual_Click(object sender, EventArgs e)
@@ -59,7 +66,6 @@ namespace Administracion
 			Form cartel = new Cartelito(res.descripcion, res.aceptado);
 			cartel.ShowDialog();
 
-			Application.Restart();
 		}
 
 		private void abrirCasino_Click(object sender, EventArgs e)
@@ -69,7 +75,6 @@ namespace Administracion
 			Form cartel = new Cartelito(res.descripcion, res.aceptado);
 			cartel.ShowDialog();
 
-			Application.Restart();
 		}
 
 		private void cerrarCasino_Click(object sender, EventArgs e)
@@ -79,7 +84,6 @@ namespace Administracion
 			Form cartel = new Cartelito(res.descripcion, res.aceptado);
 			cartel.ShowDialog();
 
-			Application.Restart();
 		}
 	}
 }

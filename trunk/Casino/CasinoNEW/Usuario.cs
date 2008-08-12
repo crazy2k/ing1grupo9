@@ -12,8 +12,9 @@ namespace CasinoNEW
 	{
 		private string nombre;
 		
-		public Usuario()
+		public Usuario(string n)
 		{
+			Nombre = n;
 		}
 		
 		public string Nombre {
