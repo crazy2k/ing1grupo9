@@ -93,6 +93,12 @@ namespace CasinoNEW
 			case "administrador":
 				IngresarAdministrador(id, usuario);
 				return 0;
+			case "manipulador":
+				IngresarManipulador(id, usuario);
+				return 0;
+			case "observador":
+				throw new Exception("El sistema no se encuentra preparado para observadores");
+				return 0;
 			default:
 				return 0;
 			}
@@ -112,6 +118,9 @@ namespace CasinoNEW
 			case "administrador":
 				SacarAdministrador(id, usuario);
 				break;
+			case "manipulador":
+				SacarManipulador(id, usuario);
+				break;
 			}
 		}
 		
@@ -125,6 +134,19 @@ namespace CasinoNEW
 			administradores.Add(a);
 			
 			Agregar(id, usuario, "administrador");
+		}
+
+		private void IngresarManipulador(int id, string usuario)
+		{
+			// Para los manipuladores no me piden informes ni nada, así que
+			// cuando entra uno que no estaba autenticado, simplemente
+			// creo un Manipulador nuevo.
+			if (!lconfig.EsManip(usuario))
+				throw new AutenticacionException("El usuario no es un manipulador valido del sistema.:`(");
+			Manipulador m = new ManipuladorDados(usuario);
+			manipuladores.Add(m);
+
+			Agregar(id, usuario, "manipulador");
 		}
 		
 		private Jugador IngresarJugador(int id, string usuario) {
@@ -151,6 +173,16 @@ namespace CasinoNEW
 			if (a != null) {
 				administradores.Remove(a);
 				
+				Quitar(id, usuario);
+			}
+		}
+
+		private void SacarManipulador(int id, string usuario)
+		{
+			Manipulador m = GetManipulador(usuario);
+			if (m != null)
+			{
+				manipuladores.Remove(m);
 				Quitar(id, usuario);
 			}
 		}

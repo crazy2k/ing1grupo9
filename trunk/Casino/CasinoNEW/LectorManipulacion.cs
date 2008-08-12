@@ -16,7 +16,7 @@ namespace CasinoNEW
 		{
 			string a = Configuracion.DIRECTORIO_Lectura;
 			
-			string[] dirs = new string[] { a };
+			string[] dirs = new string[]{a};
 			this.Dirs = dirs;
 		}
 

@@ -35,13 +35,14 @@ namespace CasinoNEW
 		{
 			
 			XmlDocument xmld = new XmlDocument();
+			Cargar:
 			try
 			{
 				xmld.Load(fi.FullName);
 			}
 			catch (Exception e)
 			{
-				Interpretar(mensaje, fi);
+				goto Cargar;
 			}
 			
 			string mensajeSinCaps = mensaje.ToLower();
