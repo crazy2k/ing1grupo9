@@ -75,7 +75,7 @@ namespace CasinoNEW
 		public Dinero Autenticar(int id, string usuario, string modo) {
 			if (EstaAutenticado(usuario)) {
 				throw new AutenticacionException("Ya se encuentra"
-				                                 + "autenticado.");
+				                                 + " autenticado.");
 			}
 			
 			switch (modo) {
@@ -111,6 +111,8 @@ namespace CasinoNEW
 			// Para los administradores no me piden informes ni nada, así que
 			// cuando entra uno que no estaba autenticado, simplemente
 			// creo un Administrador nuevo.
+			if (!lconfig.EsAdmin(usuario))
+				throw new AutenticacionException("El usuario no es un administrador valido del sistema.:`(");
 			Administrador a = new Administrador(usuario);
 			administradores.Add(a);
 			
