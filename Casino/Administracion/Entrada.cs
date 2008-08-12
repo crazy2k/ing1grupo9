@@ -35,6 +35,8 @@ namespace Administracion
 
 			if (res.aceptado)
 			{
+				SwitchSalir();
+				
 				Terminal.Id = Int32.Parse(idTerminal.Text);
 				Terminal.Usuario = nombreUsuario.Text;
 				if (admin.Checked)
@@ -54,9 +56,34 @@ namespace Administracion
 				Form cartel = new Cartelito(res.descripcion, res.aceptado);
 				cartel.ShowDialog();
 
-				Application.Restart();
+				//Application.Restart();
 			}
 
+		}
+		private void SwitchSalir() {
+			bool prop = button_Salir.Enabled;
+
+			idTerminal.Enabled = prop;
+			nombreUsuario.Enabled = prop;
+			button1.Enabled = prop;
+			button_Salir.Enabled = !prop;
+			admin.Enabled = prop;
+			manip.Enabled = prop;
+		}
+
+		private void button_Salir_Click(object sender, EventArgs e)
+		{
+			Terminal.Id = Int32.Parse(idTerminal.Text);
+			Terminal.Usuario = nombreUsuario.Text;
+
+			Respuesta res = com.Salir(idTerminal.Text, nombreUsuario.Text);
+
+			if (res.aceptado)
+				SwitchSalir();
+				
+			//MostrarCartelito con: res.descripcion
+			Form cartel = new Cartelito(res.descripcion, res.aceptado);
+			cartel.ShowDialog();
 		}
 	}
 }

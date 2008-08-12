@@ -40,6 +40,7 @@ namespace CasinoNEW
 		public IList<UsuarioConSaldo> Ranking(string tipoRanking,
 			int longitud)
 		{
+			VerificarClausura();
 			GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
 
 			// Horrible, pero no queda otra.
@@ -54,7 +55,8 @@ namespace CasinoNEW
 				js.Reverse();
 			
 			// Le quito los elementos que no necesito devolver.
-			js.RemoveRange(longitud, js.Count - 1);
+			if (longitud < js.Count)
+				js.RemoveRange(longitud, js.Count - 1);
 
 			IList<UsuarioConSaldo> lucs = ToWritable(js);
 
@@ -63,6 +65,7 @@ namespace CasinoNEW
 
 		private IList<UsuarioConSaldo> ToWritable(IList<Jugador> js)
 		{
+			
 			IList<UsuarioConSaldo> lucs = new List<UsuarioConSaldo>();
 			foreach (Jugador j in js) {
 				UsuarioConSaldo ucs = new UsuarioConSaldo();
@@ -77,6 +80,7 @@ namespace CasinoNEW
 
 		public EstadoCasino EstadoActual()
 		{
+			VerificarClausura();
 			Dinero saldo = Casino.GetInstance().getSaldoActual();
 			GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
 
@@ -93,6 +97,7 @@ namespace CasinoNEW
 
 		public IList<ValorPremios> MovimientosPorJugador(string jugador)
 		{
+			VerificarClausura();
 			GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
 			Jugador j = g.GetJugador(jugador);
 
@@ -131,6 +136,11 @@ namespace CasinoNEW
 			return mp;
 		}
 
+		private void VerificarClausura()
+		{
+			if (Casino.GetInstance().EstaAbierto())
+				throw new Exception("El casino se encuentra abierto");
+		}
 
 	}
 }

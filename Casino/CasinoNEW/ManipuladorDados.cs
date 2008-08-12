@@ -7,6 +7,8 @@ namespace CasinoNEW
 	class ManipuladorDados : Manipulador
 	{
 
+		public ManipuladorDados(string nombre) : base(nombre) { }
+
         #region Manipulador Members
 
         public override void manipularResultado(Resultado res, List<Mesa> mesas)

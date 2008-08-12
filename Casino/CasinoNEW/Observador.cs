@@ -11,7 +11,7 @@ namespace CasinoNEW
 	public class Observador : Usuario
 	{
 		
-		public Observador()
+		public Observador(string nombre) : base(nombre)
 		{
 		}
 	}

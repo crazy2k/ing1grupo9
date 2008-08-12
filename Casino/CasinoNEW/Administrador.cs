@@ -11,7 +11,7 @@ namespace CasinoNEW
 	public class Administrador : Usuario
 	{
 		
-		public Administrador(string nombre)
+		public Administrador(string nombre) : base(nombre)
 		{
 		}
 

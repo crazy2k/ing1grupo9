@@ -17,7 +17,7 @@ namespace Organizador
 			"entradaCraps", "salidaCraps", "apuestaCraps", "tiroCraps", 
 			"cerrarCasino", "abrirCasino", "rankingCasino", "movimientosJugador",
 			"informeEstadoActual", "manipularDados"} );
-		public static IList<string> Mensajes_Lectura_Administracion = 
+/*		public static IList<string> Mensajes_Lectura_Administracion = 
 			new List<string>(new string[]{ 
 			"respuestaEntradaCasinoAdmin","respuestaSalidaCasinoAdmin",
 			"respuestaCerrarCasino", "respuestaAbrirCasino", 
@@ -34,16 +34,16 @@ namespace Organizador
 			"\\Temp\\Administracion\\";
 		public static readonly string DIRECTORIO_Escritura_Administracion =
 			"\\Temp\\";
-
+*/
 		public static readonly string DIRECTORIO_Lectura_Servidor = 
 			"\\Temp\\Servidor\\";
 		public static readonly string DIRECTORIO_Escritura_Servidor = 
 			"\\Temp\\";
-
+/*
 		public static readonly string DIRECTORIO_Lectura_Jugadores = 
 			"\\Temp\\";
 		public static readonly string DIRECTORIO_Escritura_Jugadores = 
 			"\\Temp\\";
-	
+*/	
 	}
 }

@@ -47,7 +47,18 @@ namespace CasinoNEW
 			string mensajeSinCaps = mensaje.ToLower();
 
 			if (Interpretar(mensajeSinCaps, xmld))
-				fi.Delete();
+			{
+			Borrar:
+				try
+				{
+					fi.Delete();
+				}
+				catch (Exception e)
+				{
+					goto Borrar;
+				}
+			}
+
 
 		}
 

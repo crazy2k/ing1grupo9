@@ -18,7 +18,7 @@ namespace CasinoNEW
 		public LectorAdministracion()
 		{
 			// Ruta de los directorios de los que se leerán los mensajes.
-			string a = Configuracion.DIRECTORIO_administracion;
+			string a = Configuracion.DIRECTORIO_Lectura;
 
 			string[] dirs = new string[] {a};
 			this.Dirs = dirs;

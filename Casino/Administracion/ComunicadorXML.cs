@@ -112,36 +112,54 @@ namespace Administracion
 				foreach (string dir in this.Dirs)
 				{
 					DirectoryInfo di = new DirectoryInfo(dir);
-					FileInfo[] files = di.GetFiles("*.xml");
+					//FileInfo[] files = di.GetFiles("*.xml");
+					string archivoFP = dir + tag +
+						Configuracion.NUMERO_GRUPO.ToString().PadLeft(2, '0') +
+						id.ToString().PadLeft(4, '0') + ".xml";
 
-					foreach (FileInfo fi in files)
+					if (File.Exists(archivoFP))
 					{
-						string mensaje = GetMensaje(fi);
-						string idTerminal = GetTerminal(fi);
-						string idGrupo = GetGrupo(fi);
-						if (mensaje == tag && Int32.Parse(idTerminal) == id
-							&& Int32.Parse(idGrupo) == Configuracion.NUMERO_GRUPO)
+						XmlDocument xmld = new XmlDocument();
+					Abrir:
+						try
 						{
-							XmlDocument xmld = new XmlDocument();
-						IntentarLeer:
-							try
-							{
-								xmld.Load(fi.FullName);
-							}
-							catch (Exception e)
-							{
-								goto IntentarLeer;
-							}
-						IntentarBorrar:
-							try
-							{
-								fi.Delete();
-							}
-							catch (Exception e) {
-								goto IntentarBorrar;
-							}
-							return xmld;
+							xmld.Load(archivoFP);
 						}
+						catch (Exception e)
+						{
+							goto Abrir;
+						}
+					Borrar:
+						try
+						{
+							File.Delete(archivoFP);
+						}
+						catch (Exception e)
+						{
+							goto Borrar;
+						}
+						return xmld;
+
+					/*
+					IntentarLeer:
+						try
+						{
+							xmld.Load(fi.FullName);
+						}
+						catch (Exception e)
+						{
+							goto IntentarLeer;
+						}
+					IntentarBorrar:
+						try
+						{
+							fi.Delete();
+						}
+						catch (Exception e) {
+							goto IntentarBorrar;
+						}
+						return xmld;
+					 */
 					}
 				}
 			}

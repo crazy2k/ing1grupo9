@@ -15,9 +15,9 @@ namespace CasinoNEW
 		public static readonly string ARCHIVO_CONFIG =
 			"\\Temp\\configuracion-casino.txt";
 		
-		// Se leen los mensajes y se escriben en \\Temp\\. Estas opciones de
-		// configuración quedan por si en algún momento alguien desea hacer
-		// una modificación.
+		// Estas opciones de configuración quedan por si en algún momento
+		// alguien desea hacer una modificación.
+		//Los siguientes son todos directorios de escritura
 		public static readonly string DIRECTORIO_accesoYVistaCasino = 
 			"\\Temp\\";
 		public static readonly string DIRECTORIO_accesoCasinoAdminManip = 
@@ -30,7 +30,9 @@ namespace CasinoNEW
 			"\\Temp\\";
 		public static readonly string DIRECTORIO_Manipulacion =
 			"\\Temp\\";
-
+		//Este es el directorio del que lee el servidor
+		public static readonly string DIRECTORIO_Lectura = "\\Temp\\Servidor\\";
+		
 		public static readonly int NUMERO_GRUPO = 9;
 
 	}
