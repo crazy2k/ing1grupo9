@@ -64,6 +64,8 @@ namespace CasinoNEW
         }
         public override void agregarParticipante(Jugador j) 
         {
+			Crupier.Tirador = j;
+			Crupier.TiradorAnterior = j;
             Anfitrion.recibirParticipante(j);
         }
         public override void quitarParticipante(Jugador j) 

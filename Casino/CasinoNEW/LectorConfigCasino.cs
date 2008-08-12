@@ -17,7 +17,11 @@ namespace CasinoNEW
 			public string modo;
 			public Dinero saldo;
 		}
-		
+		public bool EsAdmin(string usuario) 
+		{
+			return (usuarios.ContainsKey(usuario) && usuarios[usuario].modo == "admin");
+		}
+
 		private static LectorConfigCasino instance = null;
 		
 		private IDictionary<string, InfoUsuario> usuarios = 

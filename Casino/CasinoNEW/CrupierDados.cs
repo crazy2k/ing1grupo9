@@ -19,7 +19,7 @@ namespace CasinoNEW
 		public Jugador TiradorAnterior
         {
             get { return tiradorAnterior; }
-            set { TiradorAnterior = value; }
+            set { tiradorAnterior = value; }
         }
 
         private Dictionary<Jugador,IList<ApuestaDados>> 
