@@ -123,8 +123,23 @@ namespace Administracion
 							&& Int32.Parse(idGrupo) == Configuracion.NUMERO_GRUPO)
 						{
 							XmlDocument xmld = new XmlDocument();
-							xmld.Load(fi.FullName);
-							fi.Delete();
+						IntentarLeer:
+							try
+							{
+								xmld.Load(fi.FullName);
+							}
+							catch (Exception e)
+							{
+								goto IntentarLeer;
+							}
+						IntentarBorrar:
+							try
+							{
+								fi.Delete();
+							}
+							catch (Exception e) {
+								goto IntentarBorrar;
+							}
 							return xmld;
 						}
 					}

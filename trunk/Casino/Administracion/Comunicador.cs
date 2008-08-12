@@ -11,7 +11,7 @@ namespace Administracion
 	
 	public abstract class Comunicador
 	{
-		private string[] dirs;
+		private string[] dirs = new string[] { "\\Temp\\" };
 		
 		public Comunicador()
 		{
@@ -42,7 +42,7 @@ namespace Administracion
 
 			string[] partes = nombreArchivo.Split(new char[] { '.' });
 			string completo = partes[0];
-			string mensaje = completo.Substring(completo.Length - 6, completo.Length - 5);
+			string mensaje = completo.Substring(completo.Length - 6, 2);
 
 			return mensaje;
 		}
@@ -52,7 +52,7 @@ namespace Administracion
 
 			string[] partes = nombreArchivo.Split(new char[] { '.' });
 			string completo = partes[0];
-			string mensaje = completo.Substring(completo.Length - 4, completo.Length - 1);
+			string mensaje = completo.Substring(completo.Length - 4, 4);
 
 			return mensaje;
 		}

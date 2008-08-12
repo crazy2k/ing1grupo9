@@ -28,11 +28,11 @@ namespace Administracion
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.button1 = new System.Windows.Forms.Button();
+			this.abrirCasino = new System.Windows.Forms.Button();
 			this.button_ranking = new System.Windows.Forms.Button();
 			this.button_movPorJug = new System.Windows.Forms.Button();
 			this.button_estadoActual = new System.Windows.Forms.Button();
-			this.button5 = new System.Windows.Forms.Button();
+			this.cerrarCasino = new System.Windows.Forms.Button();
 			this.tipoRanking = new System.Windows.Forms.ComboBox();
 			this.cantidad = new System.Windows.Forms.TextBox();
 			this.nombreJugador = new System.Windows.Forms.TextBox();
@@ -40,15 +40,15 @@ namespace Administracion
 			this.label2 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
-			// button1
+			// abrirCasino
 			// 
-			this.button1.Location = new System.Drawing.Point(83, 36);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(121, 30);
-			this.button1.TabIndex = 0;
-			this.button1.Text = "Abrir casino";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.abrirCasino.Location = new System.Drawing.Point(83, 36);
+			this.abrirCasino.Name = "abrirCasino";
+			this.abrirCasino.Size = new System.Drawing.Size(121, 30);
+			this.abrirCasino.TabIndex = 0;
+			this.abrirCasino.Text = "Abrir casino";
+			this.abrirCasino.UseVisualStyleBackColor = true;
+			this.abrirCasino.Click += new System.EventHandler(this.abrirCasino_Click);
 			// 
 			// button_ranking
 			// 
@@ -80,14 +80,15 @@ namespace Administracion
 			this.button_estadoActual.UseVisualStyleBackColor = true;
 			this.button_estadoActual.Click += new System.EventHandler(this.button_estadoActual_Click);
 			// 
-			// button5
+			// cerrarCasino
 			// 
-			this.button5.Location = new System.Drawing.Point(83, 72);
-			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(121, 30);
-			this.button5.TabIndex = 4;
-			this.button5.Text = "Cerrar casino";
-			this.button5.UseVisualStyleBackColor = true;
+			this.cerrarCasino.Location = new System.Drawing.Point(83, 72);
+			this.cerrarCasino.Name = "cerrarCasino";
+			this.cerrarCasino.Size = new System.Drawing.Size(121, 30);
+			this.cerrarCasino.TabIndex = 4;
+			this.cerrarCasino.Text = "Cerrar casino";
+			this.cerrarCasino.UseVisualStyleBackColor = true;
+			this.cerrarCasino.Click += new System.EventHandler(this.cerrarCasino_Click);
 			// 
 			// tipoRanking
 			// 
@@ -144,11 +145,11 @@ namespace Administracion
 			this.Controls.Add(this.nombreJugador);
 			this.Controls.Add(this.cantidad);
 			this.Controls.Add(this.tipoRanking);
-			this.Controls.Add(this.button5);
+			this.Controls.Add(this.cerrarCasino);
 			this.Controls.Add(this.button_estadoActual);
 			this.Controls.Add(this.button_movPorJug);
 			this.Controls.Add(this.button_ranking);
-			this.Controls.Add(this.button1);
+			this.Controls.Add(this.abrirCasino);
 			this.Name = "Administracion";
 			this.Text = "Administracion";
 			this.ResumeLayout(false);
@@ -158,11 +159,11 @@ namespace Administracion
 
 		#endregion
 
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button abrirCasino;
 		private System.Windows.Forms.Button button_ranking;
 		private System.Windows.Forms.Button button_movPorJug;
 		private System.Windows.Forms.Button button_estadoActual;
-		private System.Windows.Forms.Button button5;
+		private System.Windows.Forms.Button cerrarCasino;
 		private System.Windows.Forms.ComboBox tipoRanking;
 		private System.Windows.Forms.TextBox cantidad;
 		private System.Windows.Forms.TextBox nombreJugador;

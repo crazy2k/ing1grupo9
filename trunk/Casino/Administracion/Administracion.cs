@@ -19,10 +19,7 @@ namespace Administracion
 			tipoRanking.SelectedItem = tipoRanking.Items[0];
 		}
 
-		private void button1_Click(object sender, EventArgs e)
-		{
-			comunicador.AbrirCasino(Terminal.Id, Terminal.Usuario);
-		}
+
 
 		private void label1_Click(object sender, EventArgs e)
 		{
@@ -37,17 +34,52 @@ namespace Administracion
 
 		private void button_ranking_Click(object sender, EventArgs e)
 		{
-			comunicador.PedirInformeRanking(Terminal.Id, Terminal.Usuario, tipoRanking.Text, cantidad.Text);
+			Respuesta res = comunicador.PedirInformeRanking(Terminal.Id, Terminal.Usuario, tipoRanking.Text, cantidad.Text);
+			//MostrarCartelito con: res.descripcion
+			Form cartel = new Cartelito(res.descripcion, res.aceptado);
+			cartel.ShowDialog();
+
+			Application.Restart();
 		}
 
 		private void button_movPorJug_Click(object sender, EventArgs e)
 		{
-			comunicador.PedirMovimientosPorJugador(Terminal.Id, Terminal.Usuario, nombreJugador.Text);
+			Respuesta res = comunicador.PedirMovimientosPorJugador(Terminal.Id, Terminal.Usuario, nombreJugador.Text);
+			//MostrarCartelito con: res.descripcion
+			Form cartel = new Cartelito(res.descripcion, res.aceptado);
+			cartel.ShowDialog();
+
+			Application.Restart();
 		}
 
 		private void button_estadoActual_Click(object sender, EventArgs e)
 		{
-			comunicador.PedirInformeEstadoCasino(Terminal.Id, Terminal.Usuario);
+			Respuesta res = comunicador.PedirInformeEstadoCasino(Terminal.Id, Terminal.Usuario);
+			//MostrarCartelito con: res.descripcion
+			Form cartel = new Cartelito(res.descripcion, res.aceptado);
+			cartel.ShowDialog();
+
+			Application.Restart();
+		}
+
+		private void abrirCasino_Click(object sender, EventArgs e)
+		{
+			Respuesta res = comunicador.AbrirCasino(Terminal.Id, Terminal.Usuario);
+			//MostrarCartelito con: res.descripcion
+			Form cartel = new Cartelito(res.descripcion, res.aceptado);
+			cartel.ShowDialog();
+
+			Application.Restart();
+		}
+
+		private void cerrarCasino_Click(object sender, EventArgs e)
+		{
+			Respuesta res = comunicador.CerrarCasino(Terminal.Id, Terminal.Usuario);
+			//MostrarCartelito con: res.descripcion
+			Form cartel = new Cartelito(res.descripcion, res.aceptado);
+			cartel.ShowDialog();
+
+			Application.Restart();
 		}
 	}
 }
