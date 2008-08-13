@@ -6,7 +6,7 @@ namespace CasinoNEW
 {
     public abstract class Mesa
     {
-        protected int id;
+	    protected int id;
 		
 		public int Id {
 			get { return id; }

@@ -35,7 +35,47 @@ namespace Organizador
 			
 				foreach (FileInfo fi in files) {
 					string mensaje = GetMensaje(fi);
+/*					bool cond = false;
+					try
+					{
+						cond = fi.Name.Substring(0, 22) == "respuestaEstadoCasino0";
+					}
+					catch (Exception ex){ }
+
+					if (cond)
+					{
+						string final = fi.Name.Substring(23, fi.Name.Length - 23);
+						string terminal = final.Split('.')[0].TrimStart(new char[] {'0'});
+					Mover1:
+						try
+						{
+							fi.MoveTo(di.FullName + "respuestaEstadoCasino" +
+								Configuracion.Numero_Grupo.TrimStart(new char[] { '0' })
+								+ terminal + ".xml");
+						}
+						catch (Exception e)
+						{
+							goto Mover1;
+						}
+					}
+*/
 					OrganizarMensaje(mensaje, fi);
+					if (fi.Name.Substring(0,12) == "estadoCasino"){
+						string final = fi.Name.Substring(12, fi.Name.Length - 12);
+//						final = final.Split('.')[0];
+//						string terminal = final.PadLeft(4,'0');
+					Mover:
+						try
+						{
+							fi.MoveTo(di.FullName + "pedidoEstadoCasino" + final);
+//								Configuracion.Numero_Grupo + terminal + ".xml");
+						}
+						catch (Exception e)
+						{
+							goto Mover;
+						}
+					}
+					
 				}
 			}
 		}

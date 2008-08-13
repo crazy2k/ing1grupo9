@@ -10,7 +10,7 @@ using Dinero = System.Decimal;
 namespace CasinoNEW
 {
 	
-	public class LectorConfigCasino
+	public class LectoescritorConfigCasino
 	{
 		
 		private struct InfoUsuario {
@@ -27,12 +27,12 @@ namespace CasinoNEW
 			return (usuarios.ContainsKey(usuario) && usuarios[usuario].modo == "manipulador");
 		}
 
-		private static LectorConfigCasino instance = null;
+		private static LectoescritorConfigCasino instance = null;
 		
 		private IDictionary<string, InfoUsuario> usuarios = 
 			new Dictionary<string, InfoUsuario>();
 		
-		private LectorConfigCasino()
+		private LectoescritorConfigCasino()
 		{
 			string nombreArchivo = Configuracion.ARCHIVO_USUARIOS;
 			
@@ -40,9 +40,9 @@ namespace CasinoNEW
 			
 		}
 		
-		public static LectorConfigCasino GetInstance() {
+		public static LectoescritorConfigCasino GetInstance() {
 			if (instance == null)
-				instance = new LectorConfigCasino();
+				instance = new LectoescritorConfigCasino();
 			return instance;
 		}
 		
@@ -80,6 +80,28 @@ namespace CasinoNEW
 				return usuarios[usuario].saldo;
 			else
 				throw new Exception("Jugador no valido");
+		}
+
+		public void Actualizar(IList<Jugador> js)
+		{
+			foreach (Jugador j in js)
+				if (usuarios.ContainsKey(j.Nombre))
+				{
+					InfoUsuario iu = new InfoUsuario();
+					iu.modo = "jugador";
+					iu.saldo = j.Credito;
+
+					usuarios[j.Nombre] = iu;
+				}
+
+            TextWriter tw = new StreamWriter(Configuracion.ARCHIVO_USUARIOS);
+
+			foreach (KeyValuePair<string, InfoUsuario> kv in usuarios)
+			{
+				tw.WriteLine(kv.Key + "," + kv.Value.modo + "," +
+					kv.Value.saldo.ToString());
+			}
+			tw.Close();
 		}
 
 	}

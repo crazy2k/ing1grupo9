@@ -72,10 +72,12 @@ namespace CasinoNEW
 		public void agregarApuesta(Jugador j,Apuesta a)
         {
 			//Veo si la apuesta es de dados es de Dados
-			if (a is ApuestaDados) throw new Exception("La apuesta no es de Dados.");
+			if (!(a is ApuestaDados)) throw new Exception("La apuesta no es de Dados.");
 			ApuestaDados apuesta = (ApuestaDados)a;
-            apuestasRealizadas[j].Add(apuesta);
-        }
+			if (!ApuestasRealizadas.ContainsKey(j))
+				ApuestasRealizadas.Add(j, new List<ApuestaDados>());
+			apuestasRealizadas[j].Add(apuesta);
+		}
 
 		public void quitarApuesta(Jugador j, ApuestaDados a)
         {

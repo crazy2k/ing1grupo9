@@ -11,7 +11,7 @@ namespace CasinoNEW
 		private static JuegoDados instance = null;
 		
 		private JuegoDados() {
-			Nombre = "dados";
+			Nombre = "craps";
 		}
 		
 		public static JuegoDados GetInstance() {
@@ -22,9 +22,9 @@ namespace CasinoNEW
 		
 		public override Mesa CrearMesa()
 		{
-			cantMesas++;
 			Mesa nuevaMesa = new MesaDados(cantMesas);
 			mesas.Add(nuevaMesa);
+			cantMesas++;
 			return nuevaMesa;
 		}
 		
