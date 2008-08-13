@@ -28,7 +28,7 @@ namespace CasinoNEW
 			int id = GetIdTerminal(root);
 			string usuario = GetUsuario(root);
 
-			string smesa = root.GetAttribute("mesa");
+			string smesa = root.GetAttribute("mesa").Trim();
 			if (smesa == "")
 				manejador.EntrarCrapsNuevaMesa(id, usuario);
 			else
@@ -45,7 +45,7 @@ namespace CasinoNEW
 			int id = GetIdTerminal(root);
 			string usuario = GetUsuario(root);
 
-			int mesa = Int32.Parse(root.GetAttribute("mesa"));
+			string mesa = root.GetAttribute("mesa");
 			manejador.SalirCraps(id, usuario, mesa);
 		}
 
@@ -65,7 +65,7 @@ namespace CasinoNEW
 
 			string pa = GetTextFromChildNode(opcionApuesta,
 				"puntajeApostado");
-			int puntajeApostado = Int32.Parse(pa);
+			int puntajeApostado = pa == "" ? 0 : Int32.Parse(pa);
 
 			XmlElement valorApuesta = GetChildNode(root, "valorApuesta");
 			// Se lee un único <fichaValor>

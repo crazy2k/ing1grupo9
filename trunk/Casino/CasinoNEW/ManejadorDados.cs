@@ -31,30 +31,39 @@ namespace CasinoNEW
 		
 	
 		public void EntrarCrapsMesa(int id, string usuario, int idMesa){
-			Jugador j = GestionadorUsuarios.GetInstance().GetJugador(usuario);
-			Mesa m = JuegoDados.GetInstance().getMesa(idMesa);
-			if ( !(m is MesaDados))
-				throw new Exception("El juego de dados tiene mesas de NoDados");
-			
 			try{
+				Jugador j = GestionadorUsuarios.GetInstance().GetJugador(usuario);
+				Mesa m = JuegoDados.GetInstance().getMesa(idMesa);
+				if (!(m is MesaDados))
+					throw new Exception("El juego de dados tiene mesas de NoDados");
+			
 				j.entrarAMesa(m);
-				escritor.AceptarEntrada(id, usuario, idMesa, "");
+				escritor.AceptarEntrada(id, usuario, idMesa, "ok");
 			}
 			catch (Exception e){
-				escritor.DenegarEntrada(id, usuario, idMesa, e.Message);
+				escritor.DenegarEntrada(id, usuario, idMesa.ToString() , e.Message);
 			}
 		}
 		public void EntrarCrapsNuevaMesa(int id, string usuario){
-			Mesa m = JuegoDados.GetInstance().CrearMesa();
-			if ( !(m is MesaDados))
-				throw new Exception("El juego de dados tiene mesas de NoDados");
-			EntrarCrapsMesa(id, usuario , m.Id);
+			try
+			{
+				Jugador j = GestionadorUsuarios.GetInstance().GetJugador(usuario);
+				Mesa m = JuegoDados.GetInstance().CrearMesa();
+				if (!(m is MesaDados))
+					throw new Exception("El juego de dados tiene mesas de NoDados");
+				EntrarCrapsMesa(id, usuario, m.Id);
+			}
+			catch (Exception e)
+			{
+				escritor.DenegarEntrada(id, usuario, "", e.Message);
+			}
+
 		}
 		
-		public void SalirCraps(int id, string usuario, int idMesa){
-			Jugador j = GestionadorUsuarios.GetInstance().GetJugador(usuario);
-			Mesa m = JuegoDados.GetInstance().getMesa(idMesa);
+		public void SalirCraps(int id, string usuario, string idMesa){
 			try{
+				Jugador j = GestionadorUsuarios.GetInstance().GetJugador(usuario);
+				Mesa m = JuegoDados.GetInstance().getMesa(Int32.Parse(idMesa));
 				m.quitarParticipante(j);
 				escritor.AceptarSalida(id, usuario, idMesa, "");
 			}
@@ -67,9 +76,9 @@ namespace CasinoNEW
 		public void Apostar(int id, string usuario, int idMesa, 
 		               TipoApuestaDados tap, int puntajeApostado, 
 		               Dinero valorFichas, int cantidadFichas){
-			Jugador j = GestionadorUsuarios.GetInstance().GetJugador(usuario);
-			Mesa m = JuegoDados.GetInstance().getMesa(idMesa);
 			try{
+				Jugador j = GestionadorUsuarios.GetInstance().GetJugador(usuario);
+				Mesa m = JuegoDados.GetInstance().getMesa(idMesa);
 				ApostarCraps(j,m,tap,puntajeApostado,cantidadFichas,
 					valorFichas);
 				escritor.ResponderApuestaAceptada(id, usuario, idMesa);
@@ -114,30 +123,29 @@ namespace CasinoNEW
 		}
 
 		public void Tirar(int id, string usuario, int idMesa){
-			Jugador j = GestionadorUsuarios.GetInstance().GetJugador(usuario);
-			Mesa table = JuegoDados.GetInstance().getMesa(idMesa);
-			if (!(table is MesaDados)) throw new Exception("Se intenta tirar en una Mesa de NoDados");
-			MesaDados m = (MesaDados)table;
-// NO ME FIJO SI EL QUE QUIERE TIRAR ES EL TIRADOR, SOLO QUE ESTÉ EN LA MESA.
-			if (m.GetParticipantes().Contains(j)){
-				try{
-					m.NotificarEstado();
-					m.jugar();
-					m.NotificarEstado();
-					// TODO: ¿Acá no tendría que pedir el resultado? Faltan
-					// datos para el escritor.
-					
-					ResultadoDados res = m.Crupier.UltimoResultado;
-					TipoJugada tj = m.Crupier.UltimaJugada;
-					escritor.ResponderTiroAceptado(id, usuario, idMesa, res.Dado1, res.Dado2, tj);
-
+			try{
+				Jugador j = GestionadorUsuarios.GetInstance().GetJugador(usuario);
+				Mesa table = JuegoDados.GetInstance().getMesa(idMesa);
+				if (!(table is MesaDados)) throw new Exception("Se intenta tirar en una Mesa de NoDados");
+				MesaDados m = (MesaDados)table;
+	// NO ME FIJO SI EL QUE QUIERE TIRAR ES EL TIRADOR, SOLO QUE ESTÉ EN LA MESA.
+				if (m.GetParticipantes().Contains(j)){
+						m.NotificarEstado();
+						m.jugar();
+						m.NotificarEstado();
+						// TODO: ¿Acá no tendría que pedir el resultado? Faltan
+						// datos para el escritor.
+						
+						ResultadoDados res = m.Crupier.UltimoResultado;
+						TipoJugada tj = m.Crupier.UltimaJugada;
+						escritor.ResponderTiroAceptado(id, usuario, idMesa, res.Dado1, res.Dado2, tj);
 				}
-				catch(Exception e)
-				{
+				else{
 					escritor.ResponderTiroDenegado(id, usuario, idMesa);
 				}
 			}
-			else{
+			catch(Exception e)
+			{
 				escritor.ResponderTiroDenegado(id, usuario, idMesa);
 			}
 		}

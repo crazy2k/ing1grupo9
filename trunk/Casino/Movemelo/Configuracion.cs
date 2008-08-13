@@ -12,8 +12,10 @@ namespace Organizador
 		
 	public class Configuracion
 	{
+		public static readonly string Numero_Grupo = "09";
+
 		public static IList<string> Mensajes_Lectura_Servidor = 
-			new List<string>( new string[]{"entradaCasino","SalidaCasino","pedidoEsadoCasino",
+			new List<string>( new string[]{"entradaCasino","SalidaCasino","pedidoEstadoCasino",
 			"entradaCraps", "salidaCraps", "apuestaCraps", "tiroCraps", 
 			"cerrarCasino", "abrirCasino", "rankingCasino", "movimientosJugador",
 			"informeEstadoActual", "manipularDados"} );

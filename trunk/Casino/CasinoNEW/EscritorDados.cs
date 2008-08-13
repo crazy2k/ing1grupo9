@@ -31,7 +31,7 @@ namespace CasinoNEW
 			Escribir(nombreArchivo, xd, id);
 		}
 
-		public void DenegarEntrada(int id, string usuario, int idMesa,
+		public void DenegarEntrada(int id, string usuario, string idMesa,
 			string descripcion)
 		{
 			string nombreArchivo = "respuestaEntradaCraps";
@@ -42,7 +42,7 @@ namespace CasinoNEW
 
 			AgregarAtributo(xd, root, "vTerm", id.ToString());
 			AgregarAtributo(xd, root, "usuario", usuario);
-			AgregarAtributo(xd, root, "mesa", idMesa.ToString());
+			AgregarAtributo(xd, root, "mesa", idMesa);
 
 			AgregarElementoSimple(xd, root, "aceptado", "no");
 			AgregarElementoSimple(xd, root, "descripcion", descripcion);
@@ -50,7 +50,7 @@ namespace CasinoNEW
 			Escribir(nombreArchivo, xd, id);
 		}
 
-		public void AceptarSalida(int id, string usuario, int idMesa,
+		public void AceptarSalida(int id, string usuario, string idMesa,
 			string descripcion)
 		{
 			string nombreArchivo = "respuestaSalidaCraps";
@@ -61,7 +61,7 @@ namespace CasinoNEW
 
 			AgregarAtributo(xd, root, "vTerm", id.ToString());
 			AgregarAtributo(xd, root, "usuario", usuario);
-			AgregarAtributo(xd, root, "mesa", idMesa.ToString());
+			AgregarAtributo(xd, root, "mesa", idMesa);
 
 			AgregarElementoSimple(xd, root, "aceptado", "si");
 			AgregarElementoSimple(xd, root, "descripcion", descripcion);
@@ -69,7 +69,7 @@ namespace CasinoNEW
 			Escribir(nombreArchivo, xd, id);
 		}
 
-		public void DenegarSalida(int id, string usuario, int idMesa,
+		public void DenegarSalida(int id, string usuario, string idMesa,
 		string descripcion)
 		{
 			string nombreArchivo = "respuestaSalidaCraps";
@@ -80,7 +80,7 @@ namespace CasinoNEW
 
 			AgregarAtributo(xd, root, "vTerm", id.ToString());
 			AgregarAtributo(xd, root, "usuario", usuario);
-			AgregarAtributo(xd, root, "mesa", idMesa.ToString());
+			AgregarAtributo(xd, root, "mesa", idMesa);
 
 			AgregarElementoSimple(xd, root, "aceptado", "no");
 			AgregarElementoSimple(xd, root, "descripcion", descripcion);
@@ -131,7 +131,7 @@ namespace CasinoNEW
 			AgregarElementoSimple(xd, tagUltimoTiro, "tirador",
 				ultimoTirador.Nombre);
 			AgregarElementoSimple(xd, tagUltimoTiro, "resultado",
-				ultimoResultado.ToString());
+				ultimoResultado == null ? "" : ultimoResultado.ToString());
 
 			XmlElement tagPremios = xd.CreateElement("premios");
 			tagUltimoTiro.AppendChild(tagPremios);

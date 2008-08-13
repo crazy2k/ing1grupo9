@@ -119,19 +119,33 @@ namespace CasinoNEW
 			XmlElement tagJugadores = xd.CreateElement("jugadores");
 			root.AppendChild(tagJugadores);
 			foreach (Jugador j in jugadores) {
-				XmlElement tagJugador = xd.CreateElement("jugador");
-				AgregarAtributo(xd, tagJugador, "nombre", j.Nombre);
+				// Cambio para que ande con el cliente de la cátedra.
+				//XmlElement tagJugador = xd.CreateElement("jugador");
+				//AgregarAtributo(xd, tagJugador, "nombre", j.Nombre);
+				//tagJugadores.AppendChild(tagJugador);
+				AgregarElementoSimple(xd, tagJugadores, "jugador", j.Nombre);
 			}
 			
 			XmlElement tagObservadores = xd.CreateElement("observadores");
 			root.AppendChild(tagObservadores);
 			foreach (Observador o in observadores) {
-				XmlElement tagObservador = xd.CreateElement("observador");
-				AgregarAtributo(xd, tagObservador, "nombre", o.Nombre);
+				// Cambio para que ande con el cliente de la cátedra.
+				//XmlElement tagObservador = xd.CreateElement("observador");
+				//AgregarAtributo(xd, tagObservador, "nombre", o.Nombre);
+				//tagObservadores.AppendChild(tagObservador);
+				AgregarElementoSimple(xd, tagObservadores, "observador",
+					o.Nombre);
 			}
 
-			XmlElement tagJuegos = xd.CreateElement("juegos");
+			XmlElement tagJuegos = xd.CreateElement("juego");
 			root.AppendChild(tagJuegos);
+
+			XmlElement tagTragamonedas = xd.CreateElement("tragamonedas");
+			tagJuegos.AppendChild(tagTragamonedas);
+			AgregarElementoSimple(xd, tagTragamonedas, "pozoProgresivo", "10");
+			XmlElement tagMesasTragamonedas = xd.CreateElement("mesasTragamonedas");
+			tagTragamonedas.AppendChild(tagMesasTragamonedas);
+
 			foreach (Juego j in juegos) {
 				XmlElement tagJuego = xd.CreateElement(j.Nombre.ToLower());
 				tagJuegos.AppendChild(tagJuego);
@@ -168,7 +182,14 @@ namespace CasinoNEW
 					if (j.Nombre.ToLower() == "craps")
 						GenerarEstadoMesaCraps(xd, tagMesa, m);
 				}
+				XmlElement tagPozosCasino = xd.CreateElement("pozos");
+				root.AppendChild(tagPozosCasino);
+
+				foreach (KeyValuePair<string, Dinero> kv in pozos)
+					AgregarElementoSimple(xd, tagPozosCasino, kv.Key,
+						kv.Value.ToString());
 			}
+
 			Escribir(nombreArchivo, xd, id);
 		}
 		
@@ -192,7 +213,8 @@ namespace CasinoNEW
 			string ultimoTirador = md.Crupier.TiradorAnterior.Nombre;
 			AgregarElementoSimple(xd, ultimoTiro, "tirador",
 			                      ultimoTirador);
-			string ultimoResultado = md.Crupier.UltimoResultado.ToString();
+			ResultadoDados rd = md.Crupier.UltimoResultado;
+			string ultimoResultado = rd == null ? "" : rd.ToString();
 			AgregarElementoSimple(xd, ultimoTiro, "resultado",
 						                      ultimoResultado);
 		}

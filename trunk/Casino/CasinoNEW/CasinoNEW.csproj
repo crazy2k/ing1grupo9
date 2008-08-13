@@ -78,7 +78,7 @@
     <Compile Include="ManejadorCasino.cs" />
     <Compile Include="GestionadorUsuarios.cs" />
     <Compile Include="Configuracion.cs" />
-    <Compile Include="LectorConfigCasino.cs" />
+    <Compile Include="LectoescritorConfigCasino.cs" />
     <Compile Include="EscritorCasino.cs" />
     <Compile Include="AutenticacionException.cs" />
     <Compile Include="Casino.cs" />

@@ -16,37 +16,37 @@ namespace CasinoNEW
             double rFloat1 = r1.NextDouble();
             double rFloat2 = r2.NextDouble();
             int dado1=0, dado2=0;
-            setValorDado(dado1, rFloat1);
-            setValorDado(dado2, rFloat2);
+            dado1 = setValorDado(rFloat1);
+            dado2 = setValorDado(rFloat2);
             setResultado(new ResultadoDados(dado1, dado2));
 			return jugada;
         }
 
-        private void setValorDado(int dado, double rFloat)
+        private int setValorDado(double rFloat)
         {
-            if (rFloat < 1 / 6)
+            if (rFloat < 1.0 / 6)
             {
-                dado = 1;
+                return 1;
             }
-            else if (rFloat >= 1 / 6 && rFloat < 2 / 6)
+            else if (rFloat >= 1.0 / 6 && rFloat < 2.0 / 6)
             {
-                dado = 2;
+				return 2;
             }
-            else if (rFloat >= 2 / 6 && rFloat < 3 / 6)
+            else if (rFloat >= 2.0 / 6 && rFloat < 3.0 / 6)
             {
-                dado = 3;
+				return 3;
             }
-            else if (rFloat >= 3 / 6 && rFloat < 4 / 6)
+            else if (rFloat >= 3.0 / 6 && rFloat < 4.0 / 6)
             {
-                dado = 4;
+				return 4;
             }
-            else if (rFloat >= 4 / 6 && rFloat < 5 / 6)
+            else if (rFloat >= 4.0 / 6 && rFloat < 5.0 / 6)
             {
-                dado = 5;
+				return 5;
             }
             else
             {
-                dado = 6;
+				return 6;
             }
         }
         public void setTipoJugada(TipoJugada t)

@@ -55,7 +55,7 @@ namespace CasinoNEW
         public override void jugar() 
         {
             Jugada jugada = GeneradorJugadas.obtenerJugada();
-            Crupier.pagarApuestas((ResultadoDados)jugada.getFirst(),(TipoJugada)jugada.getSecond());
+			Crupier.pagarApuestas((ResultadoDados)jugada.getSecond(), (TipoJugada)jugada.getFirst());
         }
         public override void apostar(Jugador j, Apuesta a) 
         {
@@ -67,10 +67,14 @@ namespace CasinoNEW
 			Crupier.Tirador = j;
 			Crupier.TiradorAnterior = j;
             Anfitrion.recibirParticipante(j);
+			EventHandler.agregarObservador(j);
         }
         public override void quitarParticipante(Jugador j) 
         {
             Anfitrion.despedirParticipante(j);
+			if (Anfitrion.Participantes.Count == 0) JuegoDados.GetInstance().CerrarMesa(id);
+			else if (Crupier.Tirador == j)
+				Crupier.Tirador = Anfitrion.Participantes[0];
         }
 		public override IList<Jugador> GetParticipantes() {
 			return Anfitrion.Participantes;

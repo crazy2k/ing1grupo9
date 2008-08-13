@@ -14,7 +14,7 @@ namespace CasinoNEW
 	{
 		private static GestionadorUsuarios instance = null;
 		
-		private LectorConfigCasino lconfig = LectorConfigCasino.GetInstance();
+		private LectoescritorConfigCasino lconfig = LectoescritorConfigCasino.GetInstance();
 		
 		IList<Jugador> jugadoresActivos = new List<Jugador>();
 		IList<Jugador> jugadoresInactivos = new List<Jugador>();
@@ -266,6 +266,11 @@ namespace CasinoNEW
 		
 		private bool EstaAutenticado(string usuario) {
 			return ids.Values.Contains(usuario);
+		}
+
+		public void ActualizarLista()
+		{
+			lconfig.Actualizar(JugadoresInactivos);
 		}
 	}
 }

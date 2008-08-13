@@ -30,7 +30,7 @@ namespace CasinoNEW
 
         private static volatile Casino instance;
         private static object syncRoot = new Object();
-        private Dinero montoPozoFeliz;
+        private Dinero montoPozoFeliz = 0;
         private bool estaAbierto; //La inicializacion por default lo deja en false (cerrado)
         private float probJugadaTodosPonen;
 		private float probJugadaFeliz;
@@ -175,6 +175,9 @@ namespace CasinoNEW
                 if (jug.Count == 0)
                 {
                     estaAbierto = false;
+
+					GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
+					g.ActualizarLista();
                 }
                 else
                 {
