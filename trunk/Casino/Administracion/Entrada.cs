@@ -28,6 +28,15 @@ namespace Administracion
 		private void button1_Click(object sender, EventArgs e)
 		{
 			string modo = (admin.Checked) ? "administrador" : "manipulador";
+
+			if (idTerminal.Text == "")
+			{
+				Form cartel =
+					new Cartelito("Debe escribir un número de terminal", false);
+				cartel.ShowDialog();
+				return;
+			}
+
 			Terminal.Id = Int32.Parse(idTerminal.Text);
 			Terminal.Usuario = nombreUsuario.Text;
 
