@@ -63,7 +63,6 @@ public class ApuestaTiroCrapsVista extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jTextCantidad = new javax.swing.JTextField();
-        jButtonAgregarFicha = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jTextIdTerminal = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -133,13 +132,6 @@ public class ApuestaTiroCrapsVista extends javax.swing.JFrame {
             }
         });
 
-        jButtonAgregarFicha.setText("Agregar");
-        jButtonAgregarFicha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAgregarFichaActionPerformed(evt);
-            }
-        });
-
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -151,9 +143,8 @@ public class ApuestaTiroCrapsVista extends javax.swing.JFrame {
                     .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                         .add(org.jdesktop.layout.GroupLayout.LEADING, jTextCantidad)
                         .add(org.jdesktop.layout.GroupLayout.LEADING, jTextValorFicha)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel10, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .add(jButtonAgregarFicha))
-                .addContainerGap(50, Short.MAX_VALUE))
+                        .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel10, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -166,9 +157,7 @@ public class ApuestaTiroCrapsVista extends javax.swing.JFrame {
                 .add(jLabel11)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jTextCantidad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
-                .add(jButtonAgregarFicha)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
@@ -365,19 +354,19 @@ public class ApuestaTiroCrapsVista extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .add(78, 78, 78)
                 .add(jButtonTirar)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 120, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 150, Short.MAX_VALUE)
                 .add(jButtonApostar)
                 .add(72, 72, 72))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(11, 11, 11)
+                .add(13, 13, 13)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
                         .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 153, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jPanel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
+                        .add(jPanel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))
                     .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -394,6 +383,9 @@ private void jButtonApostarActionPerformed(java.awt.event.ActionEvent evt) {//GE
     //Estas son las lineas que agregamos
     this.fichas = new ArrayList();
     this.fichas.add(new FichaValor(this.jTextCantidad.getText(), this.jTextValorFicha.getText()));
+    
+    this.jTextCantidad.setText("");
+    this.jTextValorFicha.setText("");
     
     //Si, las lineas de arriba las agregamos
     
@@ -520,19 +512,6 @@ private void jTextCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 // TODO add your handling code here:
 }//GEN-LAST:event_jTextCantidadActionPerformed
 
-private void jButtonAgregarFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarFichaActionPerformed
-
-    this.fichas.add(new FichaValor(this.jTextCantidad.getText(), this.jTextValorFicha.getText()));
-    
-    this.jButtonAgregarFicha.setEnabled(false);
-        
-    //this.jTextCantidad.setText("");
-    //this.jTextValorFicha.setText("");
-    this.jTextCantidad.setEnabled(false);
-    this.jTextValorFicha.setEnabled(false);
-        
-}//GEN-LAST:event_jButtonAgregarFichaActionPerformed
-
 private void jButtonTirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTirarActionPerformed
 
     String vTerm = "0000" + this.jTextIdTerminal.getText();
@@ -644,7 +623,6 @@ private void jButtonTirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup TipoApuesta;
-    private javax.swing.JButton jButtonAgregarFicha;
     private javax.swing.JButton jButtonApostar;
     private javax.swing.JButton jButtonTirar;
     private javax.swing.JLabel jLabel1;
