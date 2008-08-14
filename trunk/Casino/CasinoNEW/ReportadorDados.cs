@@ -9,9 +9,9 @@ namespace CasinoNEW
 			mesa = mesaOriginal;
 		}
 		private MesaDados mesa;
-        public void registrarEntradaAMesa(Jugador j) { }//Esto no hace falta al final
-        public void caducarApuesta(Apuesta a) { } // Igual que esto
-        public void registrarSalidaDeMesa(Jugador j) { } // Y esto
+   //     public void registrarEntradaAMesa(Jugador j) { }//Esto no hace falta al final
+   //     public void caducarApuesta(Apuesta a) { } // Igual que esto
+   //     public void registrarSalidaDeMesa(Jugador j) { } // Y esto
         
 		public ReporteDados obtenerReporte() 
         {

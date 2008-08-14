@@ -24,6 +24,8 @@ namespace CasinoNEW
 
         public ApuestaGanarEnContra(bool afavor, int p, Ficha ficha, Cantidad cant)
         {
+			if (p > 10 || p < 4 || p == 7)
+				throw new Exception("Puntaje invalido");
 			fichas = new System.Collections.Generic.Dictionary<Dinero,int>();
 			fichas.Add(ficha, cant);
 			valor = ficha*cant;

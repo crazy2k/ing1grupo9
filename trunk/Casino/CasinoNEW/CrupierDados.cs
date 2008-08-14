@@ -34,13 +34,15 @@ namespace CasinoNEW
 		public Dictionary<Jugador, IList<Premio>> premiosPagados()
 		{
 			Dictionary<Jugador, IList<Premio>> premiosPagad = new Dictionary<Jugador,IList<Premio>>();
-			IList<Premio> premios = new List<Premio>();
+			IList<Premio> premios;
 			foreach (Jugador j in apuestasPagadas.Keys){
+				premios = new List<Premio>();
 				IList<ApuestaDados> aps = apuestasPagadas[j];
 				foreach (ApuestaDados a in aps){
 					premios.Add(a.Premio);
 				}
 				premiosPagad.Add(j,premios);
+//				premios.Clear();
 			}
 			return premiosPagad;
 		}
@@ -121,9 +123,10 @@ namespace CasinoNEW
 
 			Dictionary<Jugador, IList<ApuestaDados>> nuevasApuestas =
 				new Dictionary<Jugador, IList<ApuestaDados>>();
-						
+
+			IList<ApuestaDados> aps;
 			foreach (Jugador j in apuestasRealizadas.Keys){
-				IList<ApuestaDados> aps = new List<ApuestaDados>(apuestasRealizadas[j]);
+				aps = new List<ApuestaDados>(apuestasRealizadas[j]);
 				foreach (ApuestaDados a in apuestasRealizadas[j]){
 					Pair result = a.evaluar(res);
 					bool definida = (bool)result.getFirst();
@@ -158,6 +161,7 @@ namespace CasinoNEW
 				}
 				if (aps.Count > 0)
 					nuevasApuestas.Add(j, aps);
+				aps.Clear();
 				
 				// Sigo con el próximo jugador...
 			}

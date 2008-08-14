@@ -27,7 +27,7 @@ namespace CasinoNEW
 		
         public override Pair evaluar(ResultadoDados res)
         {
-            Dinero premioAPagar;
+            Dinero premioAPagar = 0;
             if (tiroDeSalida) 
             {
                 if (res.sumaDados() == 7 || res.sumaDados() == 11) 
