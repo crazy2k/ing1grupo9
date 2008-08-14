@@ -219,16 +219,19 @@ namespace CasinoNEW
 			}
 			//Probabilidades de aparición de Jugada Feliz
 			linea = ProximaLinea(sr);
-			double probInt = Convert.ToDouble(linea);
-			probJugadaFeliz = ( (float)probInt )/100;
+			int probInt = Int32.Parse(linea);
+			probJugadaFeliz = (float)(( probInt * 1.00 ) / 100);
+		//	Console.WriteLine(probJugadaFeliz);
 			//Probabilidades de aparición de Jugada TodosPonen
 			linea = ProximaLinea(sr);
-			probInt = Convert.ToDouble(linea);
-			probJugadaTodosPonen = ( (float)probInt )/100;
+			probInt = Int32.Parse(linea);
+			probJugadaTodosPonen = (float)((probInt * 1.00) / 100);
+		//	Console.WriteLine(probJugadaTodosPonen);
 			//Porcentaje a descontar de los premios por jugada TodosPonen
 			linea = ProximaLinea(sr);
-			double procInt = Convert.ToDouble(linea);
-			porcJugadaTodosPonen = ( (float)procInt )/100;
+			int procInt = Int32.Parse(linea);
+			porcJugadaTodosPonen = (float)((procInt * 1.00) / 100);
+		//	Console.WriteLine(porcJugadaTodosPonen);
         }
 		
 		private string ProximaLinea(StreamReader sr){

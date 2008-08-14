@@ -17,14 +17,14 @@ namespace Organizador
 				FileInfo[] files = di.GetFiles("*.xml");
 				foreach (FileInfo fi in files)
 				{
-				Borrar:
+		//		Borrar:
 					try
 					{
 						fi.Delete();
 					}
 					catch (Exception e)
 					{
-						goto Borrar;
+			//			goto Borrar;
 					}
 				}
 			}

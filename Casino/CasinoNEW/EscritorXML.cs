@@ -36,6 +36,11 @@ namespace CasinoNEW
 		protected XmlAttribute AgregarAtributo(XmlDocument d, XmlElement e,
 		                                     string nombre, string valor) {
 			XmlAttribute a = d.CreateAttribute(nombre);
+
+			// Arreglo para que funcione con el cliente de regalo.
+			if (nombre.ToLower() == "vterm")
+				valor = valor.PadLeft(4, '0');
+
 			a.Value = valor;
 			e.Attributes.Append(a);
 			

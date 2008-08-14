@@ -42,7 +42,7 @@ namespace CasinoNEW
 				escritor.AceptarEntrada(id, usuario, idMesa, "ok");
 			}
 			catch (Exception e){
-				escritor.DenegarEntrada(id, usuario, idMesa.ToString() , e.Message);
+				escritor.DenegarEntrada(id, usuario, idMesa.ToString() , e.Message + e.StackTrace);
 			}
 		}
 		public void EntrarCrapsNuevaMesa(int id, string usuario){
