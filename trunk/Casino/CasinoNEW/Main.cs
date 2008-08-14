@@ -26,7 +26,7 @@ namespace CasinoNEW
 				}
 			}
 
-			Console.WriteLine("Hello World!");
+			Console.WriteLine("Casino Timbalistas");
 			Poller p = new Poller();
 			p.poll();
 			Console.WriteLine("Se rompe todo");
