@@ -32,6 +32,7 @@ namespace CasinoNEW
 	
 		public void EntrarCrapsMesa(int id, string usuario, int idMesa){
 			try{
+				GestionadorUsuarios.GetInstance().CheckID(id, usuario);
 				Jugador j = GestionadorUsuarios.GetInstance().GetJugador(usuario);
 				Mesa m = JuegoDados.GetInstance().getMesa(idMesa);
 				if (!(m is MesaDados))
@@ -47,6 +48,7 @@ namespace CasinoNEW
 		public void EntrarCrapsNuevaMesa(int id, string usuario){
 			try
 			{
+				GestionadorUsuarios.GetInstance().CheckID(id, usuario);
 				Jugador j = GestionadorUsuarios.GetInstance().GetJugador(usuario);
 				Mesa m = JuegoDados.GetInstance().CrearMesa();
 				if (!(m is MesaDados))
@@ -141,12 +143,13 @@ namespace CasinoNEW
 						escritor.ResponderTiroAceptado(id, usuario, idMesa, res.Dado1, res.Dado2, tj);
 				}
 				else{
-					escritor.ResponderTiroDenegado(id, usuario, idMesa);
+					escritor.ResponderTiroDenegado(id, usuario, idMesa,
+						"El jugador no se halla en la mesa.");
 				}
 			}
 			catch(Exception e)
 			{
-				escritor.ResponderTiroDenegado(id, usuario, idMesa);
+				escritor.ResponderTiroDenegado(id, usuario, idMesa, e.Message);
 			}
 		}
 		

@@ -1,13 +1,13 @@
 #Archivo de Configuración del Casino Timbalistas.
 #
 #Path de la lista de Jugadores del casino:
-./lista-jugadores
+#./lista-jugadores
 #Cantidad de fichas
 3
 #Valor de cada ficha
 1
 2
-3.5
+35
 #Probabilidad de aparicion de una jugada Feliz (en porcentaje)
 10
 #Probabilidad de aparicion de una jugada TodosPonen (en porcentaje)

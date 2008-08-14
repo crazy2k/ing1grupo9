@@ -36,7 +36,7 @@ namespace CasinoNEW
 			string usuario = GetUsuario(root);
 
 			XmlNode ma = root.FirstChild;
-			string modo = ma.InnerText;
+			string modo = ma.InnerText.ToLower();
 			
 			manejador.EntrarCasino(id, usuario, modo);
 		}

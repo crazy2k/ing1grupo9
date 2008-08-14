@@ -94,7 +94,7 @@ namespace CasinoNEW
 			Dictionary<Jugador, IList<Premio>> premios,
 			IDictionary<Jugador, IList<ApuestaDados>> apuestas)
 		{
-			string nombreArchivo = "EstadoCraps";
+			string nombreArchivo = "estadoCraps";
 
 			XmlDocument xd = CrearDocumentoXML();
 			XmlElement root = xd.CreateElement("estadoMesaCraps");
@@ -108,8 +108,10 @@ namespace CasinoNEW
 			root.AppendChild(tagJugadores);
 			foreach (Jugador j in jugadores)
 			{
-				XmlElement tagJugador = xd.CreateElement("jugador");
-				AgregarAtributo(xd, tagJugador, "nombre", j.Nombre);
+				//XmlElement tagJugador = xd.CreateElement("jugador");
+				//AgregarAtributo(xd, tagJugador, "nombre", j.Nombre);
+				AgregarElementoSimple(xd, tagJugadores, "jugador", j.Nombre);
+				//tagJugadores.AppendChild(tagJugador);
 			}
 
 			XmlElement tagProximoTiro = xd.CreateElement("proximoTiro");
@@ -288,7 +290,7 @@ namespace CasinoNEW
 		}
 
 		public void ResponderTiroDenegado(int id, string usuario,
-			int idMesa)
+			int idMesa, string descripcion)
 		{
 			string nombreArchivo = "respuestaTiroCraps";
 
@@ -303,6 +305,8 @@ namespace CasinoNEW
 			AgregarElementoSimple(xd, root, "aceptado", "no");
 			XmlElement resultado = xd.CreateElement("resultado");
 			root.AppendChild(resultado);
+
+			AgregarElementoSimple(xd, root, "descripcion", descripcion);
 
 			Escribir(nombreArchivo, xd, id);
 		}

@@ -15,7 +15,7 @@ namespace Organizador
 		public static readonly string Numero_Grupo = "09";
 
 		public static IList<string> Mensajes_Lectura_Servidor = 
-			new List<string>( new string[]{"entradaCasino","SalidaCasino","pedidoEstadoCasino",
+			new List<string>( new string[]{"entradaCasino","salidaCasino","pedidoEstadoCasino",
 			"entradaCraps", "salidaCraps", "apuestaCraps", "tiroCraps", 
 			"cerrarCasino", "abrirCasino", "rankingCasino", "movimientosJugador",
 			"informeEstadoActual", "manipularDados"} );

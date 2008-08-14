@@ -19,7 +19,7 @@ namespace CasinoNEW
 		}
 
 		public ApuestaPassNoPass(bool favor, Ficha ficha, Cantidad cant){
-			fichas = new System.Collections.Generic.Dictionary<decimal,int>();
+			fichas = new System.Collections.Generic.Dictionary<Dinero,int>();
 			fichas.Add(ficha, cant);
 			valor = ficha*cant;
 			aFavor = favor;		
@@ -27,7 +27,7 @@ namespace CasinoNEW
 		
         public override Pair evaluar(ResultadoDados res)
         {
-            decimal premio;
+            Dinero premio;
             if (tiroDeSalida) 
             {
                 if (res.sumaDados() == 7 || res.sumaDados() == 11) 
@@ -55,8 +55,9 @@ namespace CasinoNEW
                 {
                     punto = res.sumaDados();
                     tiroDeSalida = false;
-                    this.premio.MontoPremioJugada = -1;
-                    return new Pair(false,-1); 
+                    this.premio.MontoPremioJugada = 0;
+					premio = 0;
+					return new Pair(false, premio); 
                 } 
             }
             else 
@@ -75,8 +76,9 @@ namespace CasinoNEW
                 } 
                 else 
                 {
-                    this.premio.MontoPremioJugada = -1;
-                    return new Pair(false,-1); 
+                    this.premio.MontoPremioJugada = 0;
+					premio = 0;
+                    return new Pair(false,premio); 
                 }
             }
         }

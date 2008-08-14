@@ -24,10 +24,22 @@ namespace CasinoNEW
 					// pido para saber si el usuario está autenticado
 					// como manipulador.
 					// TODO: ¿Rever?
-					Manipulador m = g.GetManip(usuario);
+					ManipuladorDados m = (ManipuladorDados)g.GetManip(usuario);
 
-					m.manipularResultado(new ResultadoDados(dado1, dado2),
-						JuegoDados.GetInstance().getMesas());
+					IList<Mesa> mesas = JuegoDados.GetInstance().getMesas();
+					m.manipularResultado(new ResultadoDados(dado1, dado2), mesas);
+					switch (tj)
+					{
+						case TipoJugada.Feliz:
+							m.manipularJugadaFeliz(mesas[0]);
+							break;
+						case TipoJugada.TodosPonen:
+							m.manipularJugadaTP(mesas);
+							break;
+						case TipoJugada.Normal:
+							m.manipularJugadaNormal(mesas);
+							break;
+					}
 
 					escritor.AceptarManipulacionDados(id, usuario);
 				}

@@ -24,7 +24,7 @@ namespace CasinoNEW
 
         public ApuestaGanarEnContra(bool afavor, int p, Ficha ficha, Cantidad cant)
         {
-			fichas = new System.Collections.Generic.Dictionary<decimal,int>();
+			fichas = new System.Collections.Generic.Dictionary<Dinero,int>();
 			fichas.Add(ficha, cant);
 			valor = ficha*cant;
             aFavor = afavor;
@@ -32,7 +32,7 @@ namespace CasinoNEW
         }
         public override Pair evaluar(ResultadoDados res)
         {
-            decimal premio=0;
+            Dinero premio=0;
             if (res.sumaDados()==7) 
             { 
                 if (aFavor) 
@@ -93,8 +93,9 @@ namespace CasinoNEW
             } 
             else
             {
-                this.premio.MontoPremioJugada = -1;
-                return new Pair(false,-1); 
+                this.premio.MontoPremioJugada = 0;
+				premio = 0;
+                return new Pair(false,premio); 
             }
         }
     }

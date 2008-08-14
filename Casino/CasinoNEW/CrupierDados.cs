@@ -77,6 +77,7 @@ namespace CasinoNEW
 			if (!ApuestasRealizadas.ContainsKey(j))
 				ApuestasRealizadas.Add(j, new List<ApuestaDados>());
 			apuestasRealizadas[j].Add(apuesta);
+			Casino.GetInstance().Cobrar(apuesta.getValor(),j);
 		}
 
 		public void quitarApuesta(Jugador j, ApuestaDados a)
@@ -117,10 +118,13 @@ namespace CasinoNEW
 			Dinero totalPagado = 0;
 						
 			borrarApuestasPagadas();
+
+			Dictionary<Jugador, IList<ApuestaDados>> nuevasApuestas =
+				new Dictionary<Jugador, IList<ApuestaDados>>();
 						
 			foreach (Jugador j in apuestasRealizadas.Keys){
-				IList<ApuestaDados> aps = apuestasRealizadas[j];
-				foreach (ApuestaDados a in aps){
+				IList<ApuestaDados> aps = new List<ApuestaDados>(apuestasRealizadas[j]);
+				foreach (ApuestaDados a in apuestasRealizadas[j]){
 					Pair result = a.evaluar(res);
 					bool definida = (bool)result.getFirst();
 					Dinero valor = (Dinero)result.getSecond();
@@ -133,20 +137,19 @@ namespace CasinoNEW
 						//Hay que sacarla de las apuestas a pagar y ponerla en
 						//las pagadas y fijarse que pasa cuando es feliz
 						aps.Remove(a);
-						if (aps.Count == 0)
-							apuestasRealizadas.Remove(j);
+						if (aps.Count > 0)
+							nuevasApuestas.Add(j, aps);
 						// Hasta acá lo saco de las realizadas
 						if (apuestasPagadas.ContainsKey(j)){
-							aps = apuestasPagadas[j];
-							aps.Add(a);
+							apuestasPagadas[j].Add(a);
 						}
 						else{
-							aps = new List<ApuestaDados>();
-							aps.Add(a);
-							apuestasPagadas.Add(j,aps);
+							IList<ApuestaDados> apsTemp = new List<ApuestaDados>();
+							apsTemp.Add(a);
+							apuestasPagadas.Add(j,apsTemp);
 						}
 						// Ahora la puse en las pagadas
-						totalPagado += valor;
+						totalPagado = totalPagado + valor;
 						// Esto lo uso sólo cuando la jugada es feliz, 
 						// sino no se usa para nada. Lo había puesto adentro
 						// de un if, pero al ser tan poco prefiero hacer todas
@@ -154,8 +157,17 @@ namespace CasinoNEW
 					}
 					// Si no está definida hago nada...				
 				}
+				
 				// Sigo con el próximo jugador...
-			} 
+			}
+			/*
+			foreach (Jugador jug in jugadoresASacar)
+			{
+				apuestasRealizadas.Remove(jug);
+			}
+			jugadoresASacar.Clear();
+			*/
+
 			//Cuando termino con todos los jugadores...
 			if ( tipo == TipoJugada.Feliz )
 				pagarAdicionalFeliz(totalPagado);			

@@ -7,18 +7,19 @@ namespace CasinoNEW
     {
         private Pair proxJugada = new Pair();
 
+		public GeneradorJugadasDados() {
+			obtenerJugada();
+		}
+
         public Pair obtenerJugada()
         {
 			Pair jugada = proxJugada;
-			setTipoJugada(Casino.GetInstance().ObtenerTipoDeJugada());
-            Random r1 = new Random(DateTime.Now.Millisecond);
-            Random r2 = new Random(DateTime.Now.Millisecond);
-            double rFloat1 = r1.NextDouble();
-            double rFloat2 = r2.NextDouble();
-            int dado1=0, dado2=0;
-            dado1 = setValorDado(rFloat1);
-            dado2 = setValorDado(rFloat2);
-            setResultado(new ResultadoDados(dado1, dado2));
+			
+			TipoJugada tj = Casino.GetInstance().ObtenerTipoDeJugada();
+			ResultadoDados result = getNewResultado();
+			
+			proxJugada = new Pair(tj, result);
+            
 			return jugada;
         }
 
@@ -53,9 +54,21 @@ namespace CasinoNEW
         {
             proxJugada.setFirst(t);
         }
-        public void setResultado(ResultadoDados r)
+		public void setResultado(ResultadoDados r)
+		{
+			proxJugada.setSecond(r);
+		}
+        public ResultadoDados getNewResultado()
         {
-            proxJugada.setSecond(r);
+			Random r1 = new Random(DateTime.Now.Millisecond);
+			double rFloat1 = r1.NextDouble();
+			double rFloat2 = r1.NextDouble();
+			int dado1 , dado2;
+			dado1 = setValorDado(rFloat1);
+			dado2 = setValorDado(rFloat2);
+			ResultadoDados result = new ResultadoDados(dado1, dado2);
+			return result;
+			
         }
     }
 }

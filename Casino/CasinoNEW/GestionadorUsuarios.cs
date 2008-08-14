@@ -153,18 +153,17 @@ namespace CasinoNEW
 			Jugador j = GetJugador(usuario, false);
 			// El jugador ya ingresó hoy.
 			if (j != null) {
+				Agregar(id, usuario, "jugador");
 				jugadoresInactivos.Remove(j);
-				jugadoresActivos.Add(j);
 			}
 			// EL jugador no ingresó hoy.
 			else {
 				Dinero saldo = lconfig.GetSaldo(usuario);
 				Jugador nj = new Jugador(usuario, saldo);
-				jugadoresActivos.Add(nj);
 				j = nj;
+				Agregar(id, usuario, "jugador");
 			}
-			
-			Agregar(id, usuario, "jugador");
+			jugadoresActivos.Add(j);
 			return j;
 		}
 		
@@ -203,6 +202,8 @@ namespace CasinoNEW
 		}
 		
 		private void Agregar(int id, string usuario, string modo) {
+			if (ids.ContainsKey(id))
+				throw new Exception("Esta terminal ya se ancuentra en uso");
 			ids.Add(id, usuario);
 			modos.Add(usuario, modo);
 		}
@@ -250,7 +251,7 @@ namespace CasinoNEW
 			return j;
 		}
 		
-		private Jugador GetJugador(string usuario, bool activo) {
+		public Jugador GetJugador(string usuario, bool activo) {
 			if (activo) {
 				foreach (Jugador j in jugadoresActivos)
 					if (j.Nombre == usuario)
@@ -266,6 +267,14 @@ namespace CasinoNEW
 		
 		private bool EstaAutenticado(string usuario) {
 			return ids.Values.Contains(usuario);
+		}
+		public void CheckID(int id, string usuario)
+		{
+			KeyValuePair<int,string> kv =
+				new KeyValuePair<int,string>(id,usuario);
+			if (!ids.Contains(kv))
+				throw new Exception("Usuario no admitido en esta terminal");
+
 		}
 
 		public void ActualizarLista()
