@@ -12,6 +12,8 @@ namespace CasinoNEW
 
         public Mesa getMesa(int id)
         {
+			if (mesas.Count <= id)
+				throw new Exception("No existe la mesa " + id.ToString() + " en el casino");
             return mesas[id];
         }
         public List<Mesa> getMesas()

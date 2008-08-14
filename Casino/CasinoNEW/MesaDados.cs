@@ -64,6 +64,7 @@ namespace CasinoNEW
         {
             j.agregarApuesta(a);
             Crupier.agregarApuesta(j, a);
+			NotificarEstado();
         }
         public override void agregarParticipante(Jugador j) 
         {
@@ -71,8 +72,7 @@ namespace CasinoNEW
 			Crupier.TiradorAnterior = j;
             Anfitrion.recibirParticipante(j);
 			EventHandler.agregarObservador(j);
-			ReporteDados r = Reportador.obtenerReporte();
-			EventHandler.notificar(r);
+			NotificarEstado();
         }
         public override void quitarParticipante(Jugador j) 
         {
