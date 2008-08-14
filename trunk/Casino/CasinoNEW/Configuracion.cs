@@ -14,6 +14,9 @@ namespace CasinoNEW
 			"\\Temp\\lista-usuarios.txt";
 		public static readonly string ARCHIVO_CONFIG =
 			"\\Temp\\configuracion-casino.txt";
+		public static readonly string ARCHIVO_SALDO_CASINO =
+			"\\Temp\\saldo-casino.txt";
+
 		
 		// Estas opciones de configuración quedan por si en algún momento
 		// alguien desea hacer una modificación.

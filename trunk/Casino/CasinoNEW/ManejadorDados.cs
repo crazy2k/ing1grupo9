@@ -77,8 +77,14 @@ namespace CasinoNEW
 
 		public void Apostar(int id, string usuario, int idMesa, 
 		               TipoApuestaDados tap, int puntajeApostado, 
-		               Dinero valorFichas, int cantidadFichas){
+		               string vF, string cF){
+			//Dinero valorFichas, int cantidadFichas){
 			try{
+				GestionadorUsuarios.GetInstance().CheckID(id, usuario);
+				if (vF == "" || cF == "")
+					throw new Exception("Valor o cantidad de Fichas vacío");
+				Dinero valorFichas = Dinero.Parse(vF);
+				int cantidadFichas = Int32.Parse(cF);
 				Jugador j = GestionadorUsuarios.GetInstance().GetJugador(usuario);
 				Mesa m = JuegoDados.GetInstance().getMesa(idMesa);
 				ApostarCraps(j,m,tap,puntajeApostado,cantidadFichas,
