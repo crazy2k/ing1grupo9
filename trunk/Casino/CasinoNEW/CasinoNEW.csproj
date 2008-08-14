@@ -97,6 +97,9 @@
     <Compile Include="Terminal.cs" />
     <Compile Include="ManejadorDados.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="configuracion-casino.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
     <None Include="lista-usuarios.txt" />

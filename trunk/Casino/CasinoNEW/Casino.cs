@@ -203,10 +203,11 @@ namespace CasinoNEW
         public void Configurar()
         {
 	//		using (StreamReader sr = new StreamReader( Configuracion.ARCHIVO_CONFIG )) {
-			StreamReader sr = new StreamReader( Configuracion.ARCHIVO_CONFIG );
+			StreamReader sr = new StreamReader(Configuracion.ARCHIVO_CONFIG);
 			// Lista de Clientes
-			string linea = ProximaLinea(sr);
-			Configuracion.ARCHIVO_USUARIOS = linea;
+			string linea;
+			//string linea = ProximaLinea(sr);
+			//Configuracion.ARCHIVO_USUARIOS = linea;
 			//Fichas
 			linea = ProximaLinea(sr);
 			int cantidadFichas = Convert.ToInt32(linea);

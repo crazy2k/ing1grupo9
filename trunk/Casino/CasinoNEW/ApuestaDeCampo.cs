@@ -10,14 +10,14 @@ namespace CasinoNEW
     public class ApuestaDeCampo : ApuestaDados
     {
 		public ApuestaDeCampo(Ficha ficha, Cantidad cant){
-			fichas = new System.Collections.Generic.Dictionary<decimal,int>();
+			fichas = new System.Collections.Generic.Dictionary<Dinero,int>();
 			fichas.Add(ficha, cant);
 			valor = ficha*cant;
 		}
 		
         public override Pair evaluar(ResultadoDados res)
         {
-            decimal premio;
+            Dinero premio;
             if (res.sumaDados() == 3 || res.sumaDados() == 4 || res.sumaDados() == 9 || 
                 res.sumaDados() == 10 || res.sumaDados() == 11) 
             { 

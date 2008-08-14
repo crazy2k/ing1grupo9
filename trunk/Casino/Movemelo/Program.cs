@@ -16,14 +16,24 @@ namespace Organizador
 			foreach (DirectoryInfo di in dia) {
 				FileInfo[] files = di.GetFiles("*.xml");
 				foreach (FileInfo fi in files)
-					fi.Delete();
+				{
+				Borrar:
+					try
+					{
+						fi.Delete();
+					}
+					catch (Exception e)
+					{
+						goto Borrar;
+					}
+				}
 			}
 			
 			Console.WriteLine("Organizando Archivos...");
 			Organizador o = new Organizador();
 			while (true)
 			{
-				o.Organizar();
+				o.Organizar();				
 			}
 		}
 	}

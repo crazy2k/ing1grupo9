@@ -1,3 +1,4 @@
 pablo,admin,9999999
 marta,jugador,20
 matias,observador,500
+admin,admin,20

@@ -99,7 +99,9 @@ namespace CasinoNEW
 		{
 			VerificarClausura();
 			GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
-			Jugador j = g.GetJugador(jugador);
+			Jugador j = g.GetJugador(jugador, false);
+			if (j == null)
+				throw new Exception("El jugador no entro hoy al casino");
 
 			IList<ValorPremios> l = ToWritable(j.Apuestas);
 

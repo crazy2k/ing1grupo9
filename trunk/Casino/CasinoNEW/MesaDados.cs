@@ -47,6 +47,8 @@ namespace CasinoNEW
             set { crupier = value; }
         }
 
+		private Jugada j = new Jugada();
+
 		public MesaDados(int identificador)
 		{
 			id = identificador;
@@ -55,7 +57,8 @@ namespace CasinoNEW
         public override void jugar() 
         {
             Jugada jugada = GeneradorJugadas.obtenerJugada();
-			Crupier.pagarApuestas((ResultadoDados)jugada.getSecond(), (TipoJugada)jugada.getFirst());
+			j = jugada;
+			Crupier.pagarApuestas((ResultadoDados)j.getSecond(), (TipoJugada)j.getFirst());
         }
         public override void apostar(Jugador j, Apuesta a) 
         {

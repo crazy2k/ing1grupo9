@@ -22,6 +22,9 @@ namespace CasinoNEW
 		
 		public override Mesa CrearMesa()
 		{
+			//Las siguientes 3 lineas son para que halla una sola mesa
+			if (mesas.Count > 0)
+				throw new Exception("Ya hay una mesa de dados creada");
 			Mesa nuevaMesa = new MesaDados(cantMesas);
 			mesas.Add(nuevaMesa);
 			cantMesas++;

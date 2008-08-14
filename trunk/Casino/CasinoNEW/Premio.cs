@@ -1,32 +1,33 @@
 using System;
 using System.Configuration;
+using Dinero = System.Decimal;
 
 namespace CasinoNEW
 {
     public class Premio
     {
-        private decimal montoPremioJugada;
-        private decimal montoPremioJF;
-        private decimal montoRetencionJTP;
+        private Dinero montoPremioJugada;
+        private Dinero montoPremioJF;
+        private Dinero montoRetencionJTP;
 
         public Premio()
         {
         }
 
-		public decimal MontoPremioJugada{
+		public Dinero MontoPremioJugada{
 			get{ return montoPremioJugada; }
 			set{ montoPremioJugada = value; }
 		}		
-        public decimal MontoPremioJF{
+        public Dinero MontoPremioJF{
 			get{ return montoPremioJF; }
 			set{ montoPremioJF = value; }
 		}
-        public decimal MontoRetencionJTP{
+        public Dinero MontoRetencionJTP{
 			get{ return montoRetencionJTP; }
 			set{ montoRetencionJTP = value; }
 		}
 		
-        public Premio(decimal montoPremioJugada, decimal montoPremioJF,
-            decimal montoRetencionJTP) {}
+        public Premio(Dinero montoPremioJugada, Dinero montoPremioJF,
+            Dinero montoRetencionJTP) {}
     }
 }
