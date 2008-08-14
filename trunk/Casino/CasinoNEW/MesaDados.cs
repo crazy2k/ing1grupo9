@@ -71,6 +71,8 @@ namespace CasinoNEW
 			Crupier.TiradorAnterior = j;
             Anfitrion.recibirParticipante(j);
 			EventHandler.agregarObservador(j);
+			ReporteDados r = Reportador.obtenerReporte();
+			EventHandler.notificar(r);
         }
         public override void quitarParticipante(Jugador j) 
         {

@@ -36,11 +36,12 @@ namespace CasinoNEW
 			int dado2 = Int32.Parse(partes[1].Trim());
 
 			string stj = GetChildNode(root, "tipoDeJugada").InnerText;
-
+			stj = stj.Replace(" ","");
+			stj =stj.ToLower();
 			TipoJugada tj = TipoJugada.Normal;
-			if (stj == "Feliz")
+			if (stj == "feliz")
 				tj = TipoJugada.Feliz;
-			else if (stj == "TodosPonen")
+			else if (stj == "todosponen")
 				tj = TipoJugada.TodosPonen;
 
 			manejador.ManipularMesaDados(id, usuario, dado1, dado2, tj);

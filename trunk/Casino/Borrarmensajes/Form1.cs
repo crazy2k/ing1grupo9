@@ -23,14 +23,14 @@ namespace Borrarmensajes
 			FileInfo[] files = di.GetFiles("*.xml");
 			foreach (FileInfo fi in files)
 			{
-			Borrar:
+		//	Borrar:
 				try
 				{
 					fi.Delete();
 				}
 				catch (Exception exp)
 				{
-					goto Borrar;
+		//			goto Borrar;
 				}
 			}
 		}

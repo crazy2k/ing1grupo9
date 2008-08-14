@@ -14,12 +14,9 @@ namespace CasinoNEW
         public Pair obtenerJugada()
         {
 			Pair jugada = proxJugada;
-			
 			TipoJugada tj = Casino.GetInstance().ObtenerTipoDeJugada();
 			ResultadoDados result = getNewResultado();
-			
 			proxJugada = new Pair(tj, result);
-            
 			return jugada;
         }
 
