@@ -120,7 +120,7 @@ namespace CasinoNEW
 				IList<ValorPremios> lvps =
 					ginformes.MovimientosPorJugador(jugador);
 
-				escritor.InformarMovimientosPorJugador(id, usuario, lvps);
+				escritor.InformarMovimientosPorJugador(id, usuario, lvps, jugador);
 			}
 			// No distingo las excepciones porque el protocolo
 			// ni siquiera tiene la opción de enviar un motivo

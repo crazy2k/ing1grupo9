@@ -177,7 +177,7 @@ namespace CasinoNEW
 		}
 
 		public void InformarMovimientosPorJugador(int id, string usuario,
-			IList<ValorPremios> lvps)
+			IList<ValorPremios> lvps, string jugadorIngresado)
 		{
 			string nombreArchivo = "respuestaMovimientosJugador";
 
@@ -189,6 +189,7 @@ namespace CasinoNEW
 			AgregarAtributo(xd, root, "usuario", usuario);
 
 			AgregarElementoSimple(xd, root, "aceptado", "si");
+			AgregarElementoSimple(xd, root, "jugador", jugadorIngresado);
 
 			XmlElement apuestas = xd.CreateElement("apuestas");
 			root.AppendChild(apuestas);
@@ -207,7 +208,8 @@ namespace CasinoNEW
 					vps.montos.premioJugada.ToString());
 			}
 			Escribir(nombreArchivo, xd, id);
-			Escribir("MovimientosPorJugador", xd, id);
+			Escribir("MovimientosPorJugador" + jugadorIngresado, xd, id);
+//			Escribir("MovimientosPorJugador", xd, id);
 		}
 
 		public void DenegarMovimientosPorJugador(int id, string usuario)

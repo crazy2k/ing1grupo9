@@ -137,8 +137,7 @@ namespace CasinoNEW
 						//Hay que sacarla de las apuestas a pagar y ponerla en
 						//las pagadas y fijarse que pasa cuando es feliz
 						aps.Remove(a);
-						if (aps.Count > 0)
-							nuevasApuestas.Add(j, aps);
+						
 						// Hasta acá lo saco de las realizadas
 						if (apuestasPagadas.ContainsKey(j)){
 							apuestasPagadas[j].Add(a);
@@ -157,9 +156,12 @@ namespace CasinoNEW
 					}
 					// Si no está definida hago nada...				
 				}
+				if (aps.Count > 0)
+					nuevasApuestas.Add(j, aps);
 				
 				// Sigo con el próximo jugador...
 			}
+			apuestasRealizadas = nuevasApuestas;
 			/*
 			foreach (Jugador jug in jugadoresASacar)
 			{

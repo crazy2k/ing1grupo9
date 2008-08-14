@@ -306,7 +306,7 @@ namespace CasinoNEW
 			XmlElement resultado = xd.CreateElement("resultado");
 			root.AppendChild(resultado);
 
-			AgregarElementoSimple(xd, root, "descripcion", descripcion);
+	//		AgregarElementoSimple(xd, root, "descripcion", descripcion);
 
 			Escribir(nombreArchivo, xd, id);
 		}
