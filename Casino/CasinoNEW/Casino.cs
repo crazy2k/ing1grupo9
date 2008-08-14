@@ -178,6 +178,7 @@ namespace CasinoNEW
 
 					GestionadorUsuarios g = GestionadorUsuarios.GetInstance();
 					g.ActualizarLista();
+					g.GuardarSaldoCasino();
                 }
                 else
                 {
@@ -202,6 +203,11 @@ namespace CasinoNEW
 		
         public void Configurar()
         {
+			StreamReader sr1 = 
+				new StreamReader(Configuracion.ARCHIVO_SALDO_CASINO);
+			string saldoCasino = ProximaLinea(sr1);
+			saldoActual = new Dinero(double.Parse(saldoCasino));
+
 	//		using (StreamReader sr = new StreamReader( Configuracion.ARCHIVO_CONFIG )) {
 			StreamReader sr = new StreamReader(Configuracion.ARCHIVO_CONFIG);
 			// Lista de Clientes

@@ -281,5 +281,10 @@ namespace CasinoNEW
 		{
 			lconfig.Actualizar(JugadoresInactivos);
 		}
+
+		public void GuardarSaldoCasino()
+		{
+			lconfig.GuardarSaldoCasino(Casino.GetInstance().getSaldoActual());
+		}
 	}
 }

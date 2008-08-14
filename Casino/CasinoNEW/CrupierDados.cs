@@ -161,7 +161,6 @@ namespace CasinoNEW
 				}
 				if (aps.Count > 0)
 					nuevasApuestas.Add(j, aps);
-				aps.Clear();
 				
 				// Sigo con el próximo jugador...
 			}

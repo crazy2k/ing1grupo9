@@ -104,5 +104,13 @@ namespace CasinoNEW
 			tw.Close();
 		}
 
+		public void GuardarSaldoCasino(Dinero saldo)
+		{
+			TextWriter tw =
+				new StreamWriter(Configuracion.ARCHIVO_SALDO_CASINO);
+			tw.WriteLine(saldo.ToString());
+			tw.Close();
+		}
+
 	}
 }

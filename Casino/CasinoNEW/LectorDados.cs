@@ -70,10 +70,10 @@ namespace CasinoNEW
 			XmlElement valorApuesta = GetChildNode(root, "valorApuesta");
 			// Se lee un único <fichaValor>
 			XmlElement fichaValor = GetChildNode(valorApuesta, "fichaValor");
-			int cantidadFichas =
-				Int32.Parse(GetTextFromChildNode(fichaValor, "cantidad"));
-			Dinero valorFichas =
-				Dinero.Parse(GetTextFromChildNode(fichaValor, "valor"));
+			string cantidadFichas =
+				GetTextFromChildNode(fichaValor, "cantidad");
+			string valorFichas =
+				GetTextFromChildNode(fichaValor, "valor");
 
 			manejador.Apostar(id, usuario, idMesa, tipoApuesta,
 				puntajeApostado, valorFichas, cantidadFichas);

@@ -38,21 +38,21 @@ namespace CasinoNEW
                 if (res.sumaDados() == 7 || res.sumaDados() == 11)
                 {
                     premio = aFavor ? valor * 2 : 0;
-                    tiroDeApuesta = false;
+                    //tiroDeApuesta = false;
                     this.premio.MontoPremioJugada = premio;
                     return new Pair(true, premio);
                 }
                 else if (res.sumaDados() == 2 || res.sumaDados() == 3)
                 {
                     premio = aFavor ? 0 : valor * 2;
-                    tiroDeApuesta = false;
+                    //tiroDeApuesta = false;
                     this.premio.MontoPremioJugada = premio;
                     return new Pair(true, premio);
                 }
                 else if (res.sumaDados() == 12)
                 {
                     premio = aFavor ? 0 : valor;
-                    tiroDeApuesta = false;
+                    //tiroDeApuesta = false;
                     this.premio.MontoPremioJugada = premio;
                     return new Pair(true, premio);
                 }
@@ -71,12 +71,14 @@ namespace CasinoNEW
                 {
                     premio = aFavor ? 0 : valor * 2;
                     this.premio.MontoPremioJugada = premio;
+					tiroDeApuesta = true;
                     return new Pair(true, premio);
                 }
                 else if (res.sumaDados() == puntajeVenir)
                 {
                     premio = aFavor ? valor * 2 : 0;
                     this.premio.MontoPremioJugada = premio;
+					tiroDeApuesta = true;
                     return new Pair(true, premio);
                 }
                 else
